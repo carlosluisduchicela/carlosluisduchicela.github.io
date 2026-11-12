@@ -6,183 +6,174 @@
 <title>carlosluis duchicela — head of product</title>
 <meta name="description" content="head of product. case work with the material attached, working software you can run, and the resume.">
 <style>
-  :root{--ink:#101014;--muted:#6f6f6f;--line:#d8d4c8;--ikb:#002fa7;--paper:#f7f5ef}
+  :root{--ink:#101014;--muted:#5c5c60;--line:#d8d4c8;--ikb:#002fa7;--paper:#f7f5ef}
   *{box-sizing:border-box} html{scroll-behavior:smooth}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:940px;margin:0 auto;padding:0 26px 90px;position:relative}
-  .side{position:absolute;left:-64px;top:230px;transform:rotate(180deg);writing-mode:vertical-rl;font-size:11.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--ikb);font-weight:700}
-  @media(max-width:1100px){.side{display:none}}
-  nav{position:sticky;top:0;background:rgba(247,245,239,.94);backdrop-filter:blur(8px);display:flex;gap:26px;padding:14px 0;border-bottom:1px solid var(--line);font-size:13px;z-index:5}
-  nav a{color:var(--ink);text-decoration:none} nav a:hover{color:var(--ikb)} nav .n{font-weight:600;margin-right:auto}
-  .top{display:flex;justify-content:space-between;padding:18px 0 0;font-size:13px;font-weight:600}
-  .top .b{color:var(--ikb)}
-  h1.name{font-size:clamp(56px,10vw,118px);font-weight:800;letter-spacing:-.05em;line-height:.87;margin:30px 0 0}
+  .wrap{max-width:940px;margin:0 auto;padding:0 26px 90px}
+  nav{position:sticky;top:0;background:rgba(247,245,239,.94);backdrop-filter:blur(8px);display:flex;gap:26px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);font-size:13px;z-index:5}
+  nav a{color:var(--ink);text-decoration:none} nav a:hover{color:var(--ikb)}
+  nav .mark{width:12px;height:12px;background:var(--ikb);margin-right:auto}
+  h1.name{font-size:clamp(56px,10vw,118px);font-weight:800;letter-spacing:-.05em;line-height:.87;margin:34px 0 0}
   .role{font-size:clamp(22px,3.2vw,32px);font-weight:700;color:var(--ikb);margin-top:10px;letter-spacing:-.01em}
-  .sub{display:flex;gap:28px;margin-top:30px} .sub img{width:170px;height:170px;object-fit:cover;filter:grayscale(1)}
-  .sub p{font-size:18px;line-height:1.55;margin:0;max-width:40ch}
-  .scope{display:flex;gap:38px;flex-wrap:wrap;border-top:3px solid var(--ink);margin-top:36px;padding-top:16px}
-  .scope .n{font-size:20px;font-weight:750;letter-spacing:-.01em} .scope .l{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.07em;margin-top:2px}
-  .caps{display:grid;grid-template-columns:repeat(2,1fr);gap:7px 40px;margin-top:26px;font-size:16px}
-  .caps div b{color:var(--ikb);font-weight:700;margin-right:9px}
-  @media(max-width:640px){.caps{grid-template-columns:1fr}}
-  section{margin-top:64px}
-  h2{font-size:12px;letter-spacing:.3em;text-transform:uppercase;margin:0 0 6px}
+  .target{font-size:15px;margin-top:6px}
+  .sub{display:flex;gap:28px;align-items:center;margin-top:28px}
+  .sub img{width:190px;height:190px;object-fit:cover;filter:grayscale(1);mix-blend-mode:multiply;flex:none}
+  .lede{font-size:19.5px;line-height:1.55;margin:0;max-width:42ch}
+  .strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:3px solid var(--ink);margin-top:36px;padding-top:16px;gap:18px}
+  .strip .n{font-size:21px;font-weight:750;letter-spacing:-.01em}
+  .strip .l{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:2px}
+  .caplabel{font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:38px}
+  .caps2{display:grid;grid-template-columns:repeat(2,1fr);gap:11px 44px;margin-top:12px}
+  .cap{font-size:15.5px}.cap b{color:var(--ikb);margin-right:9px}.cap .t{font-weight:700}.cap .d{color:#444}
+  section{margin-top:72px}
+  section#cases{margin-top:88px}
+  h2{font-size:12px;letter-spacing:.3em;text-transform:uppercase;margin:0;padding-bottom:8px;border-bottom:1px solid var(--line)}
   h2 .sub2{letter-spacing:0;text-transform:none;color:var(--muted);font-weight:400;font-size:13.5px}
-  .rule{height:1px;background:var(--line);margin:0 0 8px}
-  .case{border-top:1px solid var(--line);padding:20px 0 12px}
-  .tab{display:inline-block;background:var(--ikb);color:#fff;font-size:11.5px;font-weight:700;letter-spacing:.12em;padding:3px 10px;text-transform:uppercase}
-  .case .t{font-size:25px;font-weight:750;letter-spacing:-.02em;margin-top:11px}
-  .case .t .when{color:var(--muted);font-weight:400;font-size:14px}
-  .case .q{font-family:Georgia,'Times New Roman',serif;font-size:16.5px;line-height:1.55;color:#26262c;max-width:62ch;margin:6px 0 0}
-  .case .o{font-size:15.5px;margin:7px 0 0;max-width:68ch}
-  .case .links{font-size:14.5px;margin:7px 0 4px} .case a{color:var(--ikb)}
-  .proj{display:flex;gap:22px;border-top:1px solid var(--line);padding:20px 0}
-  .proj .thumb{width:200px;height:100px;object-fit:cover;border:1px solid var(--line);flex:none;background:#fff}
+  .case{display:grid;grid-template-columns:190px 1fr;gap:28px;border-top:1px solid var(--line);padding:34px 0 26px}
+  .case:first-of-type{border-top:none}
+  .rail{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-top:5px}
+  .rail .no{display:block;color:var(--ikb);font-size:13px;margin-bottom:4px}
+  .case .t{font-size:21px;font-weight:750;letter-spacing:-.02em}
+  .case .q{font-family:Georgia,'Times New Roman',serif;font-size:20px;line-height:1.5;color:#26262c;max-width:58ch;margin:8px 0 0}
+  .case .o{font-size:15.5px;margin:10px 0 0;max-width:68ch}
+  .case .o .ol{font-weight:700}
+  .case .links{font-size:14.5px;margin:8px 0 0;line-height:2} .case a{color:var(--ikb)}
+  .proj{display:flex;gap:22px;border-top:1px solid var(--line);padding:26px 0}
+  .proj:first-of-type{border-top:none}
+  .proj .thumb{width:240px;height:120px;object-fit:cover;border:1px solid var(--line);flex:none;background:#fff}
+  .proj .thumb.ph{background:var(--ikb);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
   .proj h3{margin:0;font-size:18px;font-weight:650}
   .proj p{margin:3px 0 6px;font-size:14.5px;color:#333;max-width:58ch}
+  .proj .use{font-size:13.5px;color:var(--muted)}
   .proj a{color:var(--ikb);margin-right:12px;font-size:14.5px;text-decoration:none}
   .proj .meta{font-size:12px;color:var(--muted)}
-  .dl{font-size:15.5px;line-height:2} .dl a{color:var(--ikb);text-decoration:none}
-  .rnote{color:var(--muted);font-size:13.5px;margin:2px 0 10px}
+  .dlrow{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 2px;border-top:1px solid var(--line);font-size:15.5px;color:var(--ink);text-decoration:none}
+  .dlrow:first-of-type{border-top:none}
+  .dlrow:hover{color:var(--ikb)}
+  .dlrow .pdf{font-size:12.5px;color:var(--muted);white-space:nowrap}
+  .rnote{color:var(--muted);font-size:13.5px;margin:14px 0 4px}
   details.role{border-top:1px solid var(--line);padding:11px 0}
   details.role summary{cursor:pointer;font-size:15.5px;font-weight:600;list-style:none}
   details.role summary::-webkit-details-marker{display:none}
+  details.role summary::before{content:"+  ";color:var(--ikb);font-weight:700}
+  details.role[open ] summary::before{content:"–  "}
   details.role summary:hover{color:var(--ikb)}
   details.role summary .rt{color:var(--muted);font-weight:400;font-size:13.5px}
   details.role ul{margin:8px 0 6px;padding-left:18px}
   details.role li{font-size:14.5px;margin:0 0 5px;max-width:74ch}
   .skills{font-size:14.5px;color:#333;border-top:1px solid var(--line);padding-top:12px}
-  footer{margin-top:76px;background:#101014;color:#ddd;padding:30px 26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
-  footer .big{font-size:22px;color:#fff;font-weight:650;letter-spacing:-.01em}
+  footer{background:#101014;color:#ddd;margin-top:90px}
+  .finner{max-width:940px;margin:0 auto;padding:44px 26px 52px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px}
+  footer .big{font-size:32px;color:#fff;font-weight:650;letter-spacing:-.01em;line-height:1.2}
   footer a{color:#fff}
-  .rv{opacity:0;transform:translateY(12px);transition:opacity .55s ease,transform .55s ease}
-  .rv.on{opacity:1;transform:none}
-  @media (prefers-reduced-motion: reduce){.rv{opacity:1;transform:none;transition:none}}
-  @media(max-width:640px){.proj{flex-direction:column}.proj .thumb{width:100%;height:auto}.sub{flex-direction:column}}
-
-  .facts{border-top:3px solid var(--ink);margin-top:36px}
-  .frow{display:flex;gap:22px;padding:10px 0;border-bottom:1px solid var(--line)}
-  .fk{font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ikb);min-width:92px;padding-top:4px}
-  .fv{font-size:16.5px}
-  .contents{margin-top:30px}
-  .ck{font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-  .crow{display:flex;gap:16px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
-  .crow:hover .ct2{color:var(--ikb)}
-  .cn{color:var(--ikb);font-weight:700;font-size:14px;min-width:26px}
-  .ct2{font-size:17px;font-weight:600}
-  .cp{margin-left:auto;font-size:12.5px;color:var(--muted);white-space:nowrap}
   @media(max-width:720px){
     .wrap{padding:0 18px 70px}
     nav{gap:16px;font-size:12.5px}
-    .top{flex-wrap:wrap;gap:4px 14px;font-size:12px}
     h1.name{font-size:clamp(44px,15vw,64px)}
     .role{font-size:21px}
-    .sub{gap:18px}.sub img{width:120px;height:120px}.sub p{font-size:16px}
-    .frow{flex-direction:column;gap:2px}.fk{padding-top:0}
-    .fv{font-size:15.5px}
-    .ct2{font-size:15.5px}.cp{font-size:11.5px}
-    .case .t{font-size:21px}.case .q{font-size:15.5px}.case .o{font-size:14.5px}
+    .sub{flex-direction:column;align-items:flex-start;gap:18px}
+    .sub img{width:150px;height:150px}
+    .lede{font-size:17.5px}
+    .strip{grid-template-columns:repeat(2,1fr)}
+    .caps2{grid-template-columns:1fr}
+    .case{grid-template-columns:1fr;gap:6px;padding:26px 0 20px}
+    .rail{padding-top:0}
+    .rail .no{display:inline;margin:0 10px 0 0}
+    .case .q{font-size:18.5px}
+    .proj{flex-direction:column}
     .proj .thumb{width:100%;height:auto}
-    .dl{font-size:14.5px;line-height:2.2}
-    footer{flex-direction:column}
+    .proj .thumb.ph{height:90px}
+    .dlrow{font-size:14.5px}
+    .finner{flex-direction:column;padding:36px 18px 44px}
+    footer .big{font-size:27px}
     details.role li{font-size:14px}
   }
-
-  .lede{font-size:19.5px;line-height:1.55;margin:0;max-width:42ch}
-  .strip{display:flex;gap:40px;flex-wrap:wrap;border-top:3px solid var(--ink);margin-top:34px;padding-top:16px}
-  .strip .n{font-size:21px;font-weight:750;letter-spacing:-.01em}
-  .strip .l{font-size:11.5px;color:#888;text-transform:uppercase;letter-spacing:.07em;margin-top:2px;max-width:24ch}
-  .caps2{display:grid;grid-template-columns:repeat(2,1fr);gap:11px 44px;margin-top:30px}
-  .cap{font-size:15.5px}.cap b{color:var(--ikb);margin-right:9px}.cap .t{font-weight:700}.cap .d{color:#444}
-  @media(max-width:720px){.caps2{grid-template-columns:1fr}.strip{gap:22px}.lede{font-size:17.5px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<nav><span class="n" aria-hidden="true" style="width:12px;height:12px;background:var(--ikb);display:inline-block"></span><a href="#cases">work</a><a href="#built">built</a><a href="#resume">resume</a></nav>
+<nav><span class="mark" aria-hidden="true"></span><a href="#cases">work</a><a href="#built">built</a><a href="#resume">resume</a><a href="#contact">contact</a></nav>
 <h1 class="name">carlosluis<br>duchicela</h1>
 <div class="role">head of product</div>
-<div class="sub"><img src="headshot.jpg" alt="carlosluis duchicela"><p class="lede">i run product growth as one system — a team, a revenue line, and every step from first click to renewal under the same owner.</p></div>
+<div class="target">new york. looking at director, head of product, and gm roles.</div>
+<div class="sub"><img src="headshot.jpg" alt="carlosluis duchicela"><p class="lede">i own the team, the revenue line, and every step from first click to renewal.</p></div>
 <div class="strip">
 <div><div class="n">1 → 15 people</div><div class="l">teams led, first hire to full org</div></div>
 <div><div class="n">&gt;$3m → ~$50m arr</div><div class="l">revenue lines owned</div></div>
 <div><div class="n">3–4 pms</div><div class="l">direct reports — superhuman, prizepicks</div></div>
-<div><div class="n">6 surfaces</div><div class="l">acquisition to monetization, one owner</div></div>
+<div><div class="n">6 surfaces</div><div class="l">one owner, end to end</div></div>
 </div>
+<div class="caplabel">capabilities</div>
 <div class="caps2">
 <div class="cap"><b>01</b><span class="t">p&amp;l ownership</span><span class="d"> — part of financial planning for the whole business; a budget line covering three key results</span></div>
-<div class="cap"><b>02</b><span class="t">org building</span><span class="d"> — pms promoted at dashlane and prizepicks</span></div>
-<div class="cap"><b>03</b><span class="t">growth systems</span><span class="d"> — acquisition, activation, monetization, lifecycle. one path</span></div>
-<div class="cap"><b>04</b><span class="t">monetization &amp; pricing</span><span class="d"> — wetransfer: +35% conversion, +20% arr</span></div>
-<div class="cap"><b>05</b><span class="t">agentic growth</span><span class="d"> — superhuman: agents drive 20%+ of acquisition</span></div>
-<div class="cap"><b>06</b><span class="t">measurement</span><span class="d"> — metrics that decide, experiments that settle it</span></div>
+<div class="cap"><b>02</b><span class="t">org building</span><span class="d"> — all 3 pms promoted at dashlane, 2 of 4 at prizepicks</span></div>
+<div class="cap"><b>03</b><span class="t">growth systems</span><span class="d"> — one roadmap for acquisition, activation, monetization, and lifecycle</span></div>
+<div class="cap"><b>04</b><span class="t">monetization &amp; pricing</span><span class="d"> — pricing tests, packaging, and checkout at wetransfer, from first growth hire</span></div>
+<div class="cap"><b>05</b><span class="t">agentic growth</span><span class="d"> — agent-native acquisition at superhuman, owned like any other channel</span></div>
+<div class="cap"><b>06</b><span class="t">measurement</span><span class="d"> — built the experimentation system at wetransfer; test throughput tripled</span></div>
 </div>
 
 <section id="cases">
-<h2>selected work <span class="sub2">— seven questions, worked end to end</span></h2><div class="rule"></div>
-<article class="case rv" id="file-01"><div class="tab">nº 01</div>
-<div class="t">proton — lumo <span class="when">· oct 2026</span></div>
-<p class="q">how does a privacy-first ai assistant grow past its faithful — new segments, new surfaces — without breaking the trust it is built on?</p><p class="o">what came out: a growth model that prices the expansion — segment by segment, surface by surface, with the revenue sensitivity for each.</p><p class="links"><a href="cases/proton-lumo-growth-strategy-case.pdf">the deck</a> · <a href="cases/proton-lumo-wireframes.html">the wireframe prototype</a></p></article>
-<article class="case rv" id="file-02"><div class="tab">nº 02</div>
-<div class="t">forus — provider onboarding <span class="when">· nov 2026</span></div>
-<p class="q">where does provider onboarding leak, and what does the flow look like when every step earns the next one?</p><p class="o">what came out: the leak, named step by step — then the flow rebuilt so the answer is visible, not argued.</p><p class="links"><a href="cases/forus-teardown.html">the teardown</a> · <a href="cases/forus-reimagined-flow.html">the flow, rebuilt clickable</a></p></article>
-<article class="case rv" id="file-03"><div class="tab">nº 03</div>
-<div class="t">granola <span class="when">· mar 2026</span></div>
-<p class="q">how does a meeting-notes product become the bridge from talk to work — and charge for the crossing?</p><p class="o">what came out: meetings stop ending at notes. they end in crm-ready work, and a second seat gets pulled in.</p><p class="links"><a href="cases/granola-growth-case-deck.pdf">the deck</a> · <a href="https://www.figma.com/make/GkgeaAsL0hMq5WtNonKhwA/Build-Three-State-Prototype?t=sLFzN7z8CscZ8y8u-1">the three-state prototype</a></p></article>
-<article class="case rv" id="file-04"><div class="tab">nº 04</div>
-<div class="t">bonusly — admin os <span class="when">· feb 2026</span></div>
-<p class="q">what changes when an admin console stops being a reporting surface and becomes the operating system for the work?</p><p class="o">what came out: admin stops reporting recognition and starts running it.</p><p class="links"><a href="cases/bonusly-admin-os-pre-read.pdf">the pre-read</a> · <a href="https://www.figma.com/make/SIFvJknqZ6bKdBq4tjrxT3/duchicela---bonusly-admin-OS?t=1aFlsxWQI1BD0B7Y-1">the prototype</a> · <a href="https://www.figma.com/board/RtKhYfrRDpFeQoLOKtoPpS/bonusly-brainstorm?node-id=0-1&t=822CtvJqma1qp0aU-1">the brainstorm board</a></p></article>
-<article class="case rv" id="file-05"><div class="tab">nº 05</div>
-<div class="t">biorender <span class="when">· jan 2025</span></div>
-<p class="q">what do two years of usage data actually say about how scientists work — and where the product grows next?</p><p class="o">what came out: where scientists stall, read off the data itself — and the growth bets that follow from it.</p><p class="links"><a href="https://www.figma.com/board/gQ7SH0NQKC0wPN9O2BYDy3/biorender-case?node-id=0-1&t=xUfkz4WsRCU6RTg6-1">the case board</a> · <a href="cases/biorender-prezo.html">the prezo</a> · <a href="cases/biorender-data-analysis.pdf">full analysis (pdf)</a> · <a href="cases/biorender-recommendations.pdf">recommendations (pdf)</a></p></article>
-<article class="case rv" id="file-06"><div class="tab">nº 06</div>
-<div class="t">chatgpt <span class="when">· dec 2024</span></div>
-<p class="q">which metrics actually measure the core business, and which ones only feel like they do?</p><p class="o">what came out: a north star, the guiding metrics under it — and the vanity metrics named as such.</p><p class="links"><a href="cases/chatgpt-case-deck.pdf">the deck</a></p></article>
-<article class="case rv" id="file-07"><div class="tab">nº 07</div>
-<div class="t">toledo <span class="when">· dec 2024</span></div>
-<p class="q">what should drivers be paid on the airport–downtown route so the marketplace clears on both sides?</p><p class="o">what came out: a pay curve for the route, with the trade-offs priced in.</p><p class="links"><a href="cases/toledo-prezo.html">the prezo</a> · <a href="cases/toledo-model.pdf">the model</a> · <a href="cases/toledo-driver-pay-optimization.pdf">the write-up (pdf)</a></p></article>
+<h2>selected work <span class="sub2">— seven questions, worked end to end</span></h2>
+<article class="case" id="file-01"><div class="rail"><span class="no">nº 01</span>oct 2026</div><div>
+<div class="t">proton — lumo</div>
+<p class="q">how does a privacy-first ai assistant grow beyond the people who already use it — new segments, new surfaces — without spending the trust that makes it worth using?</p><p class="o"><span class="ol">what came out:</span> a self-serve motion for the individual product, with the panel growth loop as its second engine — plus the wireframes to sell it internally.</p><p class="links"><a href="cases/proton-lumo-growth-strategy-case.pdf" aria-label="proton — the deck">the deck</a> · <a href="cases/proton-lumo-wireframes.html">the wireframe prototype</a></p></div></article>
+<article class="case" id="file-02"><div class="rail"><span class="no">nº 02</span>nov 2026</div><div>
+<div class="t">forus — provider onboarding</div>
+<p class="q">where does provider onboarding leak, and what does the flow look like when every step earns the next one?</p><p class="o"><span class="ol">what came out:</span> the leak, named step by step — then the flow rebuilt so a provider always knows what happens next.</p><p class="links"><a href="cases/forus-teardown.html">the teardown</a> · <a href="cases/forus-reimagined-flow.html">the rebuilt flow</a></p></div></article>
+<article class="case" id="file-03"><div class="rail"><span class="no">nº 03</span>mar 2026</div><div>
+<div class="t">granola</div>
+<p class="q">how does a meeting-notes product become the bridge from talk to work — and charge for the crossing?</p><p class="o"><span class="ol">what came out:</span> meetings end in crm records, not notes — and a second person in the room has a reason to pay.</p><p class="links"><a href="cases/granola-growth-case-deck.pdf" aria-label="granola — the deck">the deck</a> · <a href="https://www.figma.com/make/GkgeaAsL0hMq5WtNonKhwA/Build-Three-State-Prototype?t=sLFzN7z8CscZ8y8u-1">the three-state prototype</a></p></div></article>
+<article class="case" id="file-04"><div class="rail"><span class="no">nº 04</span>feb 2026</div><div>
+<div class="t">bonusly — admin os</div>
+<p class="q">an admin console runs reports. what would it take for it to run the recognition program itself?</p><p class="o"><span class="ol">what came out:</span> a pre-read that moves budgets, approvals, and nudges into the console — the program runs there, not in spreadsheets.</p><p class="links"><a href="cases/bonusly-admin-os-pre-read.pdf">the pre-read</a> · <a href="https://www.figma.com/make/SIFvJknqZ6bKdBq4tjrxT3/duchicela---bonusly-admin-OS?t=1aFlsxWQI1BD0B7Y-1">the prototype</a> · <a href="https://www.figma.com/board/RtKhYfrRDpFeQoLOKtoPpS/bonusly-brainstorm?node-id=0-1&t=822CtvJqma1qp0aU-1">the brainstorm board</a></p></div></article>
+<article class="case" id="file-05"><div class="rail"><span class="no">nº 05</span>jan 2025</div><div>
+<div class="t">biorender</div>
+<p class="q">what do two years of usage data actually say about how scientists work — and where the product grows next?</p><p class="o"><span class="ol">what came out:</span> the growth is in retention, not acquisition: 1.91m signups in two years, a funnel that leaks after step one, and 22% still around at six months.</p><p class="links"><a href="https://www.figma.com/board/gQ7SH0NQKC0wPN9O2BYDy3/biorender-case?node-id=0-1&t=xUfkz4WsRCU6RTg6-1">the case board</a> · <a href="cases/biorender-prezo.html" aria-label="biorender — the deck">the deck</a> · <a href="cases/biorender-data-analysis.pdf">analysis (pdf)</a> · <a href="cases/biorender-recommendations.pdf">recommendations (pdf)</a></p></div></article>
+<article class="case" id="file-06"><div class="rail"><span class="no">nº 06</span>dec 2024</div><div>
+<div class="t">chatgpt</div>
+<p class="q">which metrics actually measure the core business, and which ones only feel like they do?</p><p class="o"><span class="ol">what came out:</span> a north star, the guiding metrics under it — and the vanity metrics named as such.</p><p class="links"><a href="cases/chatgpt-case-deck.pdf" aria-label="chatgpt — the deck">the deck</a></p></div></article>
+<article class="case" id="file-07"><div class="rail"><span class="no">nº 07</span>dec 2024</div><div>
+<div class="t">toledo</div>
+<p class="q">what should drivers be paid on the airport–downtown route so the marketplace clears on both sides?</p><p class="o"><span class="ol">what came out:</span> pay drivers $20.87 a trip — the point where revenue on the route peaks.</p><p class="links"><a href="cases/toledo-prezo.html" aria-label="toledo — the deck">the deck</a> · <a href="cases/toledo-model.pdf">the model (pdf)</a> · <a href="cases/toledo-driver-pay-optimization.pdf">the write-up (pdf)</a></p></div></article>
 </section>
 
 <section id="built">
-<h2>built, in the open <span class="sub2">— working software, not screenshots</span></h2><div class="rule"></div>
-<article class="proj"><img class="thumb" src="thumbs/resume.svg" alt=""><div><h3>resume-as-code</h3><p>one structured source generates every resume surface — ats, human, linkedin — plus a checker that catches contradictions between surfaces.</p><p class="use" style="font-size:13.5px;color:var(--muted);margin:0 0 6px">use it: edit the sample résumé (or paste your own json) — you get clean ats text, a readable preview, and a consistency check across versions.</p>
+<h2>built, in the open <span class="sub2">— working software, not screenshots</span></h2>
+<article class="proj"><img class="thumb" src="thumbs/resume.svg" alt=""><div><h3>resume-as-code</h3><p>one json source renders every resume surface — human, ats, linkedin — plus a checker that catches contradictions between them.</p><p class="use">use it: edit the sample resume live — outputs and lint update as you type.</p>
       <p><a href="https://carlosluisduchicela.github.io/resume-as-code/">live demo</a><a href="https://github.com/carlosluisduchicela/resume-as-code">code</a></p>
-      <p class="meta" data-repo="resume-as-code">python + javascript · tests passing</p></div></article>
-<article class="proj"><img class="thumb" src="thumbs/funnel.svg" alt=""><div><h3>funnel-doctor</h3><p>upload a funnel csv → conversion, biggest drop-off, segment significance, written diagnosis. association, not causation — and it says so.</p><p class="use" style="font-size:13.5px;color:var(--muted);margin:0 0 6px">use it: drop in a csv of funnel steps — it finds the biggest drop-off, tests your segments, and tells you what to fix first.</p>
+      <p class="meta">python + javascript · tests passing</p></div></article>
+<article class="proj"><img class="thumb" src="thumbs/funnel.svg" alt=""><div><h3>funnel-doctor</h3><p>finds the step that's actually broken, tests your segments, and says how sure it is. association, not causation — and it says so.</p><p class="use">use it: the sample patient is already on the table — extract an ailment, or drop in your own csv.</p>
       <p><a href="https://carlosluisduchicela.github.io/funnel-doctor/">live demo</a><a href="https://github.com/carlosluisduchicela/funnel-doctor">code</a></p>
-      <p class="meta" data-repo="funnel-doctor">python + javascript · tests passing</p></div></article>
-<article class="proj"><img class="thumb" src="thumbs/heat.svg" alt=""><div><h3>geo-heat</h3><p>a csv of lat/lng becomes an interactive heatmap in the browser. no map api key, works offline.</p><p class="use" style="font-size:13.5px;color:var(--muted);margin:0 0 6px">use it: paste a list of lat,lng points (or load the sample set) — you get a heatmap you can screenshot or save.</p>
+      <p class="meta">python + javascript · tests passing</p></div></article>
+<article class="proj"><img class="thumb" src="thumbs/heat.svg" alt=""><div><h3>geo-heat</h3><p>a csv of coordinates becomes a heatmap in the browser. no tiles, no server, no network.</p><p class="use">use it: pick a scene, then play with radius, intensity, and palette.</p>
       <p><a href="https://carlosluisduchicela.github.io/geo-heat/">live demo</a><a href="https://github.com/carlosluisduchicela/geo-heat">code</a></p>
-      <p class="meta" data-repo="geo-heat">python + javascript · tests passing</p></div></article>
-<article class="proj"><img class="thumb" src="thumbs/json.svg" alt=""><div><h3>screenshot-to-json</h3><p>a screenshot, or pasted text, becomes a structured record — type, date, price, contact — with a confidence note on every field.</p><p class="use" style="font-size:13.5px;color:var(--muted);margin:0 0 6px">use it: paste the text from any ui screenshot — you get structured json back, with a confidence score on every field.</p>
+      <p class="meta">python + javascript · tests passing</p></div></article>
+<article class="proj"><img class="thumb" src="thumbs/json.svg" alt=""><div><h3>screenshot-to-json</h3><p>messy screen text in, clean json out — every field scored, every guess flagged.</p><p class="use">use it: click a sample screen, then hover a field to see exactly where it came from.</p>
       <p><a href="https://carlosluisduchicela.github.io/screenshot-to-json/">live demo</a><a href="https://github.com/carlosluisduchicela/screenshot-to-json">code</a></p>
-      <p class="meta" data-repo="screenshot-to-json">python + javascript · tests passing</p></div></article>
-<article class="proj"><div><h3>agent suites — in progress</h3><p>career, culture (places, film, concerts), work intel, and life admin agents on a shared kernel: watch, verify, dedupe, rank, prepare — a human approves anything outward.</p></div></article>
-<article class="proj"><div><h3>manuscript-builder — in progress</h3><p>a bilingual poetry manuscript tool: corpus validation, sequence graph, and a correctly built book pdf from a folder of poems.</p></div></article>
+      <p class="meta">python + javascript · tests passing</p></div></article>
+<article class="proj"><div class="thumb ph">in progress</div><div><h3>agent suites</h3><p>agents that run a job search end to end — sourcing, tailoring, prep — over one shared record of claims, voice, and rules.</p><p class="use">the guardrail that can't be talked away: nothing goes out without a human approving it.</p></div></article>
+<article class="proj"><div class="thumb ph">in progress</div><div><h3>manuscript-builder</h3><p>a bilingual poetry manuscript as data: corpus checks, sequencing, and a correctly built book pdf from a folder of poems.</p><p class="use">built for my own book first; the public demo runs on an invented corpus.</p></div></article>
 </section>
 
 <section id="resume">
-<h2>resume <span class="sub2">— five cuts, one record</span></h2><div class="rule"></div>
-<p class="dl"><a href="resume/CarlosDuchicela_Resume.pdf">master (pdf)</a> · <a href="resume/CarlosDuchicela_Resume_Leadership.pdf">leadership — director / head / vp / gm (pdf)</a> · <a href="resume/CarlosDuchicela_Resume_StaffGrowthPM.pdf">staff / principal — growth (pdf)</a> · <a href="resume/CarlosDuchicela_Resume_CorePM.pdf">staff / principal — core &amp; platform (pdf)</a> · <a href="resume/CarlosDuchicela_Resume_OnePage.pdf">one page — for humans (pdf)</a></p>
-<p class="rnote">the master, written out — tap a role to expand it.</p>
-<details class="role"><summary>Superhuman — New York, NY / San Francisco, CA <span class="rt">— Head of Product, Growth — Superhuman Mail  April 2026 – Present</span></summary><ul><li>Lead a 15-person growth org (3 PMs) across acquisition, activation, agentic growth, expansion, and monetization for a ~$50M ARR product line.</li><li>Built an agent-native growth motion that reached 20%+ of acquisition and multi-million-dollar annualized bookings — agents delivering product value without conventional UI use.</li><li>Rebuilt growth strategy around the leading behaviors that drive 73% retention and 93% activation; randomized interventions on those behaviors lifted seats-with-sends +4.7pp and completion +49%.</li><li>Rebuilt and extended Get Me To Zero for existing users and new users who had not completed onboarding, and expanded how users segment what gets to zero.</li><li>Built a cross-suite growth model across Grammarly and Superhuman Mail; grew the self-serve 5+ seat ARR base ~34% and delivered a record multi-million-dollar expansion quarter.</li><li>Called a partial revert on a winning checkout experiment — +0.57pp purchase success, +12.9% checkout-to-onboarding conversion — when downstream bookings per user deteriorated.</li><li>Set the growth operating model: measurable hypotheses, decision velocity, business outcomes. Hired the expansion PM, converted a PMM into a PM role, and aligned stakeholder planning and metrics across six teams — Core, Lifecycle, Mobile, Billing, and Grammarly Growth.</li><li>Part of financial planning for the whole Mail business; owned a budget line covering three key results.</li></ul></details>
-<details class="role"><summary>PrizePicks — New York, NY / Atlanta, GA <span class="rt">— Group Product Manager, Player Accounts Management (PAM)  Feb 2025 – Feb 2026</span></summary><ul><li>First Group PM for Player Accounts: led 4 PMs and 20+ cross-functional partners across identity/KYC, payments, compliance, and responsible gaming. Owned headcount planning; promoted two of the four PMs.</li><li>Drove +25% registration-to-first-deposit, +5% KYC pass rate, and +12% LTV/CAC through funnel experimentation and simplified onboarding and payment UX.</li><li>Owned the strategy and roadmap for the account platform — the identity, payments, and compliance layer under DFS, free-to-play, and the launch of prediction markets.</li><li>Modernized trust and compliance infrastructure while the funnel grew: 99.5% reconciliation accuracy, −40% chargebacks, −20% support volume.</li></ul></details>
+<h2>resume <span class="sub2">— five cuts, one record</span></h2>
+<a class="dlrow" href="resume/CarlosDuchicela_Resume.pdf"><span>master</span><span class="pdf">pdf ↓</span></a>
+<a class="dlrow" href="resume/CarlosDuchicela_Resume_Leadership.pdf"><span>leadership — director / head / vp / gm</span><span class="pdf">pdf ↓</span></a>
+<a class="dlrow" href="resume/CarlosDuchicela_Resume_StaffGrowthPM.pdf"><span>staff / principal — growth</span><span class="pdf">pdf ↓</span></a>
+<a class="dlrow" href="resume/CarlosDuchicela_Resume_CorePM.pdf"><span>staff / principal — core &amp; platform</span><span class="pdf">pdf ↓</span></a>
+<a class="dlrow" href="resume/CarlosDuchicela_Resume_OnePage.pdf"><span>one page — for humans</span><span class="pdf">pdf ↓</span></a>
+<p class="rnote">the master, written out — open a role to read it in full.</p>
+<details class="role"><summary>Superhuman — New York, NY / San Francisco, CA <span class="rt">— Head of Product, Growth — Superhuman Mail  April 2026 – Present</span></summary><ul><li>Lead a 15-person growth org (3 PMs) across acquisition, activation, agentic growth, expansion, and monetization for a ~$50M ARR product line.</li><li>Built an agent-native growth motion that reached 20%+ of acquisition and multi-million-dollar annualized bookings — agents delivering product value without conventional UI use.</li><li>Rebuilt growth strategy around the leading behaviors that drive 73% retention and 93% activation; randomized interventions on those behaviors lifted seats-with-sends +4.7pp and completion +49%.</li><li>Rebuilt and extended Get Me To Zero for existing users and new users who had not completed onboarding, and expanded how users segment what gets to zero.</li><li>Built a cross-suite growth model across Grammarly and Superhuman Mail; grew the self-serve 5+ seat ARR base ~34% and delivered a record multi-million-dollar expansion quarter.</li><li>Called a partial revert on a winning checkout experiment — +0.57pp purchase success, +12.9% checkout-to-onboarding conversion — when downstream bookings per user deteriorated.</li><li>Set the growth operating model — measurable hypotheses, fast decisions, owners named — and aligned planning and metrics across six teams. Hired the expansion PM; converted a PMM into a PM role.</li><li>Part of financial planning for the whole Mail business; owned a budget line covering three key results.</li></ul></details>
+<details class="role"><summary>PrizePicks — New York, NY / Atlanta, GA <span class="rt">— Group Product Manager, Player Accounts Management (PAM)  Feb 2025 – Feb 2026</span></summary><ul><li>First Group PM for Player Accounts: led 4 PMs and 20+ cross-functional partners across identity/KYC, payments, compliance, and responsible gaming. Owned headcount planning; promoted two of the four PMs.</li><li>Drove +25% registration-to-first-deposit, +5% KYC pass rate, and +12% LTV/CAC through funnel experimentation and simplified onboarding and payment UX.</li><li>Owned the strategy and roadmap for the account platform — the identity, payments, and compliance layer under DFS, free-to-play, and the launch of prediction markets.</li><li>Modernized trust and compliance while the funnel grew: 99.5% reconciliation accuracy, −40% chargebacks, −20% support volume.</li></ul></details>
 <details class="role"><summary>WeTransfer — New York, NY / Amsterdam, NL <span class="rt">— Principal Product Manager / Director, Commerce (Growth &amp; Monetization)  Oct 2023 – Oct 2024</span></summary><ul><li>First Growth PM; built and led the Commerce function — pricing, packaging, onboarding, checkout — across web and mobile with a 9-person cross-functional team.</li><li>Delivered +35% conversion and +20% ARR through tier, onboarding, and checkout redesigns, partnering with Finance and Data Science on pricing elasticity and regional economics.</li><li>Built the experimentation system that tripled test throughput and drove C-level monetization decisions, then saw it adopted beyond the commerce team.</li></ul></details>
-<details class="role"><summary>Dashlane — New York, NY / Paris, FR <span class="rt">— Senior Product Manager + Growth Lead, Growth &amp; Monetization  Dec 2019 – Oct 2023</span></summary><ul><li>First Growth Product hire; scaled the org to 3 PMs, 2 designers, and 15+ engineers across B2C and B2B, and promoted all three PMs.</li><li>Delivered 4–6% ARR growth per quarter (&gt;$3M annually) via pricing tests, paywall experiments, and onboarding optimization.</li><li>Partnered with the C-suite to define the company&#x27;s PLG strategy and B2B go-to-market, growth OKRs, and the dashboards used in quarterly planning.</li><li>Launched dynamic pricing and paywall frameworks that increased trial-to-paid conversion +22% and reduced voluntary churn −12%.</li><li>Also worked on core feature areas (sharing, emergency contacts, platform) alongside the growth portfolio.</li></ul></details>
+<details class="role"><summary>Dashlane — New York, NY / Paris, FR <span class="rt">— Senior Product Manager + Growth Lead, Growth &amp; Monetization  Dec 2019 – Oct 2023</span></summary><ul><li>First Growth Product hire; scaled the org to 3 PMs, 2 designers, and 15+ engineers across B2C and B2B, and promoted all three PMs.</li><li>Delivered 4–6% ARR growth per quarter (&gt;$3M annually) via pricing tests, paywall experiments, and onboarding optimization.</li><li>Partnered with the C-suite to define the company&#x27;s PLG strategy and B2B go-to-market, growth OKRs, and the dashboards used in quarterly planning.</li><li>Launched dynamic pricing and paywall frameworks that increased trial-to-paid conversion +22% and reduced voluntary churn −12%.</li></ul></details>
 <details class="role"><summary>Postmates (Uber) — Remote <span class="rt">— Data Scientist, Product + Fulfillment + Growth  Jan 2019 – Dec 2019</span></summary><ul><li>Ran SQL/Python-backed growth and marketplace initiatives across conversion, retention, and fulfillment: customer conversion +25%, retention +30%, active users 2.1×.</li><li>Revamped fleet onboarding (+40% acquisition, +10pp retention) and launched fraud tooling that cut ~$100K in annual costs.</li></ul></details>
 <details class="role"><summary>EY-Parthenon — Mexico City, Mexico <span class="rt">— Mergers and Acquisitions Associate  Jan 2018 – Jan 2019</span></summary><ul><li>Built valuation, diligence, and financial models for fintech, telecom, and CPG transactions, including an $860M carve-out and a $150M LatAm fintech debt financing.</li></ul></details>
-<p class="skills"><strong>skills</strong> — product strategy · growth strategy · activation &amp; onboarding · retention &amp; lifecycle · experimentation / a/b testing · pricing &amp; packaging · monetization · product-led growth · payments · product analytics · sql · python · ai agents · ai prototyping</p>
+<p class="skills"><strong>tools</strong> — sql · python · ai agents · ai prototyping</p>
 </section>
-
-<footer><span class="big">let's build the growth org.</span><span><a href="https://github.com/carlosluisduchicela">github</a> · <a href="https://www.linkedin.com/in/cduchicela">linkedin</a> · <a href="resume/CarlosDuchicela_Resume.pdf">resume</a><br>carlosluis duchicela · new york</span></footer>
 </div>
-<script>
-  document.querySelectorAll('[data-repo]').forEach(el=>{
-    fetch('https://api.github.com/repos/carlosluisduchicela/' + el.dataset.repo)
-      .then(r=>r.ok?r.json():null).then(d=>{ if(d) el.textContent += ' · updated ' + new Date(d.updated_at).toLocaleDateString(); }).catch(()=>{});
-  });
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });},{threshold:.06});
-  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
-</script>
+
+<footer id="contact"><div class="finner"><span class="big">building a growth org?</span><span>email me — <a href="mailto:carlosduchicela@gmail.com">carlosduchicela@gmail.com</a><br><a href="https://github.com/carlosluisduchicela">github</a> · <a href="https://www.linkedin.com/in/cduchicela">linkedin</a> · <a href="resume/CarlosDuchicela_Resume.pdf">resume</a><br>carlosluis duchicela · new york</span></div></footer>
 </body>
 </html>
