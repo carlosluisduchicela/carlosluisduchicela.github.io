@@ -26,9 +26,14 @@
   .strip .l{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:2px}
   .caps2{display:grid;grid-template-columns:repeat(2,1fr);gap:11px 44px;margin-top:12px}
   .cap{font-size:15.5px}.cap b{color:var(--ikb);margin-right:9px}.cap .t{font-weight:700}.cap .d{color:#444}
-  .tabs{display:none}
+  .tabs{display:flex;gap:8px;margin-top:52px;position:sticky;top:47px;z-index:4;background:rgba(247,245,239,.96);padding:8px 0}
+  .tab{font:inherit;font-size:13.5px;font-weight:700;background:transparent;color:var(--ink);border:1.5px solid var(--ink);padding:8px 14px;cursor:pointer}
+  .tab.active{background:var(--ikb);border-color:var(--ikb);color:#fff}
+  body[data-tab="built"] section#cases{display:none}
+  body[data-tab="cases"] section#built{display:none}
   section{margin-top:72px}
   section#cases{margin-top:88px}
+  section#cases,section#built{margin-top:26px}
   h2{font-size:12px;letter-spacing:.3em;text-transform:uppercase;margin:0;padding-bottom:8px;border-bottom:1px solid var(--line)}
   h2 .sub2{letter-spacing:0;text-transform:none;color:var(--muted);font-weight:400;font-size:13.5px}
   .case{display:grid;grid-template-columns:190px 1fr;gap:28px;border-top:1px solid var(--line);padding:34px 0 26px}
@@ -83,12 +88,6 @@
     .proj .thumb.ph{height:90px}
     .dlrow{font-size:14.5px}
     .logos{grid-template-columns:repeat(2,1fr)}
-    .tabs{display:flex;gap:8px;margin-top:52px;position:sticky;top:47px;z-index:4;background:rgba(247,245,239,.96);padding:8px 0}
-    .tab{font:inherit;font-size:13.5px;font-weight:700;background:transparent;color:var(--ink);border:1.5px solid var(--ink);padding:8px 14px;cursor:pointer}
-    .tab.active{background:var(--ikb);border-color:var(--ikb);color:#fff}
-    body[data-tab="built"] section#cases{display:none}
-    body[data-tab="cases"] section#built{display:none}
-    section#cases,section#built{margin-top:26px}
     .finner{flex-direction:column;padding:36px 18px 44px}
     footer .big{font-size:27px}
   }
@@ -176,7 +175,7 @@
   }
   document.querySelectorAll('.tab').forEach(function(b){ b.addEventListener('click', function(){ activate(b.dataset.goto); }); });
   document.querySelectorAll('nav a[href="#cases"], nav a[href="#built"]').forEach(function(a){
-    a.addEventListener('click', function(e){ if(window.innerWidth<=720){ e.preventDefault(); activate(a.getAttribute('href').slice(1)); } });
+    a.addEventListener('click', function(e){ e.preventDefault(); activate(a.getAttribute('href').slice(1)); });
   });
 </script>
 </body>
