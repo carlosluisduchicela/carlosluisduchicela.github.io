@@ -33,7 +33,7 @@
   .case h3 .when{color:var(--muted);font-weight:400;font-size:14px}
   .case p{margin:4px 0 7px;max-width:74ch;font-size:15.5px}
   .case a{color:var(--accent)}
-  .case .outcome{display:inline-block;background:#f2f5ff;border:1px solid #d7e0fb;color:#1d3696;font-size:12.5px;padding:2px 9px;border-radius:99px;margin-top:2px}
+  .case .outcome{display:block;background:none;border:none;color:var(--muted);font-size:13px;padding:0;margin-top:2px}
   .proj{display:flex;gap:22px;border-top:1px solid var(--line);padding:20px 0}
   .proj .thumb{width:200px;height:100px;object-fit:cover;border:1px solid var(--line);flex:none}
   .proj h3{margin:0;font-size:18px;font-weight:620}
@@ -66,7 +66,7 @@
 </head>
 <body>
 <div class="wrap">
-<nav><span class="n">carlosluis duchicela</span><a href="#cases">case work</a><a href="#built">built</a><a href="#try">try one</a><a href="#resume">resume</a></nav>
+<nav><span class="n">carlosluis duchicela</span><a href="#cases">case work</a><a href="#built">built</a><a href="#resume">resume</a></nav>
 
 <div class="hero">
   <img class="face" src="headshot.jpg" alt="carlosluis duchicela">
@@ -126,30 +126,20 @@
 
 <section id="built">
   <h2>built, in the open <span class="sub">— working software, not screenshots</span></h2><div class="rule"></div>
-<article class="proj"><img class="thumb" src="thumbs/resume.svg" alt=""><div><h3>resume-as-code</h3><p>one structured source generates every resume surface — ats, human, linkedin — plus a checker that catches contradictions between surfaces.</p>
+<article class="proj"><img class="thumb" src="thumbs/resume.svg" alt=""><div><h3>resume-as-code</h3><p>one structured source generates every resume surface — ats, human, linkedin — plus a checker that catches contradictions between surfaces.</p><p class="use" style="font-size:13.5px;color:var(--muted);margin:0 0 6px">use it: edit the sample résumé (or paste your own json) — you get clean ats text, a readable preview, and a consistency check across versions.</p>
       <p><a href="https://carlosluisduchicela.github.io/resume-as-code/">live demo</a><a href="https://github.com/carlosluisduchicela/resume-as-code">code</a></p>
       <p class="meta" data-repo="resume-as-code">python + javascript · tests passing</p></div></article>
-<article class="proj"><img class="thumb" src="thumbs/funnel.svg" alt=""><div><h3>funnel-doctor</h3><p>upload a funnel csv → conversion, biggest drop-off, segment significance, written diagnosis. association, not causation — and it says so.</p>
+<article class="proj"><img class="thumb" src="thumbs/funnel.svg" alt=""><div><h3>funnel-doctor</h3><p>upload a funnel csv → conversion, biggest drop-off, segment significance, written diagnosis. association, not causation — and it says so.</p><p class="use" style="font-size:13.5px;color:var(--muted);margin:0 0 6px">use it: drop in a csv of funnel steps — it finds the biggest drop-off, tests your segments, and tells you what to fix first.</p>
       <p><a href="https://carlosluisduchicela.github.io/funnel-doctor/">live demo</a><a href="https://github.com/carlosluisduchicela/funnel-doctor">code</a></p>
       <p class="meta" data-repo="funnel-doctor">python + javascript · tests passing</p></div></article>
-<article class="proj"><img class="thumb" src="thumbs/heat.svg" alt=""><div><h3>geo-heat</h3><p>a csv of lat/lng becomes an interactive heatmap in the browser. no map api key, works offline.</p>
+<article class="proj"><img class="thumb" src="thumbs/heat.svg" alt=""><div><h3>geo-heat</h3><p>a csv of lat/lng becomes an interactive heatmap in the browser. no map api key, works offline.</p><p class="use" style="font-size:13.5px;color:var(--muted);margin:0 0 6px">use it: paste a list of lat,lng points (or load the sample set) — you get a heatmap you can screenshot or save.</p>
       <p><a href="https://carlosluisduchicela.github.io/geo-heat/">live demo</a><a href="https://github.com/carlosluisduchicela/geo-heat">code</a></p>
       <p class="meta" data-repo="geo-heat">python + javascript · tests passing</p></div></article>
-<article class="proj"><img class="thumb" src="thumbs/json.svg" alt=""><div><h3>screenshot-to-json</h3><p>a screenshot, or pasted text, becomes a structured record — type, date, price, contact — with a confidence note on every field.</p>
+<article class="proj"><img class="thumb" src="thumbs/json.svg" alt=""><div><h3>screenshot-to-json</h3><p>a screenshot, or pasted text, becomes a structured record — type, date, price, contact — with a confidence note on every field.</p><p class="use" style="font-size:13.5px;color:var(--muted);margin:0 0 6px">use it: paste the text from any ui screenshot — you get structured json back, with a confidence score on every field.</p>
       <p><a href="https://carlosluisduchicela.github.io/screenshot-to-json/">live demo</a><a href="https://github.com/carlosluisduchicela/screenshot-to-json">code</a></p>
       <p class="meta" data-repo="screenshot-to-json">python + javascript · tests passing</p></div></article>
 <article class="proj"><div><h3>agent suites — in progress</h3><p>career, culture (places, film, concerts), work intel, and life admin agents on a shared kernel: watch, verify, dedupe, rank, prepare — a human approves anything outward.</p></div></article>
 <article class="proj"><div><h3>manuscript-builder — in progress</h3><p>a bilingual poetry manuscript tool: corpus validation, sequence graph, and a correctly built book pdf from a folder of poems.</p></div></article>
-</section>
-
-<section id="try">
-  <h2>try one <span class="sub">— geo-heat, live, right here</span></h2><div class="rule"></div>
-  <div class="try">
-    <h3>this is the actual tool</h3>
-    <p>no signup, no install — it runs in your browser. drop in lat/lng points, or use the sample set, and watch the heatmap build. every project above works like this.</p>
-    <iframe src="https://carlosluisduchicela.github.io/geo-heat/" title="geo-heat live demo" loading="lazy"></iframe>
-    <p class="cap">embedded from carlosluisduchicela.github.io/geo-heat — the same page the code link points to.</p>
-  </div>
 </section>
 
 <section id="resume">
