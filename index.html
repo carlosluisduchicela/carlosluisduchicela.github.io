@@ -59,6 +59,34 @@
   .rv.on{opacity:1;transform:none}
   @media (prefers-reduced-motion: reduce){.rv{opacity:1;transform:none;transition:none}}
   @media(max-width:640px){.proj{flex-direction:column}.proj .thumb{width:100%;height:auto}.sub{flex-direction:column}}
+
+  .facts{border-top:3px solid var(--ink);margin-top:36px}
+  .frow{display:flex;gap:22px;padding:10px 0;border-bottom:1px solid var(--line)}
+  .fk{font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ikb);min-width:92px;padding-top:4px}
+  .fv{font-size:16.5px}
+  .contents{margin-top:30px}
+  .ck{font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .crow{display:flex;gap:16px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
+  .crow:hover .ct2{color:var(--ikb)}
+  .cn{color:var(--ikb);font-weight:700;font-size:14px;min-width:26px}
+  .ct2{font-size:17px;font-weight:600}
+  .cp{margin-left:auto;font-size:12.5px;color:var(--muted);white-space:nowrap}
+  @media(max-width:720px){
+    .wrap{padding:0 18px 70px}
+    nav{gap:16px;font-size:12.5px}
+    .top{flex-wrap:wrap;gap:4px 14px;font-size:12px}
+    h1.name{font-size:clamp(44px,15vw,64px)}
+    .role{font-size:21px}
+    .sub{gap:18px}.sub img{width:120px;height:120px}.sub p{font-size:16px}
+    .frow{flex-direction:column;gap:2px}.fk{padding-top:0}
+    .fv{font-size:15.5px}
+    .ct2{font-size:15.5px}.cp{font-size:11.5px}
+    .case .t{font-size:21px}.case .q{font-size:15.5px}.case .o{font-size:14.5px}
+    .proj .thumb{width:100%;height:auto}
+    .dl{font-size:14.5px;line-height:2.2}
+    footer{flex-direction:column}
+    details.role li{font-size:14px}
+  }
 </style>
 </head>
 <body>
@@ -69,39 +97,43 @@
 <h1 class="name">carlosluis<br>duchicela</h1>
 <div class="role">head of product, growth</div>
 <div class="sub"><img src="headshot.jpg" alt="carlosluis duchicela"><p>a dossier, not a résumé. i lead growth orgs for ai-native products — and i still build the tools myself. each file below opens with the question it was built to answer. the evidence is attached.</p></div>
-<div class="scope">
-<div><div class="n">15-person org</div><div class="l">3 pms · growth, superhuman</div></div>
-<div><div class="n">~$50m arr line</div><div class="l">growth-owned revenue</div></div>
-<div><div class="n">6 surfaces</div><div class="l">acquisition → monetization</div></div>
-<div><div class="n">first growth hire, twice</div><div class="l">wetransfer · dashlane</div></div>
+<div class="facts">
+<div class="frow"><span class="fk">scope</span><span class="fv">a 15-person growth org — 3 pms, plus design, data, and engineering — at superhuman</span></div>
+<div class="frow"><span class="fk">revenue</span><span class="fv">a ~$50m arr line, growth-owned end to end</span></div>
+<div class="frow"><span class="fk">surfaces</span><span class="fv">acquisition · activation · agentic growth · expansion · monetization · lifecycle</span></div>
+<div class="frow"><span class="fk">pattern</span><span class="fv">first growth hire twice — wetransfer, dashlane — the org built from zero both times</span></div>
 </div>
-<div class="caps">
-<div><b>01</b>growth systems &amp; plg</div><div><b>02</b>agentic product growth</div>
-<div><b>03</b>monetization &amp; pricing</div><div><b>04</b>experimentation orgs</div>
-<div><b>05</b>activation &amp; lifecycle</div><div><b>06</b>org design — hiring pms</div>
+<div class="contents">
+<div class="ck">contents — what i do, and the files that prove it</div>
+<a class="crow" href="#file-01"><span class="cn">01</span><span class="ct2">growth systems &amp; plg</span><span class="cp">files nº 01 · 03</span></a>
+<a class="crow" href="#file-03"><span class="cn">02</span><span class="ct2">agentic product growth</span><span class="cp">files nº 03 · 01</span></a>
+<a class="crow" href="#file-01"><span class="cn">03</span><span class="ct2">monetization &amp; pricing</span><span class="cp">files nº 01 · 07</span></a>
+<a class="crow" href="#file-02"><span class="cn">04</span><span class="ct2">experimentation &amp; measurement</span><span class="cp">files nº 02 · 05 · 06</span></a>
+<a class="crow" href="#file-02"><span class="cn">05</span><span class="ct2">activation &amp; lifecycle</span><span class="cp">files nº 02 · 04</span></a>
+<a class="crow" href="#resume"><span class="cn">06</span><span class="ct2">org design — hiring pms</span><span class="cp">the record ↓</span></a>
 </div>
 
 <section id="cases">
 <h2>the files <span class="sub2">— seven questions, worked end to end</span></h2><div class="rule"></div>
-<article class="case rv"><div class="tab">nº 01</div>
+<article class="case rv" id="file-01"><div class="tab">nº 01</div>
 <div class="t">proton — lumo <span class="when">· oct 2026</span></div>
 <p class="q">how does a privacy-first ai assistant grow past its faithful — new segments, new surfaces — without breaking the trust it is built on?</p><p class="o">what came out: a growth model that prices the expansion — segment by segment, surface by surface, with the revenue sensitivity for each.</p><p class="links"><a href="cases/proton-lumo-growth-strategy-case.pdf">the deck</a> · <a href="cases/proton-lumo-wireframes.html">the wireframe prototype</a></p></article>
-<article class="case rv"><div class="tab">nº 02</div>
+<article class="case rv" id="file-02"><div class="tab">nº 02</div>
 <div class="t">forus — provider onboarding <span class="when">· nov 2026</span></div>
 <p class="q">where does provider onboarding leak, and what does the flow look like when every step earns the next one?</p><p class="o">what came out: the leak, named step by step — then the flow rebuilt so the answer is visible, not argued.</p><p class="links"><a href="cases/forus-teardown.html">the teardown</a> · <a href="cases/forus-reimagined-flow.html">the flow, rebuilt clickable</a></p></article>
-<article class="case rv"><div class="tab">nº 03</div>
-<div class="t">superhuman — granola <span class="when">· mar 2026</span></div>
-<p class="q">how does a meeting-notes product become the bridge from talk to work — and charge for the crossing?</p><p class="o">what came out: meetings stop ending at notes. they end in crm-ready work, and a second seat gets pulled in.</p><p class="links"><a href="cases/granola-growth-case-deck.pdf">the deck</a> · <a href="https://www.figma.com/make/GkgeaAsL0hMq5WtNonKhwA/Build-Three-State-Prototype?t=sLFzN7z8CscZ8y8u-1">the three-state prototype</a> · <a href="cases/granola-growth-case-talk-track.pdf">the talk track</a></p></article>
-<article class="case rv"><div class="tab">nº 04</div>
+<article class="case rv" id="file-03"><div class="tab">nº 03</div>
+<div class="t">granola <span class="when">· mar 2026</span></div>
+<p class="q">how does a meeting-notes product become the bridge from talk to work — and charge for the crossing?</p><p class="o">what came out: meetings stop ending at notes. they end in crm-ready work, and a second seat gets pulled in.</p><p class="links"><a href="cases/granola-growth-case-deck.pdf">the deck</a> · <a href="https://www.figma.com/make/GkgeaAsL0hMq5WtNonKhwA/Build-Three-State-Prototype?t=sLFzN7z8CscZ8y8u-1">the three-state prototype</a></p></article>
+<article class="case rv" id="file-04"><div class="tab">nº 04</div>
 <div class="t">bonusly — admin os <span class="when">· feb 2026</span></div>
 <p class="q">what changes when an admin console stops being a reporting surface and becomes the operating system for the work?</p><p class="o">what came out: admin stops reporting recognition and starts running it.</p><p class="links"><a href="cases/bonusly-admin-os-pre-read.pdf">the pre-read</a> · <a href="https://www.figma.com/make/SIFvJknqZ6bKdBq4tjrxT3/duchicela---bonusly-admin-OS?t=1aFlsxWQI1BD0B7Y-1">the prototype</a> · <a href="https://www.figma.com/board/RtKhYfrRDpFeQoLOKtoPpS/bonusly-brainstorm?node-id=0-1&t=822CtvJqma1qp0aU-1">the brainstorm board</a></p></article>
-<article class="case rv"><div class="tab">nº 05</div>
+<article class="case rv" id="file-05"><div class="tab">nº 05</div>
 <div class="t">biorender <span class="when">· jan 2025</span></div>
 <p class="q">what do two years of usage data actually say about how scientists work — and where the product grows next?</p><p class="o">what came out: where scientists stall, read off the data itself — and the growth bets that follow from it.</p><p class="links"><a href="cases/biorender-data-analysis.pdf">the analysis</a> · <a href="cases/biorender-recommendations.pdf">the recommendations</a></p></article>
-<article class="case rv"><div class="tab">nº 06</div>
+<article class="case rv" id="file-06"><div class="tab">nº 06</div>
 <div class="t">chatgpt <span class="when">· dec 2024</span></div>
 <p class="q">which metrics actually measure the core business, and which ones only feel like they do?</p><p class="o">what came out: a north star, the guiding metrics under it — and the vanity metrics named as such.</p><p class="links"><a href="cases/chatgpt-case-deck.pdf">the deck</a></p></article>
-<article class="case rv"><div class="tab">nº 07</div>
+<article class="case rv" id="file-07"><div class="tab">nº 07</div>
 <div class="t">toledo <span class="when">· dec 2024</span></div>
 <p class="q">what should drivers be paid on the airport–downtown route so the marketplace clears on both sides?</p><p class="o">what came out: a pay curve for the route, with the trade-offs priced in.</p><p class="links"><a href="cases/toledo-driver-pay-optimization.pdf">the case study</a> · <a href="cases/toledo-model.pdf">the model</a></p></article>
 </section>
