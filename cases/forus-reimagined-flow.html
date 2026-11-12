@@ -1,0 +1,1218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>Forus Onboarding — Reimagined Flow</title>
+<style>
+  :root{
+    color-scheme: light dark;
+    --page-bg:#EFEDF7; --page-panel:#FFFFFF; --page-ink:#1D1836; --page-ink-2:#4C4666; --page-ink-3:#7A7396;
+    --page-line:#DDD8EF; --page-accent:#6D4AFF; --page-accent-deep:#4B2ECC; --page-accent-soft:#F1ECFF;
+    --page-good:#14713F; --page-warn:#96660F;
+    /* Product (Forus) tokens — the mockup itself stays in the product's light theme */
+    --f-purple:#6D4AFF; --f-purple-deep:#5433D6; --f-purple-ink:#3A2494; --f-lav:#F4F1FF; --f-lav-2:#EAE4FF;
+    --f-ink:#201B3A; --f-ink-2:#57516E; --f-ink-3:#8B85A3; --f-line:#E4E0F2; --f-card:#FFFFFF; --f-bg:#FBFAFF;
+    --f-green:#178A4C; --f-green-bg:#E7F6EE; --f-amber:#A96F0B; --f-amber-bg:#FDF3DF; --f-red:#B3372F; --f-red-bg:#FDECEA;
+    --f-radius:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --page-bg:#141125; --page-panel:#1E1A33; --page-ink:#F0EDFA; --page-ink-2:#C4BEE0; --page-ink-3:#9890B8;
+      --page-line:#37305A; --page-accent:#A68FFF; --page-accent-deep:#C4B2FF; --page-accent-soft:#2A2350;
+      --page-good:#5FD598; --page-warn:#E8B95A;
+    }
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--page-bg);color:var(--page-ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1240px;margin:0 auto;padding:28px 20px 56px}
+
+  /* ---------- Page intro ---------- */
+  .proto-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--page-accent-deep);background:var(--page-accent-soft);border:1px solid var(--page-line);border-radius:999px;padding:6px 12px}
+  .proto-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--page-accent)}
+  h1.page-title{font-family:Georgia,"Times New Roman",serif;font-weight:600;font-size:clamp(28px,4.4vw,42px);line-height:1.15;margin:16px 0 10px;letter-spacing:-.01em}
+  .page-sub{max-width:820px;color:var(--page-ink-2);font-size:17px;margin:0 0 6px}
+  .page-sub strong{color:var(--page-ink)}
+  .howto{display:flex;flex-wrap:wrap;gap:8px 22px;margin:16px 0 22px;color:var(--page-ink-2);font-size:14px}
+  .howto b{color:var(--page-ink)}
+  .howto span::before{content:"→ ";color:var(--page-accent);font-weight:700}
+
+  /* ---------- Layout ---------- */
+  .stage{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
+  @media (max-width:980px){.stage{grid-template-columns:1fr}}
+
+  /* ---------- Product frame ---------- */
+  .frame{background:var(--f-bg);border:1px solid var(--page-line);border-radius:20px;overflow:hidden;
+    box-shadow:0 24px 60px rgba(43,28,110,.16),0 4px 14px rgba(43,28,110,.08)}
+  .frame-bar{display:flex;align-items:center;gap:12px;background:var(--page-panel);border-bottom:1px solid var(--page-line);padding:10px 14px;flex-wrap:wrap}
+  .traffic{display:flex;gap:6px}
+  .traffic i{width:11px;height:11px;border-radius:50%;display:block}
+  .traffic i:nth-child(1){background:#E0655A}.traffic i:nth-child(2){background:#E5B84C}.traffic i:nth-child(3){background:#58B368}
+  .urlbar{flex:1;min-width:180px;background:var(--page-bg);border:1px solid var(--page-line);border-radius:8px;
+    padding:5px 12px;font-size:13px;color:var(--page-ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .urlbar b{color:var(--page-ink);font-weight:600}
+  .frame-count{font-size:13px;font-weight:700;color:var(--page-ink-2);white-space:nowrap}
+  .frame-progress{height:4px;background:var(--page-accent-soft)}
+  .frame-progress i{display:block;height:100%;background:var(--page-accent);border-radius:0 4px 4px 0;transition:width .45s ease}
+
+  /* Flow map */
+  .flowmap{display:flex;flex-wrap:wrap;gap:6px;padding:14px 18px 4px;background:var(--f-bg)}
+  .flowmap button{appearance:none;border:1px solid var(--f-line);background:#fff;color:var(--f-ink-2);border-radius:999px;
+    font:inherit;font-size:12.5px;font-weight:600;padding:6px 11px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+  .flowmap button .n{width:18px;height:18px;border-radius:50%;background:var(--f-lav);color:var(--f-purple-ink);font-size:11px;display:inline-flex;align-items:center;justify-content:center;font-weight:800}
+  .flowmap button[aria-current="true"]{background:var(--f-purple);border-color:var(--f-purple);color:#fff}
+  .flowmap button[aria-current="true"] .n{background:rgba(255,255,255,.25);color:#fff}
+  .flowmap button:focus-visible,.btn:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #B9A6FF;outline-offset:2px}
+
+  /* Product chrome inside frame */
+  .prod-head{display:flex;align-items:center;gap:18px;padding:14px 22px 0;flex-wrap:wrap}
+  .prod-nav{display:none;gap:4px;flex:1}
+  .prod-nav.on{display:flex}
+  .prod-nav span{font-size:13.5px;font-weight:600;color:var(--f-ink-2);padding:6px 10px;border-radius:8px;white-space:nowrap}
+  .prod-nav span.cur{background:var(--f-lav);color:var(--f-purple-ink);font-weight:700}
+  @media (max-width:760px){.prod-nav{display:none !important}}
+  .wordmark{font-family:inherit;font-size:23px;font-weight:800;color:var(--f-ink);letter-spacing:-.03em}
+  .wordmark em{font-style:normal;color:var(--f-purple)}
+  .prod-user{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--f-ink-2)}
+  .avatar{width:30px;height:30px;border-radius:50%;background:var(--f-purple);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .screen{display:none;padding:18px 22px 26px;animation:fadein .3s ease}
+  .screen.active{display:block}
+  @keyframes fadein{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: reduce){.screen{animation:none}.frame-progress i{transition:none}html{scroll-behavior:auto}}
+
+  .prod-h{font-family:inherit;font-size:26px;line-height:1.2;font-weight:700;color:var(--f-ink);margin:6px 0 8px;letter-spacing:-.02em}
+  .prod-h.sm{font-size:22px}
+  .prod-sub{color:var(--f-ink-2);font-size:15px;margin:0 0 18px;max-width:560px}
+  .prod-sub b{color:var(--f-ink)}
+  .card{background:var(--f-card);border:1px solid var(--f-line);border-radius:var(--f-radius);padding:20px;margin-bottom:14px}
+  .card.flush{padding:0;overflow:hidden}
+  .card h3{margin:0 0 6px;font-size:16px;color:var(--f-ink)}
+  .card p{margin:0 0 8px;color:var(--f-ink-2);font-size:14.5px}
+  .card p:last-child{margin-bottom:0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:640px){.grid2{grid-template-columns:1fr}}
+  label.flabel{display:block;font-size:13px;font-weight:700;color:var(--f-ink);margin:0 0 6px}
+  .field{width:100%;border:1.5px solid var(--f-line);border-radius:10px;padding:11px 13px;font:inherit;font-size:15px;color:var(--f-ink);background:#fff}
+  .field::placeholder{color:var(--f-ink-3)}
+  select.field{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236D4AFF' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+  textarea.field{resize:vertical;min-height:76px}
+  .fhint{font-size:13px;color:var(--f-ink-3);margin-top:6px}
+  .frow{margin-bottom:14px}
+  .btn{appearance:none;border:none;border-radius:10px;font:inherit;font-weight:700;font-size:15px;padding:12px 20px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;justify-content:center}
+  .btn-pri{background:var(--f-purple);color:#fff}
+  .btn-pri:hover{background:var(--f-purple-deep)}
+  .btn-pri:disabled{background:#C9BFF2;cursor:not-allowed}
+  .btn-ghost{background:#fff;color:var(--f-purple-ink);border:1.5px solid var(--f-lav-2)}
+  .btn-ghost:hover{border-color:var(--f-purple)}
+  .btn-soft{background:var(--f-lav);color:var(--f-purple-ink)}
+  .btn-sm{padding:8px 14px;font-size:13.5px;border-radius:8px}
+  .btn-block{width:100%}
+  .linklike{appearance:none;background:none;border:none;color:var(--f-purple);font:inherit;font-weight:700;font-size:14px;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
+  .trust-row{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--f-ink-3);margin-top:12px}
+  .trust-row span::before{content:"✓ ";color:var(--f-green);font-weight:800}
+
+  /* State pills */
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;letter-spacing:.02em;border-radius:999px;padding:4px 10px;white-space:nowrap}
+  .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+  .pill-done{background:var(--f-green-bg);color:var(--f-green)}
+  .pill-prog{background:var(--f-lav);color:var(--f-purple-ink)}
+  .pill-wait{background:var(--f-amber-bg);color:var(--f-amber)}
+  .pill-block{background:var(--f-red-bg);color:var(--f-red)}
+  .pill-todo{background:#F0EFF5;color:var(--f-ink-2)}
+  .statebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--f-lav);border:1px solid var(--f-lav-2);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:13px;color:var(--f-purple-ink)}
+  .statebar b{font-weight:800}
+  .fetched{display:inline-block;font-size:11px;font-weight:800;color:var(--f-green);background:var(--f-green-bg);border-radius:5px;padding:2px 7px;margin-left:8px;vertical-align:middle}
+
+  /* Sign-up branch preview */
+  .branch-note{border-radius:12px;padding:14px 16px;font-size:14.5px;margin-top:14px;border:1px solid}
+  .branch-note.live{background:var(--f-green-bg);border-color:#BFE6CF;color:#0E4D29}
+  .branch-note.wait{background:var(--f-amber-bg);border-color:#F0DCA8;color:#5F4305}
+  .branch-note b{font-weight:800}
+  .branch-note .bn-row{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:8px;font-size:13.5px}
+  .branch-note .bn-row span::before{content:"• ";font-weight:800}
+
+  /* Mock inbox */
+  .inbox{border:1px solid var(--f-line);border-radius:12px;overflow:hidden}
+  .inbox-head{background:#F6F4FC;padding:10px 16px;font-size:12.5px;font-weight:800;color:var(--f-ink-2);letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--f-line)}
+  .inbox-body{padding:18px}
+  .inbox-body .from{font-size:13px;color:var(--f-ink-3);margin-bottom:2px}
+  .inbox-body .subj{font-weight:800;color:var(--f-ink);font-size:15.5px;margin-bottom:10px}
+  .codebox{display:flex;gap:8px;margin:12px 0}
+  .codebox span{flex:1;text-align:center;font-size:22px;font-weight:800;letter-spacing:.1em;border:1.5px dashed var(--f-lav-2);border-radius:10px;padding:10px 0;color:var(--f-purple-ink);background:var(--f-lav)}
+
+  /* Password meter */
+  .meter{height:6px;border-radius:4px;background:#EEEAF9;overflow:hidden;margin-top:8px}
+  .meter i{display:block;height:100%;width:0;background:var(--f-red);transition:width .3s ease,background .3s ease}
+  .reqs{list-style:none;margin:10px 0 0;padding:0;font-size:13.5px;color:var(--f-ink-3);display:grid;grid-template-columns:1fr 1fr;gap:4px 14px}
+  @media (max-width:520px){.reqs{grid-template-columns:1fr}}
+  .reqs li::before{content:"○ ";font-weight:800}
+  .reqs li.ok{color:var(--f-green)}
+  .reqs li.ok::before{content:"✓ "}
+  .doc-row{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--f-line);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+  .doc-row input{width:20px;height:20px;margin-top:2px;accent-color:var(--f-purple);flex:none}
+  .doc-row .dt{font-weight:800;color:var(--f-ink);font-size:15px}
+  .doc-row ul{margin:6px 0 0;padding-left:18px;color:var(--f-ink-2);font-size:13.5px}
+  .doc-row .dmeta{margin-left:auto;font-size:12px;color:var(--f-ink-3);white-space:nowrap}
+
+  /* NPI lookup */
+  .seg{display:inline-flex;background:var(--f-lav);border-radius:10px;padding:4px;gap:4px;margin-bottom:16px;flex-wrap:wrap}
+  .seg button{appearance:none;border:none;background:transparent;font:inherit;font-size:14px;font-weight:700;color:var(--f-purple-ink);border-radius:7px;padding:8px 14px;cursor:pointer}
+  .seg button[aria-pressed="true"]{background:#fff;box-shadow:0 1px 4px rgba(58,36,148,.18);color:var(--f-ink)}
+  .nppes{border:1px solid var(--f-line);border-radius:12px;overflow:hidden;margin-top:12px}
+  .nppes-head{background:#F6F4FC;border-bottom:1px solid var(--f-line);padding:9px 14px;font-size:12.5px;color:var(--f-ink-2);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .nppes-head b{color:var(--f-ink)}
+  .result{width:100%;text-align:left;appearance:none;background:#fff;border:none;border-bottom:1px solid var(--f-line);padding:14px 16px;cursor:pointer;font:inherit;display:block}
+  .result:last-child{border-bottom:none}
+  .result:hover{background:var(--f-lav)}
+  .result.sel{background:var(--f-lav);box-shadow:inset 4px 0 0 var(--f-purple)}
+  .result .rname{font-weight:800;color:var(--f-ink);font-size:15px}
+  .result .rmeta{font-size:13.5px;color:var(--f-ink-2);margin-top:2px}
+  .result .rtags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .tag{font-size:11.5px;font-weight:700;background:#F0EFF5;color:var(--f-ink-2);border-radius:5px;padding:2px 8px}
+  .tag.tax{background:var(--f-lav);color:var(--f-purple-ink)}
+  .notfound{background:var(--f-amber-bg);border:1px solid #F0DCA8;border-radius:12px;padding:16px;margin-top:12px;color:#5F4305;font-size:14.5px}
+  .notfound b{color:#4A3503}
+  .notfound ul{margin:8px 0 0;padding-left:18px}
+
+  /* Checklist / state board */
+  .board{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+  .board .bcell{flex:1;min-width:130px;border:1px solid var(--f-line);border-radius:12px;padding:10px 12px;background:#fff}
+  .board .bcell .bl{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--f-ink-3)}
+  .board .bcell .bv{font-size:14px;font-weight:800;color:var(--f-ink);margin-top:2px}
+  .progress-line{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .progress-line .track{flex:1;height:8px;background:#EEEAF9;border-radius:6px;overflow:hidden}
+  .progress-line .track i{display:block;height:100%;background:var(--f-purple);border-radius:6px}
+  .progress-line .plabel{font-size:13.5px;font-weight:800;color:var(--f-purple-ink);white-space:nowrap}
+  .step-row{display:flex;gap:14px;border:1px solid var(--f-line);border-radius:12px;padding:16px;margin-bottom:10px;background:#fff;align-items:flex-start}
+  .step-row .sic{width:32px;height:32px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;background:#F0EFF5;color:var(--f-ink-3)}
+  .step-row.done .sic{background:var(--f-green);color:#fff}
+  .step-row.now{border-color:var(--f-purple);box-shadow:0 0 0 3px var(--f-lav-2)}
+  .step-row.now .sic{background:var(--f-purple);color:#fff}
+  .step-row.later{opacity:.62}
+  .step-row .st{font-weight:800;color:var(--f-ink);font-size:15.5px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .step-row .sd{color:var(--f-ink-2);font-size:14px;margin-top:2px}
+  .step-row .sact{margin-top:10px}
+  .success-peek{background:linear-gradient(135deg,#3A2494,#6D4AFF);color:#fff;border-radius:var(--f-radius);padding:20px;margin-bottom:14px}
+  .success-peek h3{color:#fff;margin:0 0 6px;font-size:17px}
+  .success-peek p{color:#E3DCFF;font-size:14.5px;margin:0 0 12px}
+  .success-peek .sp-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:12px 14px;font-size:14px}
+  .success-peek .sp-card b{color:#fff}
+
+  /* Verification timeline */
+  .vcheck{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--f-line);align-items:flex-start}
+  .vcheck:last-child{border-bottom:none}
+  .vcheck .vic{width:30px;height:30px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+  .vic.done{background:var(--f-green);color:#fff}.vic.prog{background:var(--f-purple);color:#fff}.vic.todo{background:#F0EFF5;color:var(--f-ink-3)}
+  .vcheck .vt{font-weight:800;color:var(--f-ink);font-size:15px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .vcheck .vd{color:var(--f-ink-2);font-size:14px;margin-top:2px}
+  .sla-big{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline}
+  .sla-big .num{font-size:32px;color:var(--f-purple-ink);font-weight:800;letter-spacing:-.02em}
+  .sla-big .cap{font-size:13px;color:var(--f-ink-3)}
+
+  /* Referral */
+  .delight{background:linear-gradient(135deg,#2E7D4F,#178A4C);color:#fff;border-radius:var(--f-radius);padding:20px;margin-bottom:14px}
+  .delight h3{color:#fff;margin:0 0 4px;font-size:18px}
+  .delight p{color:#D8F2E2;font-size:14.5px;margin:0}
+  .delight .save{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:12px}
+  .delight .save div b{display:block;font-size:20px;color:#fff}
+  .delight .save div span{font-size:12.5px;color:#BEE7CE}
+  .status-list{display:flex;flex-direction:column}
+  .status-item{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--f-line)}
+  .status-item:last-child{border-bottom:none}
+  .status-item .si-main{flex:1;min-width:0}
+  .status-item .si-name{font-weight:800;color:var(--f-ink);font-size:14.5px}
+  .status-item .si-sub{font-size:13px;color:var(--f-ink-3)}
+  .proof{display:flex;gap:14px;align-items:flex-start;background:var(--f-lav);border:1px solid var(--f-lav-2);border-radius:12px;padding:16px}
+  .proof .pnum{font-size:30px;font-weight:800;color:var(--f-purple-ink);line-height:1;white-space:nowrap;letter-spacing:-.02em}
+  .proof p{margin:0;font-size:14px;color:var(--f-ink-2)}
+  .proof p b{color:var(--f-ink)}
+
+  /* Invite — each role is its own full-width selectable row, no overlap */
+  .role-grid{display:flex;flex-direction:column;gap:10px}
+  .role-card{display:block;width:100%;text-align:left;appearance:none;font:inherit;background:#fff;border:1.5px solid var(--f-line);border-radius:12px;padding:14px 16px;cursor:pointer;line-height:1.45}
+  .role-card[aria-pressed="true"]{border-color:var(--f-purple);box-shadow:0 0 0 3px var(--f-lav-2);background:var(--f-lav)}
+  .role-card .rt{display:block;font-weight:800;color:var(--f-ink);font-size:15px}
+  .role-card .rd{display:block;font-size:13.5px;color:var(--f-ink-2);margin-top:4px}
+  .illus-note{border:1px solid var(--page-line);background:var(--page-panel);border-radius:12px;padding:12px 16px;font-size:14px;color:var(--page-ink-2);margin:0 0 18px;max-width:860px}
+  .illus-note b{color:var(--page-ink)}
+  .illus-tag{display:inline-flex;align-items:center;font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:var(--f-amber-bg);color:var(--f-amber);border:1px solid #F0DCA8;border-radius:999px;padding:4px 10px}
+  .email-preview{border:1px solid var(--f-line);border-radius:12px;overflow:hidden;background:#fff}
+  .email-preview .ep-head{background:#F6F4FC;border-bottom:1px solid var(--f-line);padding:9px 14px;font-size:12.5px;font-weight:800;color:var(--f-ink-2);letter-spacing:.05em;text-transform:uppercase}
+  .email-preview .ep-body{padding:16px;font-size:14px;color:var(--f-ink-2)}
+  .email-preview .ep-body .epsub{font-weight:800;color:var(--f-ink);font-size:15px;margin-bottom:8px}
+  .email-preview .ep-msg{background:var(--f-lav);border-radius:8px;padding:10px 12px;margin:10px 0;font-size:13.5px;color:var(--f-purple-ink)}
+
+  /* Waitlist */
+  .queue-vis{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .queue-num{font-size:50px;font-weight:800;color:var(--f-purple-ink);line-height:1;letter-spacing:-.03em}
+  .medchips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+  .chip{display:inline-flex;align-items:center;gap:7px;background:var(--f-lav);color:var(--f-purple-ink);font-weight:700;font-size:13.5px;border-radius:999px;padding:6px 8px 6px 13px;border:1px solid var(--f-lav-2)}
+  .chip button{appearance:none;border:none;background:var(--f-purple);color:#fff;width:18px;height:18px;border-radius:50%;font-size:12px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0}
+  .suggest{display:flex;flex-wrap:wrap;gap:6px}
+  .suggest button{appearance:none;background:#fff;border:1px dashed var(--f-lav-2);color:var(--f-ink-2);border-radius:999px;font:inherit;font-size:13px;font-weight:600;padding:5px 11px;cursor:pointer}
+  .suggest button:hover{border-color:var(--f-purple);color:var(--f-purple-ink)}
+  .aha{background:linear-gradient(135deg,#3A2494,#6D4AFF);border-radius:var(--f-radius);padding:20px;color:#fff;margin-bottom:14px}
+  .aha h3{color:#fff;margin:0 0 6px;font-size:17px}
+  .aha p{color:#E3DCFF;font-size:14.5px;margin:0 0 12px}
+  .aha .aha-nums{display:flex;flex-wrap:wrap;gap:8px 30px}
+  .aha .aha-nums div b{display:block;font-size:22px}
+  .aha .aha-nums div span{font-size:12.5px;color:#CFC4FF}
+  .tl{list-style:none;margin:0;padding:0}
+  .tl li{display:flex;gap:12px;padding:9px 0;border-bottom:1px dashed var(--f-line);font-size:14.5px;color:var(--f-ink-2)}
+  .tl li:last-child{border-bottom:none}
+  .tl li b{color:var(--f-ink)}
+  .tl .tdot{width:22px;height:22px;border-radius:50%;background:var(--f-lav);color:var(--f-purple-ink);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none;margin-top:1px}
+  .tl li.done .tdot{background:var(--f-green);color:#fff}
+
+  /* Frame footer nav */
+  .frame-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--page-panel);border-top:1px solid var(--page-line);padding:12px 16px;flex-wrap:wrap}
+  .frame-nav .mid{font-size:13px;color:var(--page-ink-3);font-weight:600;text-align:center;flex:1;min-width:140px}
+  .navbtn{appearance:none;border-radius:10px;font:inherit;font-weight:700;font-size:14.5px;padding:11px 18px;cursor:pointer;border:1.5px solid var(--page-line);background:var(--page-panel);color:var(--page-ink)}
+  .navbtn.primary{background:var(--page-accent);border-color:var(--page-accent);color:#fff}
+  @media (prefers-color-scheme: dark){.navbtn.primary{color:#171233}}
+  .navbtn:disabled{opacity:.4;cursor:not-allowed}
+
+  /* ---------- Inspector panel ---------- */
+  .inspector{position:sticky;top:16px;display:flex;flex-direction:column;gap:14px}
+  @media (max-width:980px){.inspector{position:static}}
+  .insp-card{background:var(--page-panel);border:1px solid var(--page-line);border-radius:16px;padding:18px}
+  .insp-card h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--page-ink-3);margin:0 0 10px}
+  .insp-lever{display:flex;align-items:center;gap:10px}
+  .insp-lever .lev-badge{background:var(--page-accent);color:#fff;font-weight:800;font-size:13px;border-radius:8px;padding:7px 11px;white-space:nowrap}
+  @media (prefers-color-scheme: dark){.insp-lever .lev-badge{color:#171233}}
+  .insp-lever p{margin:0;font-size:14px;color:var(--page-ink-2)}
+  .insp-state{font-size:14.5px;color:var(--page-ink-2);margin:0}
+  .insp-state b{color:var(--page-ink)}
+  .insp-list{margin:0;padding-left:18px;font-size:14px;color:var(--page-ink-2)}
+  .insp-list li{margin-bottom:6px}
+  .insp-list li b{color:var(--page-ink)}
+  .insp-quote{border-left:3px solid var(--page-accent);padding:2px 0 2px 12px;margin:0}
+  .insp-quote p{margin:0 0 4px;font-size:14.5px;color:var(--page-ink)}
+  .insp-quote cite{font-size:13px;color:var(--page-ink-3);font-style:normal;font-weight:700}
+  .kbd-hint{font-size:12.5px;color:var(--page-ink-3);text-align:center}
+
+  /* ---------- Below-stage sections ---------- */
+  .below{margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media (max-width:860px){.below{grid-template-columns:1fr}}
+  .below-card{background:var(--page-panel);border:1px solid var(--page-line);border-radius:16px;padding:22px}
+  .below-card h2{font-family:Georgia,serif;font-size:21px;margin:0 0 6px;font-weight:600}
+  .below-card .bc-sub{color:var(--page-ink-2);font-size:14.5px;margin:0 0 16px}
+  /* Collapsible below-stage sections */
+  details.below-card summary.below-summary{display:flex;align-items:center;gap:10px;cursor:pointer;list-style:none;margin:0}
+  details.below-card summary.below-summary::-webkit-details-marker{display:none}
+  details.below-card summary.below-summary::marker{content:"";display:none}
+  details.below-card summary.below-summary h2{margin:0}
+  details.below-card summary.below-summary:focus-visible{outline:3px solid #B9A6FF;outline-offset:3px;border-radius:6px}
+  details.below-card .caret{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex:none;font-size:11px;line-height:1;color:var(--page-accent-deep);background:var(--page-accent-soft);border:1px solid var(--page-line);border-radius:999px;transition:transform .2s ease}
+  details.below-card[open] .caret{transform:rotate(90deg)}
+  details.below-card .below-body{margin-top:14px}
+  @media (prefers-reduced-motion: reduce){details.below-card .caret{transition:none}}
+  .states4{display:flex;flex-direction:column;gap:0}
+  .state4{display:flex;gap:12px;padding:11px 0;border-bottom:1px dashed var(--page-line);font-size:14.5px;color:var(--page-ink-2)}
+  .state4:last-child{border-bottom:none}
+  .state4 .s4n{width:26px;height:26px;border-radius:50%;background:var(--page-accent-soft);color:var(--page-accent-deep);font-weight:800;font-size:12.5px;display:flex;align-items:center;justify-content:center;flex:none}
+  .state4 b{color:var(--page-ink)}
+  .lever-table{width:100%;border-collapse:collapse;font-size:14px}
+  .lever-table th{text-align:left;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--page-ink-3);padding:0 10px 8px 0;border-bottom:1px solid var(--page-line)}
+  .lever-table td{padding:9px 10px 9px 0;border-bottom:1px dashed var(--page-line);color:var(--page-ink-2);vertical-align:top}
+  .lever-table tr:last-child td{border-bottom:none}
+  .lever-table td b{color:var(--page-ink)}
+  .foot{margin-top:30px;font-size:15px;line-height:1.6;color:var(--page-ink);max-width:900px;background:var(--page-panel);border:1.5px solid var(--page-line);border-radius:14px;padding:18px 20px}
+  .foot b{color:var(--page-ink)}
+  .foot .foot-sub{font-size:13.5px;color:var(--page-ink-2);margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <span class="proto-tag"><span class="dot"></span> Prototype. Not the live product.</span>
+  <h1 class="page-title">Forus provider onboarding, reimagined</h1>
+  <p class="page-sub">Nine screens, <strong>sign-up to first prescription</strong>. The waitlist, verification, referral, and team invite all happen inside the product. Each screen shows the practice's current state and names one next step.</p>
+  <p class="illus-note"><b>Concept mockup — illustrative data.</b> Practice names, cases, volumes, performance figures, statuses, and service guarantees on these screens are illustrative examples, not live data.</p>
+  <div class="howto">
+    <span><b>Click through as a new practice.</b> Dermatology. Riverbend Dermatology Associates</span>
+    <span>Use <b>Back / Continue</b>, the step pills, or the <b>← →</b> keys</span>
+    <span>Try the branches: pick <b>Ophthalmology</b> on screen 1. Search a name that <b>is not in NPPES</b> on screen 4</span>
+  </div>
+
+  <div class="stage">
+    <!-- ================= PRODUCT FRAME ================= -->
+    <div class="frame" id="frame">
+      <div class="frame-bar">
+        <div class="traffic" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="urlbar">provider.forus.com<b id="urlPath">/signup/start</b></div>
+        <div class="frame-count" id="frameCount">Screen 1 of 9</div>
+      </div>
+      <div class="frame-progress"><i id="frameProg" style="width:11%"></i></div>
+
+      <nav class="flowmap" id="flowmap" aria-label="Walkthrough screens"></nav>
+
+      <div class="prod-head">
+        <div class="wordmark">forus<em>.</em></div>
+        <nav class="prod-nav" id="prodNav" aria-hidden="true"><span>Prescriptions</span><span>Prior auths</span><span class="cur" id="prodNavCur">Onboarding</span><span>Team</span><span>Settings</span></nav>
+        <div class="prod-user" id="prodUser" style="margin-left:auto"><span>Getting started</span></div>
+      </div>
+
+      <!-- ========== SCREEN 1 · SIGN-UP ========== -->
+      <section class="screen active" data-screen="1" aria-label="Screen 1: Sign up">
+        <h2 class="prod-h">Create your Forus account</h2>
+        <p class="prod-sub">Enter your work email and specialty. We'll tell you on this screen whether your specialty is live or waitlisted. Takes about a minute.</p>
+        <div class="card">
+          <div class="frow">
+            <label class="flabel" for="suEmail">Work email</label>
+            <input class="field" id="suEmail" type="email" value="maya@riverbendderm.com" autocomplete="email" />
+          </div>
+          <div class="frow" style="margin-bottom:4px">
+            <label class="flabel" for="suSpec">Specialty</label>
+            <select class="field" id="suSpec">
+              <optgroup label="Live now. You can start today">
+                <option value="derm" selected>Dermatology</option>
+                <option value="imm">Allergy &amp; Immunology</option>
+                <option value="gi">Gastroenterology</option>
+              </optgroup>
+              <optgroup label="Opening next. Join the waitlist">
+                <option value="ophth">Ophthalmology</option>
+                <option value="rheum">Rheumatology</option>
+                <option value="neuro">Neurology</option>
+              </optgroup>
+            </select>
+            <p class="fhint">Your specialty determines whether you can start now or join the waitlist.</p>
+          </div>
+          <div class="branch-note live" id="branchNote" role="status"></div>
+          <div style="margin-top:16px">
+            <button class="btn btn-pri btn-block" id="suCta" type="button">Continue. Dermatology is live</button>
+          </div>
+          <div class="trust-row">
+            <span>Free for providers and patients</span>
+            <span>HIPAA compliant · BAA included</span>
+            <span>SOC 2 Type II</span>
+            <span>We never share your email</span>
+          </div>
+        </div>
+        <p style="font-size:13.5px;color:var(--f-ink-3);text-align:center;margin:4px 0 0">Already have an account? <a href="#" onclick="return false" style="color:var(--f-purple);font-weight:700">Log in</a> · Joining a practice already on Forus? <a href="#" onclick="return false" style="color:var(--f-purple);font-weight:700">Request to join</a></p>
+      </section>
+
+      <!-- ========== SCREEN 2 · EMAIL VERIFICATION ========== -->
+      <section class="screen" data-screen="2" aria-label="Screen 2: Email verification">
+        <h2 class="prod-h">Check your inbox, Maya</h2>
+        <p class="prod-sub">We sent a verification link to <b>maya@riverbendderm.com</b>. Click it and you come straight back here. The link works for <b>7 days</b>, even if you close this tab.</p>
+        <div style="max-width:560px">
+          <div class="inbox">
+            <div class="inbox-head">Your inbox. Just now</div>
+            <div class="inbox-body">
+              <div class="from">Forus &lt;hello@forus.com&gt; · 2 min ago</div>
+              <div class="subj">Verify your Forus email address</div>
+              <p style="margin:0 0 12px;font-size:14px;color:var(--f-ink-2)">Hi Maya. Confirm this is your email and we set up Riverbend Dermatology Associates.</p>
+              <button class="btn btn-pri btn-sm" type="button" id="verifyBtn">Verify my email</button>
+            </div>
+          </div>
+          <div class="card" style="margin-top:14px">
+            <div style="display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between">
+              <h3 id="verifyStateTitle" style="margin:0">Waiting for verification…</h3>
+              <span class="pill pill-wait" id="verifyPill">Not yet verified</span>
+            </div>
+            <p id="verifyStateBody" style="margin-top:8px">This page updates when you click the link in the email.</p>
+            <p style="margin-top:14px">Didn’t get it? Check spam for “Forus” — some practice inboxes filter first emails.
+              <button class="linklike" type="button" id="resendBtn">Resend the email</button> ·
+              <button class="linklike" type="button" id="wrongEmailBtn">Use a different email</button>
+            </p>
+            <p class="fhint" id="resendNote" role="status"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 3 · PASSWORD + TOS/BAA ========== -->
+      <section class="screen" data-screen="3" aria-label="Screen 3: Password and agreements">
+        <div class="statebar"><b>Your state:</b> <span class="pill pill-done">Email verified</span> <span>Next: secure your account. Then we set up your first provider.</span></div>
+        <h2 class="prod-h">Secure your account</h2>
+        <p class="prod-sub">Create your password and review the agreements required to process patient information.</p>
+        <div class="grid2">
+          <div class="card">
+            <h3>Create your password</h3>
+            <div class="frow" style="margin-top:12px">
+              <label class="flabel" for="pw1">Password</label>
+              <input class="field" id="pw1" type="password" placeholder="At least 12 characters" autocomplete="new-password" />
+              <div class="meter" aria-hidden="true"><i id="pwMeter"></i></div>
+            </div>
+            <div class="frow">
+              <label class="flabel" for="pw2">Confirm password</label>
+              <input class="field" id="pw2" type="password" placeholder="Type it again" autocomplete="new-password" />
+              <p class="fhint" id="pwMatch" role="status"></p>
+            </div>
+            <ul class="reqs">
+              <li id="reqLen">12+ characters</li>
+              <li id="reqMix">A number or symbol</li>
+              <li id="reqMatch">Both passwords match</li>
+              <li id="reqMgr">Password managers welcome</li>
+            </ul>
+            <p class="fhint" style="margin-top:12px">Your browser or password manager can make and save this. Most people do.</p>
+          </div>
+          <div>
+            <div class="card">
+              <h3>Confirm this is you</h3>
+              <p style="margin-top:8px"><b style="color:var(--f-ink)">Maya Chen, MD</b> · Physician<br />Riverbend Dermatology Associates<br /><span style="font-size:13px">Fetched from your sign-up. <a href="#" onclick="return false" style="color:var(--f-purple);font-weight:700">Edit if anything is wrong</a></span></p>
+            </div>
+            <div class="doc-row">
+              <input type="checkbox" id="tosCheck" />
+              <div>
+                <label class="dt" for="tosCheck">Terms of Service &amp; Privacy Notice</label>
+                <ul>
+                  <li>Forus is free for your practice. No per-script fees. No seat fees.</li>
+                  <li>You can export your data and leave at any time</li>
+                </ul>
+              </div>
+              <span class="dmeta">4 min read · <a href="#" onclick="return false" style="color:var(--f-purple);font-weight:700">Read</a></span>
+            </div>
+            <div class="doc-row">
+              <input type="checkbox" id="baaCheck" />
+              <div>
+                <label class="dt" for="baaCheck">Business Associate Agreement (BAA)</label>
+                <ul>
+                  <li>Required by HIPAA before we can process any patient data</li>
+                  <li>Covers how we store, encrypt, and audit access to PHI</li>
+                </ul>
+              </div>
+              <span class="dmeta">3 min read · <a href="#" onclick="return false" style="color:var(--f-purple);font-weight:700">Read</a></span>
+            </div>
+            <button class="btn btn-pri btn-block" type="button" id="agreeBtn" disabled>Agree and continue</button>
+            <p class="fhint" style="text-align:center" id="agreeHint">Add a password and check both boxes to continue.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 4 · PROVIDER SETUP + NPI LOOKUP ========== -->
+      <section class="screen" data-screen="4" aria-label="Screen 4: Provider setup with NPI lookup">
+        <div class="statebar"><b>Your state:</b> <span class="pill pill-done">Account created</span> <span class="pill pill-prog">Provider setup</span> <span>Verification starts the moment you finish this screen.</span></div>
+        <h2 class="prod-h">Set up your provider</h2>
+        <p class="prod-sub">Search by provider or practice name to fill in your details automatically.</p>
+
+        <div class="seg" role="group" aria-label="NPI entry method">
+          <button type="button" id="segLookup" aria-pressed="true">Look up my practice</button>
+          <button type="button" id="segKnow" aria-pressed="false">I know my NPI</button>
+        </div>
+
+        <div id="lookupPane">
+          <div class="card">
+            <label class="flabel" for="npiSearch">Search by practice or provider name</label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <input class="field" id="npiSearch" type="text" value="Riverbend Dermatology" style="flex:1;min-width:200px" />
+              <button class="btn btn-pri" type="button" id="npiSearchBtn">Search NPPES</button>
+            </div>
+            <p class="fhint">Results come from the public NPPES registry. Select your organization and the fields below will fill in. <button class="linklike" type="button" id="tryMissing">See what happens when there is no match</button></p>
+            <div class="nppes" id="nppesBox">
+              <div class="nppes-head"><span><b>3 results</b> for “Riverbend Dermatology”</span><span>Source: NPPES · Updated Nov 2, 2026</span></div>
+              <div id="nppesResults"></div>
+            </div>
+            <div class="notfound" id="notFoundBox" hidden>
+              <b>No match in NPPES for that name.</b> Not a dead end. Three options:
+              <ul>
+                <li><b>Check the legal name.</b> NPPES lists the legal name. It is often not the name on the door. “Riverbend Dermatology Associates, LLC,” not “Riverbend Derm.”</li>
+                <li><b>Or enter it by hand.</b> Fill in the details below. We verify them manually, and you can track the status on your verification page.</li>
+                <li><b>Or ask us.</b> <a href="#" onclick="return false" style="color:var(--f-purple);font-weight:700">Message provider support</a> and we find it with you.</li>
+              </ul>
+              <p style="margin:12px 0 0"><button class="btn btn-ghost btn-sm" type="button" id="backToResults">Back to results</button></p>
+            </div>
+          </div>
+        </div>
+
+        <div id="knowPane" hidden>
+          <div class="card">
+            <label class="flabel" for="npiDirect">Provider NPI number</label>
+            <input class="field" id="npiDirect" type="text" inputmode="numeric" maxlength="10" placeholder="10-digit NPI, e.g. 1841297356" />
+            <p class="fhint" id="npiDirectHint">An NPI is the 10-digit ID Medicare gives every provider and practice. We check the format and the registry match. A number that only looks right is not enough.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Practice details <span style="font-size:13px;color:var(--f-ink-3);font-weight:600">Filled in from NPPES when you pick a result</span></h3>
+          <div class="grid2" style="margin-top:12px">
+            <div class="frow"><label class="flabel" for="pfName">Legal practice name</label><input class="field" id="pfName" type="text" placeholder="Select a result above, or type it" /><span class="fetched" data-fetch hidden>Fetched from NPPES</span></div>
+            <div class="frow"><label class="flabel" for="pfNpi">Organization NPI (Type 2)</label><input class="field" id="pfNpi" type="text" placeholder="—" /><span class="fetched" data-fetch hidden>Fetched from NPPES</span></div>
+            <div class="frow"><label class="flabel" for="pfAddr">Practice address</label><input class="field" id="pfAddr" type="text" placeholder="—" /><span class="fetched" data-fetch hidden>Fetched from NPPES</span></div>
+            <div class="frow"><label class="flabel" for="pfSpec">Specialty (taxonomy)</label><input class="field" id="pfSpec" type="text" placeholder="—" /><span class="fetched" data-fetch hidden>Fetched from NPPES</span></div>
+            <div class="frow"><label class="flabel" for="pfPhone">Office phone</label><input class="field" id="pfPhone" type="tel" value="(212) 555-0147" /></div>
+            <div class="frow"><label class="flabel" for="pfFax">Fax <span style="color:var(--f-ink-3);font-weight:600">(optional. Payers still ask.)</span></label><input class="field" id="pfFax" type="tel" placeholder="(212) 555-0148" /></div>
+          </div>
+          <p class="fhint">You can edit any field. If a value doesn't match the registry, we'll flag it here. You can add more providers and offices later.</p>
+          <p style="font-size:13.5px;color:var(--f-ink-2);background:var(--f-lav);border:1px solid var(--f-lav-2);border-radius:10px;padding:10px 12px;margin:10px 0 0">This lookup fills <b style="color:var(--f-ink)">organization details (Type 2 NPI)</b>. Individual prescriber identity (Type 1 NPI) and your authorization to act for the practice are checked separately — a registry match alone does not confirm authority.</p>
+          <div style="margin-top:14px"><button class="btn btn-pri" type="button" id="providerContinue">Save provider &amp; start verification</button></div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 5 · GUIDED DASHBOARD ========== -->
+      <section class="screen" data-screen="5" aria-label="Screen 5: Guided dashboard">
+        <h2 class="prod-h">Welcome, Maya</h2>
+        <p class="prod-sub">Complete the steps below in order to send your first prescription. Your next step is highlighted.</p>
+
+        <div class="progress-line"><div class="track"><i style="width:60%"></i></div><span class="plabel">3 of 5 steps done</span></div>
+
+        <div class="step-row done">
+          <div class="sic">✓</div>
+          <div style="flex:1"><div class="st">Create your account <span class="pill pill-done">Done</span></div><div class="sd">maya@riverbendderm.com · verified just now</div></div>
+        </div>
+        <div class="step-row done">
+          <div class="sic">✓</div>
+          <div style="flex:1"><div class="st">Add your first provider <span class="pill pill-done">Done</span></div><div class="sd">Riverbend Dermatology Associates, LLC. Fetched from NPPES. NPI 1841297356.</div></div>
+        </div>
+        <div class="step-row done">
+          <div class="sic">✓</div>
+          <div style="flex:1"><div class="st">Sign the Terms &amp; BAA <span class="pill pill-done">Done</span></div><div class="sd">Signed by Maya Chen, MD · copies emailed to you</div></div>
+        </div>
+        <div class="step-row now">
+          <div class="sic">4</div>
+          <div style="flex:1">
+            <div class="st">Complete verification <span class="pill pill-prog">In progress. 2 of 3 checks done</span></div>
+            <div class="sd">We're checking your credentials now (illustrative timing: ~4 hours left). You can queue your first prescription below — we'll send it when verification clears.</div>
+            <div class="sact" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-pri btn-sm" type="button" data-goto="6">See verification status</button><button class="btn btn-ghost btn-sm" type="button">What’s being checked?</button></div>
+          </div>
+        </div>
+        <div class="step-row later">
+          <div class="sic">5</div>
+          <div style="flex:1">
+            <div class="st">Send your first prescription <span class="pill pill-todo">Up next</span></div>
+            <div class="sd"><b style="color:var(--f-ink)">Who does this:</b> the prescriber, or the PA specialist who prepares prescriptions — not necessarily the person who created this account. Send from EZDerm as usual. We'll hold it until verification clears, then run the PA. This starts the activation count: 1 script per week for at least 3 weeks.</div>
+            <div class="sact"><button class="btn btn-soft btn-sm" type="button">Queue a prescription now</button></div>
+          </div>
+        </div>
+
+        <div class="success-peek">
+          <h3>Example: a completed first prescription</h3>
+          <p>Illustrative example of what a completed first prescription looks like:</p>
+          <div class="sp-card"><b>Dupilumab (Dupixent) 300 mg</b> · Patient: J. Alvarez · Sent from EZDerm → Benefits checked in 4 min → PA sent with evidence attached → <b>Approved in 3 hrs 12 min</b> · Pharmacy routed. $0 copay card applied. Handled in Forus without extra forms for your team in this example.</div>
+        </div>
+
+        <div class="card">
+          <h3>After your first prescription</h3>
+          <p>Invite teammates — starting with whoever runs PAs day to day — add office addresses, set notifications, and add more providers. These are available from your dashboard and Settings.</p>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 6 · VERIFICATION STATUS ========== -->
+      <section class="screen" data-screen="6" aria-label="Screen 6: Verification status">
+        <div class="statebar"><b>Your state:</b> <span class="pill pill-prog">Verification in progress</span> <span>Started today at 11:38 AM ET. We email and text you the moment it clears. No need to check back.</span></div>
+        <h2 class="prod-h">We’re verifying Riverbend Dermatology</h2>
+        <p class="prod-sub">Your credentials are being checked now. Most practices clear in under 6 hours. Our promise: within <b>1 business day</b>. We email and text you the moment it clears, so you don’t need to keep this page open.</p>
+
+        <div class="card">
+          <div style="margin-bottom:12px"><span class="illus-tag">Illustrative timing</span></div>
+          <div class="sla-big">
+            <div><div class="num">2 of 3</div><div class="cap">checks complete</div></div>
+            <div><div class="num">~4 hrs</div><div class="cap">estimated time left</div></div>
+            <div><div class="num">1 day</div><div class="cap">our promise. Most practices clear in under 6 hours.</div></div>
+          </div>
+          <div class="progress-line" style="margin:16px 0 4px"><div class="track"><i style="width:66%"></i></div><span class="plabel">66%</span></div>
+        </div>
+
+        <div class="card">
+          <div class="vcheck">
+            <div class="vic done">✓</div>
+            <div style="flex:1"><div class="vt">NPI &amp; taxonomy match <span class="pill pill-done">Done · 11:41 AM</span></div><div class="vd">Organization NPI 1841297356 matched Riverbend Dermatology Associates, LLC in NPPES. Taxonomy 207N00000X (Dermatology) confirmed. Same record you selected at setup.</div></div>
+          </div>
+          <div class="vcheck">
+            <div class="vic done">✓</div>
+            <div style="flex:1"><div class="vt">Practice address &amp; TIN <span class="pill pill-done">Done · 12:03 PM</span></div><div class="vd">214 W 86th St, New York, NY 10024 matches the registry and your W-9 details. No documents needed from you.</div></div>
+          </div>
+          <div class="vcheck">
+            <div class="vic prog">3</div>
+            <div style="flex:1"><div class="vt">Prescriber credentials &amp; exclusion check <span class="pill pill-prog">In progress · started 12:10 PM</span></div><div class="vd">State license, DEA registration, and federal exclusion lists for Maya Chen, MD. This check depends on state databases and typically takes the longest.</div></div>
+          </div>
+        </div>
+
+        <div class="card" style="border-color:var(--f-purple);box-shadow:0 0 0 3px var(--f-lav-2)">
+          <h3>What to do now</h3>
+          <p style="margin-bottom:14px">You can queue your first prescription while we finish verification. We'll notify you if anything else is needed.</p>
+          <div class="step-row now" style="margin-bottom:10px">
+            <div class="sic">1</div>
+            <div style="flex:1">
+              <div class="st">Queue your first prescription</div>
+              <div class="sd">Open <b>EZDerm</b>, select the patient and medication, and send as usual. We'll hold it and run the prior authorization when verification clears.</div>
+              <div class="sact"><button class="btn btn-pri btn-sm" type="button">Queue a prescription</button></div>
+            </div>
+          </div>
+          <div class="step-row" style="margin-bottom:0">
+            <div class="sic">2</div>
+            <div style="flex:1">
+              <div class="st">No further action needed <span class="pill pill-todo">We'll notify you</span></div>
+              <div class="sd">We'll email and text you when verification clears. If we need anything from you, it will appear here as a task with specific instructions — for example: <i>“The fax number on file does not match your NPPES record. Confirm it or fix it.”</i></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 7 · REFER A PRACTICE ========== -->
+      <section class="screen" data-screen="7" aria-label="Screen 7: Refer a practice">
+        <div class="delight">
+          <h3>Your first PA is done</h3>
+          <p>Dupilumab for J. Alvarez. Approved in 3 hrs 12 min in this illustrative example, completed in Forus without extra forms routed to your team.</p>
+          <div class="save">
+            <div><b>47 min</b><span>of staff time saved on this one PA (illustrative)</span></div>
+            <div><b>3 hrs 12 min</b><span>to approval in this example, compared with manual fax and phone follow-up</span></div>
+            <div><b>$0</b><span>patient copay after the assistance card</span></div>
+          </div>
+        </div>
+        <h2 class="prod-h sm">Refer a practice</h2>
+        <p class="prod-sub">Send a referral from inside Forus, pre-filled with your details. You'll see each referred practice's status here: <b>invited, signed up, activated</b>.</p>
+
+        <div class="grid2">
+          <div class="card">
+            <h3>Refer a practice</h3>
+            <div class="frow" style="margin-top:12px">
+              <label class="flabel" for="refFrom">From</label>
+              <input class="field" id="refFrom" type="text" value="Maya Chen, MD — Riverbend Dermatology Associates" />
+              <p class="fhint">Pre-filled from your account. The referred practice will see your name.</p>
+            </div>
+            <div class="frow">
+              <label class="flabel" for="refPractice">Practice you’re referring</label>
+              <input class="field" id="refPractice" type="text" value="Hudson Dermatology Group" />
+              <p class="fhint">Matched to <b style="color:var(--f-ink)">Hudson Dermatology Group, PC</b> in NPPES. NPI 1578562094, Poughkeepsie, NY. <span class="fetched">Fetched from NPPES</span></p>
+            </div>
+            <div class="frow">
+              <label class="flabel" for="refSpec">Their specialty</label>
+              <select class="field" id="refSpec">
+                <option selected>Dermatology</option><option>Allergy &amp; Immunology</option><option>Gastroenterology</option><option>Ophthalmology</option><option>Other</option>
+              </select>
+              <p class="fhint">Pre-filled with your specialty. This determines their onboarding path.</p>
+            </div>
+            <div class="frow">
+              <label class="flabel" for="refEmail">Their email</label>
+              <input class="field" id="refEmail" type="email" value="office@hudsonderm.example" />
+            </div>
+            <button class="btn btn-pri btn-block" type="button" id="refSend">Send referral</button>
+            <p class="fhint" style="text-align:center" id="refNote" role="status">They'll receive one email from Forus naming you as the referrer.</p>
+          </div>
+          <div>
+            <div class="card">
+              <h3>What Hudson Dermatology gets</h3>
+              <ul style="margin:8px 0 0;padding-left:18px;color:var(--f-ink-2);font-size:14.5px">
+                <li style="margin-bottom:6px"><b style="color:var(--f-ink)">An invite naming you.</b> One email from Forus, with you listed as the referrer.</li>
+                <li style="margin-bottom:6px"><b style="color:var(--f-ink)">A free account.</b> No fees for providers or patients.</li>
+                <li style="margin-bottom:6px"><b style="color:var(--f-ink)">Standard verification.</b> Same checks and timeline as any practice. A referral does not change verification speed.</li>
+                <li style="margin-bottom:6px"><b style="color:var(--f-ink)">Specialty templates.</b> PA evidence templates for dermatology, loaded at setup.</li>
+                <li><b style="color:var(--f-ink)">Onboarding support.</b> Help from our team during setup.</li>
+              </ul>
+              <p style="margin-top:12px">You can track every referral here until they activate: invited, signed up, activated.</p>
+            </div>
+            <div class="proof">
+              <div class="pnum">312</div>
+              <p><b>dermatology practices are already on Forus.</b> 41 of them in New York. Most joined because a peer told them it worked.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>How referral status works</h3>
+          <p>Each referral is credited to your account when you send it. You'll see its status update here — <b style="color:var(--f-ink)">invited, signed up, activated</b> — and nothing else changes: referrals do not change how fast a practice is verified or how quickly it receives service.</p>
+        </div>
+
+        <div class="card">
+          <h3>Your referrals</h3>
+          <p>Credited to your account when you send them. Status updates appear here.</p>
+          <div class="status-list" style="margin-top:8px">
+            <div class="status-item" id="refNewRow" hidden>
+              <div class="si-main"><div class="si-name">Hudson Dermatology Group, PC</div><div class="si-sub">Poughkeepsie, NY · Referred just now</div></div>
+              <span class="pill pill-prog">Invited. Awaiting sign-up</span>
+            </div>
+            <div class="status-item">
+              <div class="si-main"><div class="si-name">Westside Skin &amp; Laser</div><div class="si-sub">New York, NY · Referred Nov 4</div></div>
+              <span class="pill pill-prog">Signed up. Verifying</span>
+            </div>
+            <div class="status-item">
+              <div class="si-main"><div class="si-name">Beacon Dermatology Partners</div><div class="si-sub">Beacon, NY · Referred Oct 21 · First script sent Oct 28</div></div>
+              <span class="pill pill-done">Activated</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 8 · INVITE TEAMMATES ========== -->
+      <section class="screen" data-screen="8" aria-label="Screen 8: Invite teammates">
+        <div class="statebar"><b>Your state:</b> <span class="pill pill-done">Verified</span> <span class="pill pill-done">First prescription sent</span> <span>Next: invite the person who runs prior authorizations day to day.</span></div>
+        <h2 class="prod-h">Invite your team</h2>
+        <p class="prod-sub">Start with the person who runs prior authorizations day to day — for many practices, that isn't the prescriber who signed up. Until they join, PAs route through the account owner's inbox. When they accept, the shared PA queue turns on. Choose a role below to see what it can do, add a note, and preview the email before sending.</p>
+
+        <div class="grid2">
+          <div>
+            <div class="card">
+              <h3>Who are you inviting?</h3>
+              <div class="frow" style="margin-top:12px"><label class="flabel" for="invName">Name</label><input class="field" id="invName" type="text" value="Sam Ortiz" /></div>
+              <div class="frow"><label class="flabel" for="invEmail">Work email</label><input class="field" id="invEmail" type="email" value="sam@riverbendderm.com" /></div>
+              <label class="flabel">Role — what this person can do</label>
+              <div class="role-grid" id="roleGrid" role="group" aria-label="Choose a role">
+                <button type="button" class="role-card" data-role="Prescriber" aria-pressed="false"><span class="rt">Prescriber</span><span class="rd">Can send and sign prescriptions and approve PAs. For physicians, NPs, and PAs.</span></button>
+                <button type="button" class="role-card" data-role="PA Specialist" aria-pressed="true"><span class="rt">PA Specialist / Delegate — runs PAs day to day</span><span class="rd">Prepares and submits PAs, uploads evidence, and messages payers. Cannot sign prescriptions.</span></button>
+                <button type="button" class="role-card" data-role="Office Admin" aria-pressed="false"><span class="rt">Office Admin</span><span class="rd">Manages teammates, office details, and notification settings. Sees practice-level reports, not patient details.</span></button>
+                <button type="button" class="role-card" data-role="View-only" aria-pressed="false"><span class="rt">View-only</span><span class="rd">Can check statuses and reports. Cannot change or submit anything.</span></button>
+              </div>
+              <p class="fhint">Check the role description before sending — it controls access to patient information.</p>
+            </div>
+            <div class="card">
+              <label class="flabel" for="invMsg">Add a note</label>
+              <textarea class="field" id="invMsg">Hi Sam. I set us up on Forus so our Dupixent and Skyrizi PAs stop living on the fax machine. Your queue is already set up. Joining takes about two minutes. Maya</textarea>
+              <p style="margin-top:12px"><button class="btn btn-pri" type="button" id="invSend">Send invite to Sam</button></p>
+              <p class="fhint" id="invNote" role="status">Inviting 10+ people? <a href="#" onclick="return false" style="color:var(--f-purple);font-weight:700">Upload a CSV instead</a>.</p>
+            </div>
+          </div>
+          <div>
+            <div class="email-preview" style="margin-bottom:14px">
+              <div class="ep-head">Preview. The email Sam receives</div>
+              <div class="ep-body">
+                <div class="epsub" id="epSub">Maya Chen invited you to join Riverbend Dermatology on Forus</div>
+                <p style="margin:0">Hi <span id="epName">Sam</span>. You are invited as a <b style="color:var(--f-ink)" id="epRole">PA Specialist</b>. You can prepare and submit prior authorizations, upload evidence, and message payers. Everything except signing prescriptions.</p>
+                <div class="ep-msg" id="epMsg">“Hi Sam. I set us up on Forus so our Dupixent and Skyrizi PAs stop living on the fax machine. Your queue is already set up. Joining takes about two minutes. Maya”</div>
+                <p style="margin:0 0 12px">Your practice is already verified and has signed the BAA, so joining is: verify email, set a password, done.</p>
+                <span class="btn btn-pri btn-sm" style="pointer-events:none">Accept invitation</span>
+                <p style="margin:12px 0 0;font-size:12.5px;color:var(--f-ink-3)">This invitation expires in 14 days. Sent by Forus on behalf of Riverbend Dermatology Associates.</p>
+              </div>
+            </div>
+            <div class="card">
+              <h3>Your team</h3>
+              <div class="status-list" style="margin-top:6px">
+                <div class="status-item" id="invNewRow" hidden>
+                  <div class="si-main"><div class="si-name">Sam Ortiz</div><div class="si-sub">PA Specialist · sam@riverbendderm.com · Invited just now</div></div>
+                  <span class="pill pill-wait">Sent. Pending</span>
+                </div>
+                <div class="status-item">
+                  <div class="si-main"><div class="si-name">Elena Brooks</div><div class="si-sub">Office Admin · Joined Nov 9 · Last active today</div></div>
+                  <span class="pill pill-done">Accepted</span>
+                </div>
+                <div class="status-item">
+                  <div class="si-main"><div class="si-name">Priya Nair, PA-C</div><div class="si-sub">Prescriber · Invited Nov 8 · Reminder sent once, Nov 9</div></div>
+                  <span class="pill pill-wait">Sent. Pending</span>
+                </div>
+                <div class="status-item">
+                  <div class="si-main"><div class="si-name">Maya Chen, MD (you)</div><div class="si-sub">Prescriber · Account owner</div></div>
+                  <span class="pill pill-todo">Active</span>
+                </div>
+              </div>
+              <p class="fhint" style="margin-top:10px">Pending invites receive one reminder on day 3.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 9 · WAITLISTED PATH ========== -->
+      <section class="screen" data-screen="9" aria-label="Screen 9: The waitlisted path">
+        <div class="statebar"><b>Your state:</b> <span class="pill pill-wait">Waitlisted. Ophthalmology</span> <span>Email verified. The med list below is the one thing that makes the wait pay off.</span></div>
+        <p style="font-size:13px;color:var(--f-ink-3);margin:0 0 4px">This is the waitlisted branch from Screen 1, shown for a second practice:</p>
+        <h2 class="prod-h">You’re on the Ophthalmology waitlist, Dr. Park</h2>
+        <p class="prod-sub">Ophthalmology isn't live yet. Below is your queue position, what happens next, and a step you can complete now: adding your medication list so it's loaded when your account opens.</p>
+
+        <div class="grid2">
+          <div class="card">
+            <div class="queue-vis">
+              <div class="queue-num">#14</div>
+              <div>
+                <h3 style="margin-bottom:2px">Your place in the Ophthalmology queue</h3>
+                <p>Park Eye Associates · james@parkeye.example<br />Position set when you signed up, Nov 9.</p>
+              </div>
+            </div>
+            <ul class="tl" style="margin-top:14px">
+              <li class="done"><span class="tdot">✓</span><span><b>Today.</b> You are in the queue. Your email is verified, so the launch note will reach you.</span></li>
+              <li><span class="tdot">2</span><span><b>Now.</b> Gastroenterology cohorts are onboarding. Ophthalmology opens next.</span></li>
+              <li><span class="tdot">3</span><span><b>When your spot opens.</b> You get an email and a text from Taylor on our team. Your account turns on with everything below already loaded.</span></li>
+              <li><span class="tdot">4</span><span><b>Day one.</b> If your med list is saved, it's already loaded when your account opens.</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="card">
+              <h3>Your medication list</h3>
+              <p>Add the medications your practice needs prior authorizations for most. We use this list to prepare your specialty's PA templates. Takes about two minutes.</p>
+              <div class="medchips" id="medChips"></div>
+              <label class="flabel" for="medInput">Add a medication</label>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <input class="field" id="medInput" type="text" placeholder="e.g. Eylea HD" style="flex:1;min-width:160px" />
+                <button class="btn btn-soft" type="button" id="medAdd">Add</button>
+              </div>
+              <p class="fhint" style="margin-bottom:6px">Common for Ophthalmology. Tap to add:</p>
+              <div class="suggest" id="medSuggest"></div>
+            </div>
+            <div class="aha" id="waitAha">
+              <h3>Here’s what we’d run for Park Eye Associates</h3>
+              <p id="ahaCopy">Based on the 5 medications above. The intravitreal injections and specialty drops that drive most ophthalmology PA volume:</p>
+              <div class="aha-nums">
+                <div><b id="ahaPAs">~38 PAs / mo</b><span>benefits checks + PA submissions, handled for you</span></div>
+                <div><b id="ahaHrs">~19 hrs / mo</b><span>of staff phone-and-fax time back</span></div>
+                <div><b>Day one</b><span>evidence templates built for your meds</span></div>
+              </div>
+            </div>
+            <button class="btn btn-pri btn-block" type="button" id="medSave">Save my med list</button>
+            <p class="fhint" style="text-align:center" id="medNote" role="status">You can edit this list any time from this page.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="frame-nav">
+        <button class="navbtn" type="button" id="prevBtn">← Back</button>
+        <div class="mid" id="navMid">1 · Sign-up. The branch, stated up front</div>
+        <button class="navbtn primary" type="button" id="nextBtn">Continue →</button>
+      </div>
+    </div><!-- /frame -->
+
+    <!-- ================= INSPECTOR ================= -->
+    <aside class="inspector" aria-label="Screen annotations">
+      <div class="insp-card">
+        <h2>Observation</h2>
+        <p class="insp-state" id="inspObs"></p>
+      </div>
+      <div class="insp-card">
+        <h2>Proposed change</h2>
+        <p class="insp-state" id="inspProp"></p>
+      </div>
+      <div class="insp-card">
+        <h2>How I'd measure it</h2>
+        <p class="insp-state" id="inspMeas"></p>
+      </div>
+      <p class="kbd-hint">Tip: use ← and → arrow keys to walk the flow.</p>
+    </aside>
+  </div>
+
+  <!-- ================= BELOW THE STAGE ================= -->
+  <div class="below">
+    <details class="below-card">
+      <summary class="below-summary"><span class="caret" aria-hidden="true">▶</span><h2>The flow is four states, not nine screens</h2></summary>
+      <div class="below-body">
+      <p class="bc-sub">Each screen moves a practice from one state to the next, and shows which state they're in. The live sign-up is one long form with no progress indicator and no visible state.</p>
+      <div class="states4">
+        <div class="state4"><span class="s4n">A</span><span><b>Unknown specialty → waitlisted.</b> Branch set at sign-up and shown in the product, with queue position and next steps. Screens 1 and 9.</span></div>
+        <div class="state4"><span class="s4n">B</span><span><b>Live specialty → verifying.</b> Email, password, and agreements, then verification status with any outstanding actions visible. Screens 2, 3, 6.</span></div>
+        <div class="state4"><span class="s4n">C</span><span><b>Verified → onboarding.</b> A checklist in order, with provider details fetched from NPPES where possible. Screens 4 and 5.</span></div>
+        <div class="state4"><span class="s4n">D</span><span><b>Activated.</b> First prescription sent. Then referral, asked after the first PA, and team invites. Screens 7 and 8.</span></div>
+      </div>
+      </div>
+    </details>
+    <details class="below-card">
+      <summary class="below-summary"><span class="caret" aria-hidden="true">▶</span><h2>Every screen has a job</h2></summary>
+      <div class="below-body">
+      <p class="bc-sub">What each screen is for, and what it affects:</p>
+      <table class="lever-table">
+        <thead><tr><th>Screen</th><th>Moves</th><th>Job</th></tr></thead>
+        <tbody>
+          <tr><td><b>1 · Sign-up</b></td><td>Activation</td><td>Branch shown up front, before more information is asked for.</td></tr>
+          <tr><td><b>2 · Email check</b></td><td>Activation</td><td>Page updates in place; recovery options on the same screen.</td></tr>
+          <tr><td><b>3 · Password + BAA</b></td><td>Activation</td><td>Password and required agreements, with summaries before the legal text.</td></tr>
+          <tr><td><b>4 · NPI lookup</b></td><td>Activation</td><td>Fetch, don't ask — NPPES lookup with prefill and a manual fallback.</td></tr>
+          <tr><td><b>5 · Guided dashboard</b></td><td>Activation</td><td>Checklist in order, ending at the first prescription, with roles noted where they matter.</td></tr>
+          <tr><td><b>6 · Verification status</b></td><td>Activation</td><td>Checks, outstanding actions, and illustrative timing in one place.</td></tr>
+          <tr><td><b>7 · Refer a practice</b></td><td>Network</td><td>In-product and prefilled; status tracked as invited / signed up / activated.</td></tr>
+          <tr><td><b>8 · Invite teammates</b></td><td>Network</td><td>Operator-first invite, plain-language roles, and sent / accepted / pending status.</td></tr>
+          <tr><td><b>9 · Waitlisted path</b></td><td>Demand</td><td>Queue position shown; med list collected in the flow.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </details>
+  </div>
+
+  <div class="foot"><b>Concept mockup — practice names, cases, volumes, performance figures, statuses, and service guarantees are illustrative.</b><div class="foot-sub">Built from a hands-on teardown of the live onboarding: two full runs, Ophthalmology to the waitlist and Dermatology to a full account. NPPES results, times, and counts are examples, not live lookups. This page is not the Forus product. <b>Activation, as Forus defines it:</b> 1 script per week for at least 3 weeks. Previous definition: % of doctors sending 10 scripts in 30 days.</div></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var SCREENS = [
+    { n:1, label:"Sign-up", mid:"Sign-up. The branch, stated up front", url:"/signup/start",
+      obs:"In the live flow, specialty determines the path, but that isn't clear until after sign-up — waitlisted practices learn by email. Sign-up is also one long form with no progress indicator.",
+      prop:"Show the branch on the first screen, group specialties by live vs. opening next, and split sign-up into short screens with a progress indicator.",
+      meas:"Sign-up completion by specialty, and waitlist join rate for specialties that aren't live."},
+    { n:2, label:"Verify email", mid:"Email check. One step, updated in place", url:"/signup/verification-email",
+      obs:"The verification link routed through a redirect to a login page, so the original tab didn't reflect the change in state.",
+      prop:"Update the original tab when the link is clicked, state the 7-day expiry up front, and put resend and change-email recovery on the same screen.",
+      meas:"Email verification completion rate, and time from sign-up to verified."},
+    { n:3, label:"Password + BAA", mid:"Password + agreements", url:"/account-setup",
+      obs:"Password, Terms, and BAA were presented in a dense step with little explanation of why each agreement is needed.",
+      prop:"Ask for a password and the agreements after email verification, with a two-line summary and read time for each, live password checks, and nothing pre-checked. Whether the person signing has authority to sign an organization-level BAA is a separate check from creating the account.",
+      meas:"Completion rate for this step, and drop-off between email verification and account creation."},
+    { n:4, label:"NPI lookup", mid:"Provider setup. NPPES lookup with prefill", url:"/account-setup/add-provider",
+      obs:"I had to leave Forus to find an NPI — fetch, don't ask applies here, since NPPES is public. The live field also didn't distinguish an organization from an individual prescriber.",
+      prop:"Add an inline NPPES lookup with prefill and a manual fallback for no matches. The lookup fills organization details (Type 2); individual prescriber identity (Type 1) and authorization to act for the practice remain separate checks — a registry match alone does not prove authority.",
+      meas:"Provider setup completion and time spent on this step."},
+    { n:5, label:"Guided dashboard", mid:"Guided dashboard. Checklist in order", url:"/onboarding",
+      obs:"Once inside, onboarding is a menu, not a path: six setup cards with no order and no progress. The prescriber who signs up may also not be the person who runs PAs day to day.",
+      prop:"Replace the menu with a single checklist in order, ending at the first prescription, with one highlighted next step. Label the role where it matters — sending the first prescription is the prescriber or PA specialist, not necessarily the account owner.",
+      meas:"Time to first prescription, and repeat use: 1 script per week for at least 3 weeks."},
+    { n:6, label:"Verification status", mid:"Verification status. Checks and outstanding actions", url:"/onboarding/verification",
+      obs:"After setup, the live copy said 'We're configuring your account' with no timeline, no list of checks, and no way to tell if anything was needed. Verification is an opaque gate — I don't have funnel data to rank it against other drop-off points.",
+      prop:"Show each check, its state, and what (if anything) is needed from the practice. Practices can queue a first prescription while verification runs. Timing on this screen is labeled illustrative until Forus has data to support an estimate.",
+      meas:"Verification completion, elapsed time, and conversion to first prescription."},
+    { n:7, label:"Refer a practice", mid:"Refer a practice. Asked after the first PA", url:"/prescriptions/first-pa-complete",
+      obs:"'Refer a practice' left Forus for an external form, with no status back to the referrer.",
+      prop:"Bring referral into the product right after the first PA, prefilled and attributed to the referrer. Show invited / signed up / activated status only, with no reward tied to verification or service speed.",
+      meas:"Qualified referrals sent, and referred-practice activation rate."},
+    { n:8, label:"Invite teammates", mid:"Invite teammates. Operator-first invite", url:"/onboarding/invite-team",
+      obs:"Team invites were buried in Settings on a bare admin form, with roles that weren't explained. The person who runs PAs day to day may not be the person who signed up.",
+      prop:"Make invite its own flow, framed around the operator role first. Show each role as a separate selectable row with what it can and can't do, plus a personal note, an email preview, and sent / accepted / pending status.",
+      meas:"Invite acceptance rate, and the share of activated practices with at least one PA operator invited."},
+    { n:9, label:"Waitlisted path", mid:"Waitlisted path. Position and med list", url:"/signup/waitlist",
+      obs:"Waitlisted practices got a generic confirmation and were asked by email to send their most-prescribed PA medications as free text. Their email also wasn't verified on this path.",
+      prop:"Show queue position and next steps in the product, verify email on this path too, and collect the med list as structured chips in the flow so it's loaded when the account opens.",
+      meas:"Med-list completion on the waitlist, and first-prescription rate in the first week after a specialty opens."}
+  ];
+
+  var cur = 0;
+  var screens = document.querySelectorAll(".screen");
+  var flowmap = document.getElementById("flowmap");
+  var prevBtn = document.getElementById("prevBtn");
+  var nextBtn = document.getElementById("nextBtn");
+
+  SCREENS.forEach(function(s, i){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.innerHTML = '<span class="n">' + s.n + "</span>" + s.label;
+    b.setAttribute("aria-current", i === 0 ? "true" : "false");
+    b.addEventListener("click", function(){ go(i); });
+    flowmap.appendChild(b);
+  });
+  var mapBtns = flowmap.querySelectorAll("button");
+
+  function render(){
+    var s = SCREENS[cur];
+    screens.forEach(function(el, i){ el.classList.toggle("active", i === cur); });
+    mapBtns.forEach(function(b, i){ b.setAttribute("aria-current", i === cur ? "true" : "false"); });
+    document.getElementById("urlPath").textContent = s.url;
+    document.getElementById("frameCount").textContent = "Screen " + s.n + " of 9";
+    document.getElementById("frameProg").style.width = Math.round(((cur + 1) / 9) * 100) + "%";
+    document.getElementById("navMid").textContent = s.n + " · " + s.mid;
+    prevBtn.disabled = cur === 0;
+    nextBtn.disabled = cur === SCREENS.length - 1;
+    nextBtn.textContent = cur === SCREENS.length - 2 ? "Finish. Waitlisted path →" : "Continue →";
+    document.getElementById("inspObs").textContent = s.obs;
+    document.getElementById("inspProp").textContent = s.prop;
+    document.getElementById("inspMeas").textContent = s.meas;
+    var user = document.getElementById("prodUser");
+    var nav = document.getElementById("prodNav");
+    nav.classList.toggle("on", s.n >= 5 && s.n <= 8);
+    document.getElementById("prodNavCur").textContent = s.n === 7 ? "Prescriptions" : s.n === 8 ? "Team" : "Onboarding";
+    nav.querySelectorAll("span").forEach(function(sp){ sp.classList.toggle("cur", sp.id === "prodNavCur"); });
+    if (s.n <= 2) user.innerHTML = "<span>Getting started</span>";
+    else if (s.n === 9) user.innerHTML = '<span class="avatar" style="background:var(--f-amber)">JP</span><span>James Park · Park Eye Associates</span>';
+    else user.innerHTML = '<span class="avatar">MC</span><span>Maya Chen, MD · Riverbend Dermatology</span>';
+  }
+  function go(i){
+    cur = Math.max(0, Math.min(SCREENS.length - 1, i));
+    render();
+    document.getElementById("frame").scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+  prevBtn.addEventListener("click", function(){ go(cur - 1); });
+  nextBtn.addEventListener("click", function(){ go(cur + 1); });
+  document.addEventListener("keydown", function(e){
+    if (e.target.matches("input, textarea, select")) return;
+    if (e.key === "ArrowRight") go(cur + 1);
+    if (e.key === "ArrowLeft") go(cur - 1);
+  });
+  document.querySelectorAll("[data-goto]").forEach(function(el){
+    el.addEventListener("click", function(){ go(parseInt(el.getAttribute("data-goto"), 10) - 1); });
+  });
+
+  /* ---- Screen 1: specialty branch ---- */
+  var LIVE = { derm:"Dermatology", imm:"Allergy & Immunology", gi:"Gastroenterology" };
+  var WAIT = { ophth:"Ophthalmology", rheum:"Rheumatology", neuro:"Neurology" };
+  var suSpec = document.getElementById("suSpec");
+  var branchNote = document.getElementById("branchNote");
+  var suCta = document.getElementById("suCta");
+  function renderBranch(){
+    var v = suSpec.value;
+    if (LIVE[v]) {
+      branchNote.className = "branch-note live";
+      branchNote.innerHTML = "<b>" + LIVE[v] + " is live on Forus.</b> You can create your account now." +
+        '<div class="bn-row"><span>Your state: eligible to start</span><span>Next step: verify your email</span><span>Time to first script: same day for most practices</span></div>';
+      suCta.textContent = "Continue. " + LIVE[v] + " is live";
+    } else {
+      branchNote.className = "branch-note wait";
+      branchNote.innerHTML = "<b>" + WAIT[v] + " opens next. You would join the waitlist.</b> Your position will be shown in the product (see Screen 9)." +
+        '<div class="bn-row"><span>Your state: waitlisted, position shown on screen 9</span><span>Next step: verify your email</span><span>Useful step: share your top PA medications</span></div>';
+      suCta.textContent = "Join the " + WAIT[v] + " waitlist. See my place";
+    }
+  }
+  suSpec.addEventListener("change", renderBranch);
+  suCta.addEventListener("click", function(){ go(1); });
+  renderBranch();
+
+  /* ---- Screen 2: verification ---- */
+  var verified = false;
+  document.getElementById("verifyBtn").addEventListener("click", function(){
+    if (verified) return; verified = true;
+    document.getElementById("verifyStateTitle").textContent = "Email verified ✓";
+    document.getElementById("verifyStateBody").textContent = "Done. This tab updated itself. Next: set your password and sign the two agreements. Then your first provider.";
+    var pill = document.getElementById("verifyPill");
+    pill.className = "pill pill-done"; pill.textContent = "Verified just now";
+    this.textContent = "✓ Verified"; this.disabled = true;
+    nextBtn.textContent = "Continue. Set password →";
+  });
+  document.getElementById("resendBtn").addEventListener("click", function(){
+    document.getElementById("resendNote").textContent = "Resent at " + new Date().toLocaleTimeString([], {hour:"numeric", minute:"2-digit"}) + ". The new link replaces the old one. Click the old one by mistake and this page tells you.";
+  });
+  document.getElementById("wrongEmailBtn").addEventListener("click", function(){
+    document.getElementById("resendNote").textContent = "No problem. Changing your email restarts just this step. Your specialty and your place in line carry over. Nothing is lost.";
+  });
+
+  /* ---- Screen 3: password + agreements ---- */
+  var pw1 = document.getElementById("pw1"), pw2 = document.getElementById("pw2");
+  var tos = document.getElementById("tosCheck"), baa = document.getElementById("baaCheck");
+  var agreeBtn = document.getElementById("agreeBtn"), agreeHint = document.getElementById("agreeHint");
+  function pwState(){
+    var v = pw1.value, len = v.length >= 12, mix = /[0-9]/.test(v) || /[^A-Za-z0-9]/.test(v), match = v.length > 0 && v === pw2.value;
+    document.getElementById("reqLen").classList.toggle("ok", len);
+    document.getElementById("reqMix").classList.toggle("ok", mix);
+    document.getElementById("reqMatch").classList.toggle("ok", match);
+    document.getElementById("reqMgr").classList.toggle("ok", len && mix);
+    var score = (len ? 1 : 0) + (mix ? 1 : 0) + (v.length >= 16 ? 1 : 0);
+    var meter = document.getElementById("pwMeter");
+    meter.style.width = (v.length === 0 ? 0 : 25 + score * 25) + "%";
+    meter.style.background = score >= 2 ? "var(--f-green)" : score === 1 ? "#E5B84C" : "var(--f-red)";
+    document.getElementById("pwMatch").textContent = pw2.value === "" ? "" : match ? "Passwords match ✓" : "Passwords don’t match yet.";
+    var okAll = len && mix && match && tos.checked && baa.checked;
+    agreeBtn.disabled = !okAll;
+    agreeHint.textContent = okAll ? "All set. Next: add your provider details." :
+      (!len || !mix || !match) ? "Add a password that meets the checks on the left." :
+      !(tos.checked && baa.checked) ? "Almost there. Both agreements need a check. Neither is pre-checked." : "";
+    return okAll;
+  }
+  [pw1, pw2].forEach(function(el){ el.addEventListener("input", pwState); });
+  [tos, baa].forEach(function(el){ el.addEventListener("change", pwState); });
+  agreeBtn.addEventListener("click", function(){ go(3); });
+
+  /* ---- Screen 4: NPI lookup ---- */
+  var NPPES = [
+    { name:"Riverbend Dermatology Associates, LLC", npi:"1841297356", type:"Type 2 · Organization", addr:"214 W 86th St, Suite 3B, New York, NY 10024", tax:"Dermatology · 207N00000X", spec:"Dermatology (207N00000X)" },
+    { name:"Maya Chen, MD — Riverbend Dermatology", npi:"1922064417", type:"Type 1 · Individual", addr:"214 W 86th St, Suite 3B, New York, NY 10024", tax:"Dermatology · 207N00000X", spec:"Dermatology (207N00000X)" },
+    { name:"Riverside Dermatology Group, PC", npi:"1659371208", type:"Type 2 · Organization", addr:"1180 Riverside Dr, New York, NY 10032", tax:"Dermatology · 207N00000X", spec:"Dermatology (207N00000X)" }
+  ];
+  var resultsBox = document.getElementById("nppesResults");
+  var selectedNppes = null;
+  function fillFrom(r){
+    selectedNppes = r;
+    document.getElementById("pfName").value = r.name.replace(/ — Riverbend Dermatology$/, "");
+    document.getElementById("pfNpi").value = r.npi;
+    document.getElementById("pfAddr").value = r.addr;
+    document.getElementById("pfSpec").value = r.spec;
+    document.querySelectorAll("[data-fetch]").forEach(function(el){ el.hidden = false; });
+    var direct = document.getElementById("npiDirect"); if (direct) direct.value = r.npi;
+  }
+  function renderResults(){
+    resultsBox.innerHTML = "";
+    NPPES.forEach(function(r){
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "result" + (selectedNppes === r ? " sel" : "");
+      b.innerHTML = '<div class="rname">' + r.name + '</div><div class="rmeta">' + r.addr + '</div>' +
+        '<div class="rtags"><span class="tag">NPI ' + r.npi + '</span><span class="tag">' + r.type + '</span><span class="tag tax">' + r.tax + '</span></div>';
+      b.addEventListener("click", function(){ fillFrom(r); renderResults(); });
+      resultsBox.appendChild(b);
+    });
+  }
+  renderResults(); fillFrom(NPPES[0]); renderResults();
+  var nppesBox = document.getElementById("nppesBox"), notFoundBox = document.getElementById("notFoundBox");
+  document.getElementById("tryMissing").addEventListener("click", function(){ nppesBox.hidden = true; notFoundBox.hidden = false; });
+  document.getElementById("backToResults").addEventListener("click", function(){ nppesBox.hidden = false; notFoundBox.hidden = true; });
+  document.getElementById("npiSearchBtn").addEventListener("click", function(){
+    var q = document.getElementById("npiSearch").value.toLowerCase();
+    var hit = q.indexOf("river") !== -1 || q.indexOf("chen") !== -1 || q.indexOf("derm") !== -1;
+    nppesBox.hidden = !hit; notFoundBox.hidden = hit;
+  });
+  var segLookup = document.getElementById("segLookup"), segKnow = document.getElementById("segKnow");
+  function setSeg(lookup){
+    segLookup.setAttribute("aria-pressed", lookup ? "true" : "false");
+    segKnow.setAttribute("aria-pressed", lookup ? "false" : "true");
+    document.getElementById("lookupPane").hidden = !lookup;
+    document.getElementById("knowPane").hidden = lookup;
+  }
+  segLookup.addEventListener("click", function(){ setSeg(true); });
+  segKnow.addEventListener("click", function(){ setSeg(false); });
+  document.getElementById("providerContinue").addEventListener("click", function(){ go(4); });
+
+  /* ---- Screen 7: referral ---- */
+  document.getElementById("refSend").addEventListener("click", function(){
+    document.getElementById("refNewRow").hidden = false;
+    document.getElementById("refNote").textContent = "Sent. Hudson Dermatology Group received the invite. Their status will update here.";
+    this.textContent = "✓ Referral sent"; this.disabled = true;
+  });
+
+  /* ---- Screen 8: invite ---- */
+  var ROLE_COPY = {
+    "Prescriber":"You can send and sign prescriptions and approve prior authorizations.",
+    "PA Specialist":"You can prepare and submit prior authorizations, upload evidence, and message payers. Everything except signing prescriptions.",
+    "Office Admin":"You can manage teammates, office details, and settings, and see practice-level reports. No access to patient details.",
+    "View-only":"You can check statuses and reports. You cannot change or submit anything."
+  };
+  var roleCards = document.querySelectorAll("#roleGrid .role-card");
+  var invName = document.getElementById("invName"), invMsg = document.getElementById("invMsg");
+  function currentRole(){
+    var r = "PA Specialist";
+    roleCards.forEach(function(c){ if (c.getAttribute("aria-pressed") === "true") r = c.getAttribute("data-role"); });
+    return r;
+  }
+  function renderInvitePreview(){
+    var name = invName.value.trim() || "your teammate";
+    var first = name.split(" ")[0];
+    var role = currentRole();
+    document.getElementById("epSub").textContent = "Maya Chen invited you to join Riverbend Dermatology on Forus";
+    var pv = document.querySelector(".email-preview .ep-body p");
+    pv.innerHTML = "Hi " + '<span id="epName">' + first + "</span>. You are invited as a " + '<b style="color:var(--f-ink)" id="epRole">' + role + "</b>. " + ROLE_COPY[role];
+    document.getElementById("epMsg").textContent = "“" + invMsg.value.trim() + "”";
+    document.getElementById("invSend").textContent = "Send invite to " + first;
+  }
+  roleCards.forEach(function(c){
+    c.addEventListener("click", function(){
+      roleCards.forEach(function(x){ x.setAttribute("aria-pressed", "false"); });
+      c.setAttribute("aria-pressed", "true");
+      renderInvitePreview();
+    });
+  });
+  invName.addEventListener("input", renderInvitePreview);
+  invMsg.addEventListener("input", renderInvitePreview);
+  renderInvitePreview();
+  document.getElementById("invSend").addEventListener("click", function(){
+    document.getElementById("invNewRow").hidden = false;
+    document.getElementById("invNote").textContent = "Invite sent to " + (invName.value.trim() || "your teammate") + ". It shows above as “Sent, pending.” You see it flip to “Accepted” here when they join.";
+    this.textContent = "✓ Invite sent"; this.disabled = true;
+  });
+
+  /* ---- Screen 9: med list ---- */
+  var meds = ["Eylea (aflibercept)", "Vabysmo (faricimab)", "Izervay (avacincaptad)", "Syfovre (pegcetacoplan)", "Lucentis (ranibizumab)"];
+  var SUGGEST = ["Eylea HD", "Pavblu", "Xdemvy", "Miebo", "Tryptyr"];
+  var chipsBox = document.getElementById("medChips"), suggestBox = document.getElementById("medSuggest");
+  function renderMeds(){
+    chipsBox.innerHTML = "";
+    meds.forEach(function(m, i){
+      var chip = document.createElement("span"); chip.className = "chip";
+      chip.innerHTML = m + ' <button type="button" aria-label="Remove ' + m + '">×</button>';
+      chip.querySelector("button").addEventListener("click", function(){ meds.splice(i, 1); renderMeds(); });
+      chipsBox.appendChild(chip);
+    });
+    suggestBox.innerHTML = "";
+    SUGGEST.filter(function(s){ return !meds.some(function(m){ return m.toLowerCase().indexOf(s.toLowerCase().split(" ")[0]) !== -1; }); }).forEach(function(s){
+      var b = document.createElement("button"); b.type = "button"; b.textContent = "+ " + s;
+      b.addEventListener("click", function(){ meds.push(s); renderMeds(); });
+      suggestBox.appendChild(b);
+    });
+    var pas = meds.length * 7 + 3, hrs = Math.round(pas / 2);
+    document.getElementById("ahaPAs").textContent = "~" + pas + " PAs / mo";
+    document.getElementById("ahaHrs").textContent = "~" + hrs + " hrs / mo";
+    document.getElementById("ahaCopy").textContent = meds.length === 0
+      ? "Add the medications your practice prescribes most. The estimate builds itself from your list."
+      : "Based on the " + meds.length + " medication" + (meds.length === 1 ? "" : "s") + " above. The intravitreal injections and specialty drops that drive most ophthalmology PA volume:";
+  }
+  renderMeds();
+  document.getElementById("medAdd").addEventListener("click", function(){
+    var inp = document.getElementById("medInput"), v = inp.value.trim();
+    if (v) { meds.push(v); inp.value = ""; renderMeds(); }
+  });
+  document.getElementById("medInput").addEventListener("keydown", function(e){
+    if (e.key === "Enter") { e.preventDefault(); document.getElementById("medAdd").click(); }
+  });
+  document.getElementById("medSave").addEventListener("click", function(){
+    document.getElementById("medNote").textContent = "Saved. This med list will be loaded when your account opens. We will email and text you when your spot opens.";
+    this.textContent = "✓ Med list saved"; this.disabled = true;
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

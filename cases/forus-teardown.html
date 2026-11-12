@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>Forus Provider Onboarding — A Teardown &amp; Some Questions</title>
+<style>
+  :root{
+    --bg:#fbfaf8; --surface:#ffffff; --surface-2:#f4f1ec; --ink:#1c1a17; --ink-2:#4a463f; --ink-3:#7a756a;
+    --line:#e5e0d6; --line-strong:#d4cdc0;
+    --accent:#5b3df0; --accent-ink:#3d28a8; --accent-soft:#efecff;
+    --good:#1a7f4b; --good-soft:#e6f4ec;
+    --warn:#9a6b12;
+    --radius:14px;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#141311; --surface:#1e1c19; --surface-2:#262320; --ink:#f0ede7; --ink-2:#c9c3b8; --ink-3:#989184;
+      --line:#35322d; --line-strong:#45413a;
+      --accent:#a08bff; --accent-ink:#c4b5ff; --accent-soft:#2a2347;
+      --good:#5fce8f; --good-soft:#173526;
+      --warn:#e3b34e;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent-ink)}
+  ::selection{background:var(--accent-soft)}
+  .wrap{max-width:780px;margin:0 auto;padding:0 22px 90px}
+  .meta-bar{max-width:780px;margin:0 auto;padding:26px 22px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .meta-bar .for{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+  .meta-bar .for strong{color:var(--ink);text-transform:none;letter-spacing:0;font-size:14px}
+  .pill{font-size:12.5px;font-weight:600;color:var(--accent-ink);background:var(--accent-soft);padding:5px 11px;border-radius:999px;white-space:nowrap}
+  header.hero{padding:44px 0 8px}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(34px,6vw,48px);line-height:1.1;letter-spacing:-.01em;margin:0 0 20px}
+  h1 em{font-style:italic;color:var(--accent-ink)}
+  .lede{font-size:19px;line-height:1.6;color:var(--ink-2);margin:0 0 14px;max-width:680px}
+  .lede strong{color:var(--ink)}
+  .byline{display:flex;gap:10px 22px;flex-wrap:wrap;font-size:14px;color:var(--ink-3);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin-top:22px}
+  .byline b{color:var(--ink);font-weight:600}
+  nav.toc{margin:28px 0 8px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px}
+  nav.toc p{margin:0 0 10px;font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+  nav.toc ol{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 24px}
+  @media (max-width:560px){nav.toc ol{grid-template-columns:1fr}}
+  nav.toc a{color:var(--ink-2);text-decoration:none;font-size:14.5px;display:flex;gap:9px;padding:3px 0}
+  nav.toc a:hover{color:var(--accent-ink)}
+  nav.toc a span{color:var(--accent-ink);font-weight:700;font-variant-numeric:tabular-nums}
+  section{margin-top:48px}
+  .kicker{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);font-weight:700;margin:0 0 8px}
+  h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,4.4vw,34px);line-height:1.18;margin:0 0 14px;letter-spacing:-.005em}
+  p{margin:0 0 14px;color:var(--ink-2)}
+  p strong, li strong{color:var(--ink)}
+  ul,ol{margin:0 0 16px;padding-left:22px;color:var(--ink-2)}
+  li{margin-bottom:7px}
+  li::marker{color:var(--accent-ink)}
+  .small{font-size:14px;color:var(--ink-3)}
+  .funnel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 22px 14px;margin:24px 0}
+  .funnel h4{margin:0 0 4px;font-size:15px}
+  .funnel .sub{font-size:13.5px;color:var(--ink-3);margin:0 0 16px}
+  .f-row{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center;padding:9px 0;border-top:1px dashed var(--line)}
+  @media (max-width:560px){.f-row{grid-template-columns:1fr;gap:5px}}
+  .f-name{font-size:14px;font-weight:600;color:var(--ink)}
+  .f-name span{display:block;font-weight:400;font-size:12.5px;color:var(--ink-3)}
+  .f-bar{height:26px;border-radius:7px;background:var(--accent);position:relative;min-width:60px}
+  .f-bar.mid{background:color-mix(in srgb, var(--accent) 62%, var(--bg))}
+  .f-bar.gate{background:var(--warn)}
+  .f-bar span{position:absolute;inset:0;display:flex;align-items:center;padding:0 10px;font-size:12px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden}
+  @media (max-width:560px){.f-bar{height:auto;min-height:26px}.f-bar span{position:static;white-space:normal;padding:5px 10px;line-height:1.35}}
+  .f-note{font-size:13px;color:var(--ink-3);margin-top:12px}
+  .milestones{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:20px 0}
+  @media (max-width:640px){.milestones{grid-template-columns:1fr}}
+  .milestone{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .milestone b{display:block;font-size:14px;color:var(--ink);margin-bottom:6px}
+  .milestone p{font-size:14px;margin:0}
+  .milestone .n{font-family:var(--mono);font-size:12px;color:var(--accent-ink);font-weight:700}
+  .finding{border-top:2px solid var(--ink);padding-top:24px;margin-top:36px}
+  .f-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .f-head .fno{font-family:var(--mono);font-size:13px;color:var(--accent-ink);font-weight:700}
+  .finding h3{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.3;margin:6px 0 10px}
+  .prop-label{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:14px 0 6px;font-weight:700}
+  .metric-line{display:flex;gap:10px;align-items:flex-start;background:var(--good-soft);border-radius:12px;padding:13px 17px;margin:16px 0;font-size:14.5px;color:var(--ink-2)}
+  .metric-line b{color:var(--ink)}
+  .metric-line .dot{color:var(--good);font-weight:700;flex:none}
+  .metric-line p{margin:0}
+  .map-lines{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;margin:20px 0}
+  .map-lines p{margin:0 0 8px;font-size:15.5px}
+  .map-lines p:last-child{margin:0}
+  .plan{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin:22px 0;background:var(--surface)}
+  .plan-row{display:grid;grid-template-columns:104px 1fr 1fr;gap:0;border-top:1px solid var(--line)}
+  .plan-row:first-child{border-top:none}
+  .plan-row.head{background:var(--surface-2);font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--ink-3)}
+  .plan-row>div{padding:15px 17px;border-left:1px solid var(--line);font-size:14.5px;color:var(--ink-2)}
+  .plan-row>div:first-child{border-left:none}
+  .plan-row .wk{font-family:var(--serif);font-weight:600;font-size:16px;color:var(--ink)}
+  @media (max-width:640px){
+    .plan-row{grid-template-columns:1fr}
+    .plan-row>div{border-left:none;border-top:1px dashed var(--line)}
+    .plan-row>div:first-child{border-top:none}
+    .plan-row.head{display:none}
+  }
+  .closing{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius);padding:28px 28px 22px;margin-top:52px}
+  .closing h2{font-size:26px}
+  .sign{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink);margin-top:18px}
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  @media print{
+    body{background:#fff;font-size:12pt}
+    nav.toc{display:none}
+    section{margin-top:34px}
+  }
+</style>
+</head>
+<body>
+
+<div class="meta-bar">
+  <div class="for">Prepared for <strong>the Forus team</strong></div>
+  <div class="pill">About a 4-minute read</div>
+</div>
+
+<div class="wrap">
+
+<header class="hero">
+  <h1>Forus provider onboarding &mdash; two sign-ups, two outcomes</h1>
+  <p class="lede">I signed up with the same information, changing only the specialty. Ophthalmology took 59 seconds and ended in a waitlist. Dermatology took 3 minutes and 10 seconds and gave me access to the provider portal.</p>
+  <p class="lede">A few things are working well: specialty-based routing, the personal waitlist follow-up, and the ability to queue prescriptions before verification finishes.</p>
+  <p class="lede">I also found five opportunities worth investigating. These are outside-in observations, not conclusions about your actual funnel. I&rsquo;d be interested in where your data agrees or tells a different story.</p>
+  <div class="byline">
+    <div><b>Carlos Duchicela</b> · Growth product leader</div>
+    <div>November 2026</div>
+    <div>Based on two complete runs of the live provider flow, Nov 9, 2026</div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Contents">
+  <p>In this note</p>
+  <ol>
+    <li><a href="#did"><span>1</span> What I did</a></li>
+    <li><a href="#working"><span>2</span> What&rsquo;s working</a></li>
+    <li><a href="#findings"><span>3</span> Five findings</a></li>
+    <li><a href="#role"><span>4</span> How this maps to the role</a></li>
+    <li><a href="#plan"><span>5</span> The first 30 days</a></li>
+    <li><a href="#closing"><span>6</span> Questions</a></li>
+  </ol>
+</nav>
+
+<section id="did">
+  <p class="kicker">1 · What I did</p>
+  <h2>Two runs, two specialties</h2>
+  <p>Run 1 (Ophthalmology) took 59 seconds: three steps, then a waitlist screen. Taylor&rsquo;s email asking for the medications my practice most often prescribes that need prior auths arrived afterwards, by email.</p>
+  <p>Run 2 (Dermatology) took 3 minutes, 10 seconds: email verification, password, Terms of Service and BAA, provider setup, and a working dashboard.</p>
+  <p>The difference is whether the specialty is live. That&rsquo;s deliberate sequencing, and I&rsquo;d keep it.</p>
+
+  <div class="funnel">
+    <h4>Signup &rarr; verification &rarr; first script &rarr; activation</h4>
+    <p class="sub">Bar widths are illustrative — they show where time and attention sit, not measured conversion. The measured parts are the times from my two runs.</p>
+    <div>
+      <div class="f-row">
+        <div class="f-name">Signup<span>3 steps · 59s–3m 10s in my runs</span></div>
+        <div class="f-bar" style="width:92%"><span>Fast in both runs</span></div>
+      </div>
+      <div class="f-row">
+        <div class="f-name">Account setup<span>Verify email · password · ToS + BAA · provider</span></div>
+        <div class="f-bar mid" style="width:74%"><span>Dermatology path only</span></div>
+      </div>
+      <div class="f-row">
+        <div class="f-name">Verification<span>&ldquo;We&rsquo;re configuring your account&rdquo;</span></div>
+        <div class="f-bar gate" style="width:58%"><span>No timeline shown</span></div>
+      </div>
+      <div class="f-row">
+        <div class="f-name">First script<span>Queue now, sends after verification</span></div>
+        <div class="f-bar mid" style="width:44%"><span>Held until verification clears</span></div>
+      </div>
+      <div class="f-row">
+        <div class="f-name">Activation<span>1 script / week for at least 3 weeks</span></div>
+        <div class="f-bar" style="width:32%"><span>Repeated weekly use</span></div>
+      </div>
+    </div>
+    <p class="f-note">Verification blocks prescription processing, but there&rsquo;s no visible timeline. Queued prescriptions are held until verification completes, so the activation clock can&rsquo;t start until verification does.</p>
+  </div>
+
+  <p><strong>Activation is sending 1 script per week for at least 3 weeks</strong>. That replaced the previous metric, the % of doctors sending 10 scripts in 30 days.</p>
+  <p>I don&rsquo;t know if verification is the biggest source of drop-off — I don&rsquo;t have your funnel data. It&rsquo;s the clearest gap I could observe, and I&rsquo;d want to see the funnel before prioritizing it.</p>
+
+  <p><strong>Three milestones worth keeping separate:</strong></p>
+  <div class="milestones">
+    <div class="milestone"><span class="n">A</span><b>First queued / submitted script</b><p>The first meaningful action. A practice has done the work.</p></div>
+    <div class="milestone"><span class="n">B</span><b>First successfully processed case</b><p>Value realized. A case actually goes through.</p></div>
+    <div class="milestone"><span class="n">C</span><b>Repeated use</b><p>1 script per week for at least 3 weeks — activation, as defined above.</p></div>
+  </div>
+  <p class="small">Open question: does Forus count queued prescriptions toward activation, or only prescriptions submitted after verification? This is n&nbsp;=&nbsp;2, from the outside. Where I assert something, I watched it happen on screen. Where your data would settle it, I ask in the finding.</p>
+</section>
+
+<section id="working">
+  <p class="kicker">2 · What&rsquo;s working</p>
+  <h2>Three choices I&rsquo;d keep</h2>
+  <ul>
+    <li><strong>The specialty branch.</strong> I like the specialty branch. It prevents practices from getting into a product that isn&rsquo;t ready for them. I&rsquo;d keep that.</li>
+    <li><strong>The personal waitlist follow-up.</strong> Taylor&rsquo;s email asks waitlisted practices for the medications they most often prescribe that need prior auths, &ldquo;so we can hit the ground running.&rdquo; It&rsquo;s signed by a person, and it turns waiting time into useful setup. Today it lives in a blank email instead of the product.</li>
+    <li><strong>&ldquo;Queue up prescriptions.&rdquo;</strong> A practice can queue prescriptions right away — &ldquo;We&rsquo;ll hold them until your account is verified&rdquo; — so work can start before verification finishes.</li>
+  </ul>
+  <p>Smaller signs: &ldquo;Biologics Coordinator / PA Specialist&rdquo; is in the role list, training books with a named human (Ashalia Dawkins), and signup asks &ldquo;How did you hear about us?&rdquo; with &ldquo;Someone from another practice&rdquo; as an option.</p>
+</section>
+
+<section id="findings">
+  <p class="kicker">3 · Findings</p>
+  <h2>Five findings</h2>
+  <p>Smaller things are left out. These five are the ones I&rsquo;d investigate first.</p>
+
+  <article class="finding">
+    <div class="f-head"><span class="fno">Finding 01</span></div>
+    <h3>Make verification status visible</h3>
+    <p>Practices can finish setup without knowing how long verification will take or whether anything is required of them.</p>
+    <p><strong>What I saw.</strong> After the BAA and provider setup, the dashboard says &ldquo;We&rsquo;re configuring your account&rdquo; and &ldquo;Complete verification to start processing PAs.&rdquo; No timeline, no progress, no next action. The Tasks view is empty. A practice finishes setup and immediately loses visibility into what happens next.</p>
+    <p class="prop-label">What I&rsquo;d try</p>
+    <ul>
+      <li>Show the current state, what&rsquo;s being checked, and any outstanding actions.</li>
+      <li>Add an estimated window only if the data supports one.</li>
+      <li>Keep &ldquo;queue up prescriptions&rdquo; visible during the wait.</li>
+    </ul>
+    <div class="metric-line"><span class="dot">&#9679;</span><p><b>Measure:</b> verification completion, elapsed time, and first-prescription conversion. <b>Question:</b> what&rsquo;s the verification timeline today, how variable is it, and what share of practices never complete it?</p></div>
+  </article>
+
+  <article class="finding">
+    <div class="f-head"><span class="fno">Finding 02</span></div>
+    <h3>Give new practices a clear first step</h3>
+    <p>The dashboard offers six setup actions without a clear priority. Once you&rsquo;re inside, onboarding is a menu — not a path.</p>
+    <p><strong>What I saw.</strong> Six cards — add providers, add office address, queue prescriptions, notification preferences, invite teammates, add office numbers — with no order and no progress. None shows whether it&rsquo;s done, pending, or blocked.</p>
+    <p>There&rsquo;s also a role question here. The person who signs up — often the physician — may not be the person who runs prior authorizations day to day, often a coordinator or PA specialist. A guided path should account for who actually does the work.</p>
+    <p class="prop-label">What I&rsquo;d try</p>
+    <ul>
+      <li>Guide each user toward the next action needed to process their first prescription, one step at a time, with progress.</li>
+      <li>Keep the other settings accessible underneath, each labeled done, in progress, or blocked.</li>
+    </ul>
+    <div class="metric-line"><span class="dot">&#9679;</span><p><b>Measure:</b> time to first prescription and repeat weekly use. <b>Question:</b> what should a new practice do first once inside — and is the menu deliberate?</p></div>
+  </article>
+
+  <article class="finding">
+    <div class="f-head"><span class="fno">Finding 03</span></div>
+    <h3>Improve referrals and team invitations</h3>
+    <p>Practice referrals open a separate HubSpot form. Team invitations are buried in Settings.</p>
+    <p><strong>What I saw.</strong> &ldquo;Refer a practice&rdquo; opens a HubSpot form on a third-party domain, still says &ldquo;formerly Tandem,&rdquo; asks for every field by hand, and defaults Specialty to &ldquo;Allergy and Immunology&rdquo; — the field the whole flow branches on. &ldquo;Invite your teammates&rdquo; is the fifth of six dashboard cards, its button says &ldquo;Go to Settings,&rdquo; and the form asks for name, email, Permissions, and Role with no explanation of what any role can do. Afterwards, neither flow shows status: a referrer never learns whether their referral signed up.</p>
+    <p class="prop-label">What I&rsquo;d try</p>
+    <ul>
+      <li>Bring referral in-product: referrer pre-filled, referred practice looked up by name, no defaulted specialty, attributed to the referrer.</li>
+      <li>Surface the referral ask after a practice has seen value — after a first processed case, not at signup — and show status: invited &rarr; signed up &rarr; activated. Recognition and visible status are enough; no reward should change how fast any practice gets verified or gets care.</li>
+      <li>Make invite a real flow: an Invite button that invites, each role explained in one line, and invite state on the Users page.</li>
+    </ul>
+    <div class="metric-line"><span class="dot">&#9679;</span><p><b>Measure:</b> qualified referrals, referred-practice activation, and team adoption. <b>Question:</b> how is a referral attributed today, and does a referrer ever hear back?</p></div>
+  </article>
+
+  <article class="finding">
+    <div class="f-head"><span class="fno">Finding 04</span></div>
+    <h3>Look up provider information instead of asking users to type it</h3>
+    <p>Fetch, don&rsquo;t ask. The NPI step required me to leave Forus to find a provider identifier.</p>
+    <p><strong>What I saw.</strong> Provider setup asks for a Provider NPI Number and validates by checksum only. 1234567890 and 0000000000 fail; a real, publicly listed NPI — 1558704544, for a skilled nursing facility — was accepted. Nothing explains what an NPI is or where to find yours, so I left Forus and searched the public NPPES registry to finish the step. The check confirms the number is well-formed, not that it belongs to the person entering it.</p>
+    <p>Identity needs care here. An organization has a Type 2 NPI; an individual prescriber has a Type 1 NPI; staff are neither. NPPES can prefill details, but a match does not prove someone is authorized to act for a practice. Identity and authorization checks should stay separate.</p>
+    <p class="prop-label">What I&rsquo;d try</p>
+    <ul>
+      <li>Add an NPPES lookup on the provider-setup screen — search by provider or practice name, pick the record, prefill practice name, address, and specialty.</li>
+      <li>Keep a manual fallback, and keep any identity or authorization check as its own step.</li>
+      <li>Apply the same idea elsewhere, including a structured medication-list capture for waitlisted practices instead of a blank email.</li>
+    </ul>
+    <div class="metric-line"><span class="dot">&#9679;</span><p><b>Measure:</b> provider setup completion and time spent on the step. <b>Question:</b> is the checksum-only check deliberate, with identity matched downstream?</p></div>
+  </article>
+
+  <article class="finding">
+    <div class="f-head"><span class="fno">Finding 05</span></div>
+    <h3>Simplify the forms</h3>
+    <p>Signup and setup are dense, with little indication of progress.</p>
+    <p><strong>What I saw.</strong> Long paragraphs where a short label and one line of help would do, everything presented at once. No progress indicator — no &ldquo;step 2 of 3,&rdquo; no bar — and nothing to suggest progress is saved if you stop midway. The clinical steps — BAA, NPI, verification — can&rsquo;t be removed. The form around them doesn&rsquo;t need to feel like paperwork.</p>
+    <p class="prop-label">What I&rsquo;d try</p>
+    <ul>
+      <li>Shorten instructions, group related fields, and chunk the steps.</li>
+      <li>Make progress and recovery clear: a progress indicator, inline validation, autosave, and a resume link for anyone who drops off.</li>
+    </ul>
+    <div class="metric-line"><span class="dot">&#9679;</span><p><b>Measure:</b> per-step completion, abandonment, and downstream activation. <b>Question:</b> do you measure drop-off per step or per field today?</p></div>
+  </article>
+</section>
+
+<section id="role">
+  <p class="kicker">4 · Why I&rsquo;m writing this</p>
+  <h2>How this maps to the role</h2>
+  <div class="map-lines">
+    <p><strong>Activation</strong> — Findings 1, 2, and 5.</p>
+    <p><strong>Referral</strong> — Finding 3.</p>
+    <p><strong>Metrics</strong> — the funnel and milestones in section 1.</p>
+  </div>
+  <p>Briefly on background: at PrizePicks I ran Player Accounts, a trust-and-compliance-gated onboarding funnel (identity, KYC, payments) — +25% registration-to-first-deposit, +5% KYC pass rate. At Superhuman I rebuilt growth strategy around the behaviors that predict retention and activation. At WeTransfer I built a commerce path — pricing, packaging, onboarding, checkout — from zero, +35% conversion.</p>
+</section>
+
+<section id="plan">
+  <p class="kicker">5 · The first 30 days</p>
+  <h2>Start with the evidence</h2>
+  <p>I wouldn&rsquo;t ship against a guessed failure point. First, find where the largest actionable loss actually is.</p>
+  <div class="plan" role="table" aria-label="First 30 days plan">
+    <div class="plan-row head"><div>Days</div><div>Work</div><div>What it decides</div></div>
+    <div class="plan-row">
+      <div class="wk">Days 1–5</div>
+      <div>Instrument eligibility, verification, queued / submitted, processed, and repeat-use transitions, broken out by specialty and by role.</div>
+      <div>Where the largest actionable loss occurs.</div>
+    </div>
+    <div class="plan-row">
+      <div class="wk">Days 6–10</div>
+      <div>Shadow 5–8 relevant staff. Review exceptions, drop-offs, and support reasons.</div>
+      <div>Why the loss happens, in the words of the people doing the work.</div>
+    </div>
+    <div class="plan-row">
+      <div class="wk">Days 11–20</div>
+      <div>Ship or simulate one bounded intervention at the verified point of failure.</div>
+      <div>Whether a focused change moves the transition.</div>
+    </div>
+    <div class="plan-row">
+      <div class="wk">Days 21–30</div>
+      <div>Evaluate repeat use, cost, verification integrity, and safety.</div>
+      <div>Scale, revise, or stop.</div>
+    </div>
+  </div>
+</section>
+
+<div class="closing" id="closing">
+  <h2>Six questions</h2>
+  <ul>
+    <li><strong>Sequencing.</strong> What orders the specialty sequence — EHR readiness, practice size, referral source, payer coverage? Is there anything a waitlisted practice can do to move up, beyond sending the medication list?</li>
+    <li><strong>The email wall.</strong> Every path asks for a work email before showing the product. Is that deliberate qualification, and how do you weigh its cost in the evaluators who bounce off it?</li>
+    <li><strong>Training.</strong> Is the training call with Ashalia required before a first script, or an accelerator — and what does time-to-first-script look like with and without it?</li>
+    <li><strong>Who does the work?</strong> In practices that become consistently active, who does the work day to day — doctors, MAs, admins, or PA specialists — and does the first-run flow reflect that?</li>
+    <li><strong>Organization vs. individual identity.</strong> How do you distinguish organization identity (Type 2 NPI) from individual prescriber identity (Type 1 NPI), and who is authorized to act for a practice?</li>
+    <li><strong>BAA authority.</strong> Who can sign an organization-level BAA, and how is that authority validated?</li>
+  </ul>
+  <p>I ran your onboarding because Madeline suggested I try it and bring questions, and I came away more interested in Forus, not less. I&rsquo;d love to discuss where my read matches yours, where your data corrects it, and where you&rsquo;ve already made the opposite call for reasons I can&rsquo;t see from outside.</p>
+  <p class="sign">— Carlos</p>
+</div>
+
+<footer>
+  <div>Carlos Duchicela · November 2026</div>
+  <div>Written from two hands-on runs of the public provider flow (Nov 9, 2026). Happy to walk through the recordings together.</div>
+</footer>
+
+</div>
+</body>
+</html>

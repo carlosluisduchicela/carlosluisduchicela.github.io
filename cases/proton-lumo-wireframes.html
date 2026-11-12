@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; background: #f4f4f5; padding: 32px; color: #1a1a1a; }
+  h1 { font-size: 20px; margin-bottom: 6px; }
+  .sub { font-size: 13px; color: #666; margin-bottom: 28px; }
+  .row { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; }
+  .wf { width: 300px; }
+  .wf .label { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .wf .test { font-size: 12px; color: #555; margin-bottom: 10px; line-height: 1.45; }
+  .phone { width: 300px; height: 600px; background: #fff; border: 2px solid #222; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column; }
+  .statusbar { height: 30px; background: #fff; border-bottom: 1px solid #e5e5e5; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #888; }
+  .appbar { padding: 12px 14px; border-bottom: 1px solid #e5e5e5; font-size: 14px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+  .appbar .pill { font-size: 10px; font-weight: 600; background: #eef2ff; color: #3730a3; padding: 3px 8px; border-radius: 20px; }
+  .chat { flex: 1; padding: 14px; overflow: hidden; display: flex; flex-direction: column; gap: 10px; background: #fafafa; }
+  .msg-u { align-self: flex-end; background: #1a1a1a; color: #fff; padding: 9px 12px; border-radius: 16px 16px 4px 16px; font-size: 12.5px; max-width: 85%; line-height: 1.4; }
+  .msg-a { align-self: flex-start; background: #fff; border: 1px solid #e5e5e5; padding: 9px 12px; border-radius: 16px 16px 16px 4px; font-size: 12.5px; max-width: 88%; line-height: 1.45; }
+  .card { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 14px; padding: 14px; margin-top: 2px; }
+  .card h3 { font-size: 13px; margin-bottom: 8px; }
+  .card p { font-size: 12px; color: #444; line-height: 1.5; margin-bottom: 8px; }
+  .check { display: flex; gap: 8px; font-size: 12px; margin: 6px 0; align-items: flex-start; line-height: 1.4; }
+  .check .ico { flex-shrink: 0; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #fff; margin-top: 1px; }
+  .yes { background: #166534; } .no { background: #991b1b; }
+  .btn { display: block; width: 100%; text-align: center; padding: 11px; border-radius: 10px; font-size: 13px; font-weight: 700; margin-top: 10px; cursor: default; }
+  .btn-primary { background: #1a1a1a; color: #fff; }
+  .btn-ghost { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; }
+  .btn-subtle { background: none; border: none; color: #666; font-weight: 500; font-size: 12px; margin-top: 6px; }
+  .limitbar { background: #fff8e1; border: 1px solid #f0d060; border-radius: 12px; padding: 12px; font-size: 12px; line-height: 1.5; }
+  .limitbar b { display: block; margin-bottom: 4px; font-size: 12.5px; }
+  .meter { height: 6px; background: #e5e5e5; border-radius: 4px; margin: 8px 0 4px; overflow: hidden; }
+  .meter > div { height: 100%; background: #1a1a1a; width: 100%; }
+  .tiny { font-size: 10.5px; color: #888; }
+  .inputbar { border-top: 1px solid #e5e5e5; padding: 10px 14px; display: flex; gap: 8px; align-items: center; background: #fff; }
+  .inputbar .field { flex: 1; background: #f1f1f1; border-radius: 20px; padding: 9px 14px; font-size: 12px; color: #999; }
+  .inputbar .send { width: 32px; height: 32px; border-radius: 50%; background: #1a1a1a; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .price { display: flex; gap: 8px; margin-top: 10px; }
+  .tier { flex: 1; border: 1.5px solid #ddd; border-radius: 10px; padding: 10px; text-align: center; }
+  .tier.hot { border-color: #1a1a1a; background: #fafafa; }
+  .tier .t { font-size: 11px; font-weight: 700; }
+  .tier .p { font-size: 15px; font-weight: 800; margin: 4px 0 2px; }
+  .tier .d { font-size: 10px; color: #777; }
+  .note { font-size: 11px; color: #555; background: #f4f4f5; border-radius: 8px; padding: 10px; margin-top: 12px; line-height: 1.5; }
+  .note b { color: #1a1a1a; }
+</style>
+</head>
+<body>
+<h1>Lumo — Q3 onboarding test wireframes</h1>
+<div class="sub">Low-fidelity mocks for the three in-product tests. Grayscale; copy is draft.</div>
+<div class="row">
+
+  <!-- TEST 1 -->
+  <div class="wf">
+    <div class="label">Figure 1 — Test 1: Limit-hit account nudge</div>
+    <div class="test">Guest asks question 25 of 25. Instead of a dead end, an inline value-led prompt at the moment of blocked intent.</div>
+    <div class="phone">
+      <div class="statusbar">9:41</div>
+      <div class="appbar">Lumo <span class="pill">Guest</span></div>
+      <div class="chat">
+        <div class="msg-u">Summarize the key risks in this contract…</div>
+        <div class="msg-a">Here are the three clauses I'd flag before signing: (1) the auto-renewal…</div>
+        <div class="limitbar">
+          <b>You've used 25 of 25 free questions this week</b>
+          Create a free account to keep going — your chats stay encrypted, and we can't read them.
+          <div class="meter"><div></div></div>
+          <div class="tiny">No credit card · 100 questions/week free</div>
+        </div>
+        <div class="btn btn-primary">Create free account</div>
+        <div class="btn btn-subtle">Maybe later</div>
+      </div>
+      <div class="inputbar"><div class="field">Ask anything…</div><div class="send">↑</div></div>
+    </div>
+    <div class="note"><b>Metric:</b> guest→account conversion at the cap moment.<br><b>Guardrail:</b> total guest questions (don't tank top-of-funnel).</div>
+  </div>
+
+  <!-- TEST 2 -->
+  <div class="wf">
+    <div class="label">Figure 2 — Test 2: Privacy made tangible</div>
+    <div class="test">After the first answer, a one-tap moment that demonstrates the architecture instead of claiming it.</div>
+    <div class="phone">
+      <div class="statusbar">9:41</div>
+      <div class="appbar">Lumo <span class="pill">Guest</span></div>
+      <div class="chat">
+        <div class="msg-u">What should I ask my doctor about these lab results?</div>
+        <div class="msg-a">Good questions to bring: (1) what the flagged markers mean in context…</div>
+        <div class="card">
+          <h3>What just happened to this chat?</h3>
+          <div class="check"><span class="ico yes">✓</span><span>Encrypted so only you can read it</span></div>
+          <div class="check"><span class="ico yes">✓</span><span>Never logged on our servers</span></div>
+          <div class="check"><span class="ico yes">✓</span><span>Never used to train AI models</span></div>
+          <div class="check"><span class="ico no">✕</span><span style="color:#777">That's the industry default — not us.</span></div>
+          <div class="btn btn-ghost">Try Ghost Mode — this chat vanishes when you close it</div>
+        </div>
+      </div>
+      <div class="inputbar"><div class="field">Ask anything…</div><div class="send">↑</div></div>
+    </div>
+    <div class="note"><b>Metric:</b> D1 retention.<br><b>Secondary:</b> account creation rate.</div>
+  </div>
+
+  <!-- TEST 3 -->
+  <div class="wf">
+    <div class="label">Figure 3 — Test 3: Capability-gated paywall</div>
+    <div class="test">User attempts a Plus-only capability. Paywall appears at blocked intent — not after the job is done.</div>
+    <div class="phone">
+      <div class="statusbar">9:41</div>
+      <div class="appbar">Lumo</div>
+      <div class="chat">
+        <div class="msg-u">Analyze this 40-page PDF with the Max model</div>
+        <div class="card">
+          <h3>This needs Lumo Plus</h3>
+          <p>Max model, web search, file analysis and unlimited questions — the capabilities free tiers can't match.</p>
+          <div class="price">
+            <div class="tier"><div class="t">Monthly</div><div class="p">$12.99</div><div class="d">per month</div></div>
+            <div class="tier hot"><div class="t">Annual</div><div class="p">$9.99</div><div class="d">per month, billed yearly</div></div>
+          </div>
+          <div class="btn btn-primary">Continue with Plus</div>
+          <div class="btn btn-subtle">Not now</div>
+          <div class="tiny" style="margin-top:8px; text-align:center;">Contextual paywalls convert ~12% vs ~2% for generic freemium gating.</div>
+        </div>
+      </div>
+      <div class="inputbar"><div class="field">Ask anything…</div><div class="send">↑</div></div>
+    </div>
+    <div class="note"><b>Metric:</b> paywall→paid among activated users.<br><b>Secondary:</b> 90-day retained-paid.</div>
+  </div>
+
+</div>
+</body>
+</html>
