@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bonusly — from reporting surface to operating system</title>
+<style>
+  :root{--paper:#f7f5ef;--ink:#101014;--muted:#6f6f6f;--line:#d8d4c8;--blue:#002fa7}
+  *{box-sizing:border-box} html{scroll-snap-type:y proximity}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.55;font-variant-numeric:tabular-nums}
+  .slide{min-height:94vh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;max-width:880px;margin:0 auto;padding:56px 26px;border-bottom:1px solid var(--line)}
+  .k{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--blue);font-weight:700}
+  h1{font-size:clamp(38px,6.5vw,64px);line-height:1.02;letter-spacing:-.03em;margin:14px 0 10px}
+  h2{font-size:clamp(28px,4.5vw,44px);line-height:1.08;letter-spacing:-.025em;margin:12px 0 12px}
+  p{font-size:19px;max-width:56ch;margin:0 0 10px}
+  .big{font-size:clamp(52px,9vw,96px);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--blue)}
+  .row{display:flex;gap:44px;flex-wrap:wrap;margin-top:14px}
+  .stat .n{font-size:34px;font-weight:800;letter-spacing:-.02em}.stat .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;max-width:24ch}
+  ul{font-size:18.5px;margin:6px 0;padding-left:20px} li{margin:0 0 9px;max-width:58ch}
+  .loop{display:flex;gap:26px;flex-wrap:wrap;margin:20px 0 8px}
+  .step{flex:1;min-width:150px;border-top:3px solid var(--blue);padding-top:12px}
+  .step .w{font-size:25px;font-weight:800;letter-spacing:-.02em}
+  .step .d{font-size:14.5px;color:var(--muted);max-width:24ch;margin-top:2px}
+  .foot{font-size:13px;color:var(--muted);margin-top:22px}
+  a{color:var(--blue)}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(247,245,239,.95);border-bottom:1px solid #d8d4c8;padding:9px 18px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px}.topbar a{color:#101014;text-decoration:none;font-weight:600}.topbar a:hover{color:#002fa7}.topbar .sq{display:inline-block;width:10px;height:10px;background:#002fa7;margin-right:10px}body{padding-top:38px}</style>
+</head>
+<body><div class="topbar"><span class="sq"></span><a href="https://carlosluisduchicela.github.io/#cases">&#8592; carlosluis duchicela — case work</a></div>
+
+<section class="slide">
+<div class="k">bonusly · admin os · feb 2026</div>
+<h1>an admin console runs reports. what would it take for it to run the recognition program itself?</h1>
+<p>the dashboard today surfaces strong signals: participation, program adoption, and cost. it provides visibility. the question is what its primary job should be.</p>
+<p class="foot">the short version of the workshop pre-read. the full pre-read and the prototype are linked from the last slide.</p>
+</section>
+
+<section class="slide">
+<div class="k">01 · the diagnosis</div>
+<h2>strong signals. no next step.</h2>
+<ul>
+<li><b>participation &amp; frequency</b> — clear pulse metrics, fast visibility, labels like great / average / low. but a snapshot without interpretation: when an admin sees “average”, what is the intended next step?</li>
+<li><b>program adoption</b> — a clear program inventory, transparently configured. but the programs sit as inventory, not levers, with no signal of which one matters most right now.</li>
+<li><b>cost</b> — transparent, finance-ready reporting. but it surfaces cost exposure without structured governance guidance, and no clear safe intervention path.</li>
+</ul>
+<p>the behavioral guess: admins interpret manually, open support tickets, or leave without action.</p>
+</section>
+
+<section class="slide">
+<div class="k">02 · the synthesis</div>
+<h2>visibility without an operating loop</h2>
+<ul>
+<li>strong signal visibility</li>
+<li>limited prioritization guidance</li>
+<li>limited decision scaffolding</li>
+<li>no explicit action → outcome loop</li>
+</ul>
+<p>so the dashboard encourages maintenance behavior instead of strategic behavior, and reactive cost behavior instead of guided governance. it lands hardest in onboarding, and on mature admins who use the dashboard episodically.</p>
+</section>
+
+<section class="slide">
+<div class="k">03 · the frame</div>
+<h2>reporting answers how things are. operating answers what to do.</h2>
+<p>reporting answers one question: how are things? operating answers four harder ones:</p>
+<ul>
+<li>what should i do next?</li>
+<li>which lever matters most right now?</li>
+<li>if i act, what outcome should i expect?</li>
+<li>are we safe from a governance perspective?</li>
+</ul>
+<p>if the job is operating, then sequencing, prioritization, and decision scaffolding matter more than layout changes. so the session aligned on the job definition before debating solutions.</p>
+</section>
+
+<section class="slide">
+<div class="k">04 · the operating loop</div>
+<h2>orient → decide → act → learn</h2>
+<p>the hypothesis to pressure-test: the dashboard should support an explicit operating loop. today it may primarily support orient.</p>
+<div class="loop">
+<div class="step"><div class="w">orient</div><div class="d">the signals: participation, adoption, cost</div></div>
+<div class="step"><div class="w">decide</div><div class="d">which lever matters most right now</div></div>
+<div class="step"><div class="w">act</div><div class="d">a limited set of recommended actions</div></div>
+<div class="step"><div class="w">learn</div><div class="d">what the action changed</div></div>
+</div>
+<p>admin usage is episodic, so each visit has to carry the whole loop: entropy reduction, clear prioritization, an obvious next action. ai's role, if any, is orchestration — ranking what matters, explaining why, prefilling actions, summarizing outcomes.</p>
+</section>
+
+<section class="slide">
+<div class="k">05 · programs as levers</div>
+<h2>programs should behave like levers, not inventory</h2>
+<ul>
+<li><b>tie programs to goals</b> — not a flat inventory with transparent configuration and nothing ranked.</li>
+<li><b>highlight one focus</b> — goal-relative prioritization, so the most important program right now is obvious.</li>
+<li><b>offer a limited set of recommended actions</b> — a lever you can actually pull, not a list you maintain.</li>
+</ul>
+<p>the open question: when participation dips, does the admin know which lever to pull, or is that typically prescribed from outside, by csms?</p>
+</section>
+
+<section class="slide">
+<div class="k">06 · cost as governance</div>
+<h2>cost should behave like governance</h2>
+<div class="loop">
+<div class="step"><div class="w">status</div><div class="d">where cost stands, visible and finance-ready</div></div>
+<div class="step"><div class="w">explanation</div><div class="d">why it moved, with expectation-setting around variance</div></div>
+<div class="step"><div class="w">safe intervention</div><div class="d">a clear path to act that is safe to take</div></div>
+</div>
+<p>today cost comes up as exposure, with no structured path after it. the open question: when finance raises a cost concern, what path does the admin follow? the aim is guided cost governance instead of reactive cost behavior.</p>
+</section>
+
+<section class="slide">
+<div class="k">07 · the wedge</div>
+<h2>align on the job before debating solutions</h2>
+<p>the pre-read ends with the questions the session had to settle. the prototype is a working hypothesis to pressure-test against this framing, not a conclusion.</p>
+<ul>
+<li>is the core problem correctly framed?</li>
+<li>should the dashboard primarily operate, not just report?</li>
+<li>is guided prioritization the right initial wedge?</li>
+<li>which admin triggers matter most?</li>
+<li>how disciplined should we be about phased validation?</li>
+<li>what does success look like, from a leading and a lagging perspective?</li>
+</ul>
+</section>
+
+<section class="slide">
+<div class="k">what came out</div>
+<h2>an operating loop for admins — orient, decide, act, learn — programs ranked as levers, cost with a governance path.</h2>
+<p><a href="bonusly-admin-os-pre-read.pdf">the pre-read (pdf)</a> · <a href="https://www.figma.com/make/SIFvJknqZ6bKdBq4tjrxT3/duchicela---bonusly-admin-OS?t=1aFlsxWQI1BD0B7Y-1">the prototype</a> · <a href="https://www.figma.com/board/RtKhYfrRDpFeQoLOKtoPpS/bonusly-brainstorm?node-id=0-1&t=822CtvJqma1qp0aU-1">the brainstorm board</a></p>
+<p class="foot">carlosluis duchicela · bonusly — admin os · feb 2026 · more case work on <a href="../index.html#cases">the site</a>.</p>
+</section>
+
+</body>
+</html>
