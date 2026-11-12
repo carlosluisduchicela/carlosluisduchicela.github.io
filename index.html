@@ -94,6 +94,8 @@
   }
   @keyframes fadein{from{opacity:0}to{opacity:1}}
   section#cases,section#built{animation:fadein .3s ease}
+  .proj .proves{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ikb);font-weight:700;margin-top:8px}
+  .also{font-size:13.5px;color:#5c5c60;margin-top:18px}
 </style>
 </head>
 <body>
@@ -101,8 +103,7 @@
 <nav><span class="mark" aria-hidden="true"></span><a href="#cases">case work</a><a href="#built">built work</a><a href="#resume">resume</a><a href="#contact" class="cta">contact</a></nav>
 <h1 class="name">carlosluis<br>duchicela</h1>
 <div class="role">head of product</div>
-<div class="target">new york. looking at director, head of product, and gm roles.</div>
-<div class="sub"><img src="headshot.jpg" alt="carlosluis duchicela"><p class="lede">i own the team, the revenue line, and every step from first click to renewal.</p></div>
+<div class="sub"><img src="headshot.jpg" alt="carlosluis duchicela"><p class="lede">new york. i build product and growth teams, from a team of one to a fifteen-person org, and own the revenue line they answer for.</p></div>
 <div class="strip">
 <div><div class="n">1 → 15 people</div><div class="l">teams led, first hire to full org</div></div>
 <div><div class="n">&gt;$3m → ~$50m arr</div><div class="l">revenue lines owned</div></div>
@@ -146,16 +147,15 @@
 
 <section id="built">
 <h2>built work <span class="sub2">— working software, not screenshots</span></h2>
-<article class="proj"><div class="thumb ph g">{ }</div><div><h3>resume-as-code</h3><p>one json source renders every resume surface — human, ats, linkedin — plus a checker that catches contradictions between them.</p><p class="use">use it: edit the sample resume live — outputs and lint update as you type.</p>
-      <p><a href="https://carlosluisduchicela.github.io/resume-as-code/">live demo</a><a href="https://github.com/carlosluisduchicela/resume-as-code">code</a></p></div></article>
-<article class="proj"><div class="thumb ph g">✚</div><div><h3>funnel-doctor</h3><p>finds the step that's actually broken, tests your segments, and says how sure it is. association, not causation — and it says so.</p><p class="use">use it: the sample patient is already on the table — extract an ailment, or drop in your own csv.</p>
+<article class="proj"><div class="thumb ph g">✚</div><div><h3>funnel-doctor</h3><p>paste funnel counts and it finds the step losing the most people, tests whether your segments actually differ, and says how much to trust each finding.</p><p class="use">use it: the sample patient is already loaded. press a finding to extract it, or drop in your own csv.</p><p class="proves">proof of measurement judgment</p>
       <p><a href="https://carlosluisduchicela.github.io/funnel-doctor/">live demo</a><a href="https://github.com/carlosluisduchicela/funnel-doctor">code</a></p></div></article>
-<article class="proj"><div class="thumb ph g">◎</div><div><h3>geo-heat</h3><p>a csv of coordinates becomes a heatmap in the browser. no tiles, no server, no network.</p><p class="use">use it: pick a scene, then play with radius, intensity, and palette.</p>
-      <p><a href="https://carlosluisduchicela.github.io/geo-heat/">live demo</a><a href="https://github.com/carlosluisduchicela/geo-heat">code</a></p></div></article>
-<article class="proj"><div class="thumb ph g">⌗</div><div><h3>screenshot-to-json</h3><p>messy screen text in, clean json out — every field scored, every guess flagged.</p><p class="use">use it: click a sample screen, then hover a field to see exactly where it came from.</p>
+<article class="proj"><div class="thumb ph g">⌗</div><div><h3>screenshot-to-json</h3><p>paste the text off any app screen and get clean json back, with a confidence note on every field and the source line for each one.</p><p class="use">use it: start with your own screen: paste its text or upload the image. samples are there if you don't have one handy.</p><p class="proves">proof of ai-product judgment: confidence, provenance, no invented data</p>
       <p><a href="https://carlosluisduchicela.github.io/screenshot-to-json/">live demo</a><a href="https://github.com/carlosluisduchicela/screenshot-to-json">code</a></p></div></article>
-<article class="proj"><div class="thumb ph">in progress</div><div><h3>agent suites</h3><p>agents that run a job search end to end — sourcing, tailoring, prep — over one shared record of claims, voice, and rules.</p><p class="use">the guardrail that can't be talked away: nothing goes out without a human approving it.</p></div></article>
-<article class="proj"><div class="thumb ph">in progress</div><div><h3>manuscript-builder</h3><p>a bilingual poetry manuscript as data: corpus checks, sequencing, and a correctly built book pdf from a folder of poems.</p><p class="use">built for my own book first; the public demo runs on an invented corpus.</p></div></article>
+<article class="proj"><div class="thumb ph g">{ }</div><div><h3>resume-as-code</h3><p>one structured file holds the whole resume. edit it once, and the ats text, the readable version, and the linkedin copy all rebuild from it, with a checker that flags anywhere the copies disagree.</p><p class="use">use it: change one line in the sample and watch all three versions move.</p><p class="proves">proof of systems thinking: one source of truth for every surface</p>
+      <p><a href="https://carlosluisduchicela.github.io/resume-as-code/">live demo</a><a href="https://github.com/carlosluisduchicela/resume-as-code">code</a></p></div></article>
+<article class="proj"><div class="thumb ph g">◎</div><div><h3>geo-heat</h3><p>turn a spreadsheet of coordinates into a heatmap, right in the browser. nothing is uploaded.</p><p class="use">use it: load a scene and drag the sliders, or paste a list of your own points.</p>
+      <p><a href="https://carlosluisduchicela.github.io/geo-heat/">live demo</a><a href="https://github.com/carlosluisduchicela/geo-heat">code</a></p></div></article>
+<p class="also">also building: agent suites that run a job search end to end, and a manuscript-builder for my poetry book. demos when they're real.</p>
 </section>
 
 <section id="resume">
@@ -172,7 +172,7 @@
 </section>
 </div>
 
-<footer id="contact"><div class="finner"><span class="big">building a growth org?</span><span>email me — <a href="mailto:carlosduchicela@gmail.com">carlosduchicela@gmail.com</a><br><a href="https://github.com/carlosluisduchicela">github</a> · <a href="https://www.linkedin.com/in/cduchicela">linkedin</a> · <a href="resume/CarlosDuchicela_Resume.pdf">resume</a><br>carlosluis duchicela · new york</span></div></footer>
+<footer id="contact"><div class="finner"><span class="big">building a product or growth team?</span><span>email me — <a href="mailto:carlosduchicela@gmail.com">carlosduchicela@gmail.com</a><br><a href="https://github.com/carlosluisduchicela">github</a> · <a href="https://www.linkedin.com/in/cduchicela">linkedin</a> · <a href="resume/CarlosDuchicela_Resume.pdf">resume</a><br>carlosluis duchicela · new york</span></div></footer>
 <script>
   document.body.dataset.tab='cases';
   var tabsEl=document.querySelector('.tabs');
