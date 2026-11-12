@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>toledo — what should drivers be paid?</title>
+<style>
+  :root{--paper:#f7f5ef;--ink:#101014;--muted:#6f6f6f;--line:#d8d4c8;--blue:#002fa7}
+  *{box-sizing:border-box} html{scroll-snap-type:y proximity}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.55}
+  .slide{min-height:94vh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;max-width:880px;margin:0 auto;padding:56px 26px;border-bottom:1px solid var(--line)}
+  .k{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--blue);font-weight:700}
+  h1{font-size:clamp(38px,6.5vw,64px);line-height:1.02;letter-spacing:-.03em;margin:14px 0 10px}
+  h2{font-size:clamp(28px,4.5vw,44px);line-height:1.08;letter-spacing:-.025em;margin:12px 0 12px}
+  p{font-size:19px;max-width:56ch;margin:0 0 10px}
+  .big{font-size:clamp(56px,10vw,110px);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--blue)}
+  .row{display:flex;gap:44px;flex-wrap:wrap;margin-top:14px}
+  .stat .n{font-size:34px;font-weight:800;letter-spacing:-.02em}.stat .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;max-width:24ch}
+  ul{font-size:18.5px;margin:6px 0;padding-left:20px} li{margin:0 0 9px;max-width:58ch}
+  table{border-collapse:collapse;font-size:16.5px;margin-top:8px} td,th{border-bottom:1px solid var(--line);padding:8px 22px 8px 0;text-align:left}
+  .foot{font-size:13px;color:var(--muted);margin-top:22px}
+  a{color:var(--blue)}
+</style>
+</head>
+<body>
+
+<section class="slide">
+<div class="k">lyft · toledo · driver pay optimization</div>
+<h1>what should drivers be paid so the marketplace clears on both sides?</h1>
+<p>one route — toledo airport ↔ downtown. the rider fare is fixed at <b>$25</b>. the only lever is how much of it the driver gets.</p>
+<p class="foot">the short version. the model and the full write-up are linked from <a href="../index.html#file-07">the site</a>.</p>
+</section>
+
+<section class="slide">
+<div class="k">01 · the trade</div>
+<h2>every dollar is a trade between match and margin</h2>
+<div class="row">
+<div class="stat"><div class="n">$19 → 60%</div><div class="l">driver pay → match rate</div></div>
+<div class="stat"><div class="n">$22 → 93%</div><div class="l">driver pay → match rate</div></div>
+</div>
+<p style="margin-top:18px">pay too little and riders can't get a car. pay too much and lyft's take per trip disappears. the optimum is in between — and it is a number, not a feeling.</p>
+</section>
+
+<section class="slide">
+<div class="k">02 · the model</div>
+<h2>a steady-state model of the whole route</h2>
+<table>
+<tr><th>parameter</th><th>value</th></tr>
+<tr><td>rider base</td><td>10,000 / month, topped back up as riders churn</td></tr>
+<tr><td>rider churn</td><td>10% if matched · 33% if no car comes</td></tr>
+<tr><td>match rate</td><td>linear in pay: m(x) = 0.11x − 1.49</td></tr>
+<tr><td>rider cac</td><td>$15 per replaced rider</td></tr>
+<tr><td>driver cac</td><td>$500 · 5% monthly driver churn · 100 rides/driver/month</td></tr>
+</table>
+<p style="margin-top:14px">unmatched riders are the expensive ones — they churn at 3× the rate and have to be bought back.</p>
+</section>
+
+<section class="slide">
+<div class="k">03 · the answer</div>
+<div class="big">$20.87</div>
+<p>per trip to the driver. that is where lyft's net revenue on the route peaks in the steady state — high enough to keep matches (and riders) up, low enough to keep a real take on the $25 fare.</p>
+</section>
+
+<section class="slide">
+<div class="k">04 · why not the edges</div>
+<h2>both edges lose money, differently</h2>
+<ul>
+<li><b>below $20.87</b> — matches fall, unmatched riders churn at 33%, and replacement cac eats what the lower pay saved.</li>
+<li><b>above $20.87</b> — match gains flatten while the take per trip keeps shrinking. you are buying matches you mostly already had.</li>
+</ul>
+</section>
+
+<section class="slide">
+<div class="k">05 · the honest caveat</div>
+<h2>steady state is a model, not the weather</h2>
+<p>the number holds while the assumptions do. seasonality, a shift in driver supply, or churn moving off baseline means re-running it — the model is the deliverable as much as the $20.87 is.</p>
+<p class="foot">carlosluis duchicela · model and full write-up on <a href="../index.html#file-07">the site</a>.</p>
+</section>
+
+</body>
+</html>

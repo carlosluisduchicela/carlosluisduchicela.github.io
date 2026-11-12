@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>biorender — what two years of data say</title>
+<style>
+  :root{--paper:#f7f5ef;--ink:#101014;--muted:#6f6f6f;--line:#d8d4c8;--blue:#002fa7}
+  *{box-sizing:border-box} html{scroll-snap-type:y proximity}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.55}
+  .slide{min-height:94vh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;max-width:880px;margin:0 auto;padding:56px 26px;border-bottom:1px solid var(--line)}
+  .k{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--blue);font-weight:700}
+  h1{font-size:clamp(38px,6.5vw,64px);line-height:1.02;letter-spacing:-.03em;margin:14px 0 10px}
+  h2{font-size:clamp(28px,4.5vw,44px);line-height:1.08;letter-spacing:-.025em;margin:12px 0 12px}
+  p{font-size:19px;max-width:56ch;margin:0 0 10px}
+  .big{font-size:clamp(52px,9vw,96px);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--blue)}
+  .row{display:flex;gap:44px;flex-wrap:wrap;margin-top:14px}
+  .stat .n{font-size:34px;font-weight:800;letter-spacing:-.02em}.stat .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;max-width:24ch}
+  ul{font-size:18.5px;margin:6px 0;padding-left:20px} li{margin:0 0 9px;max-width:58ch}
+  .foot{font-size:13px;color:var(--muted);margin-top:22px}
+  a{color:var(--blue)}
+</style>
+</head>
+<body>
+
+<section class="slide">
+<div class="k">biorender · data analysis · jan 2023 – dec 2024</div>
+<h1>what two years of usage data say about how scientists work</h1>
+<p>1.91 million signups, every funnel step, segment, and dollar of mrr — read end to end.</p>
+<p class="foot">the short version. the full analysis and recommendations are linked from <a href="../index.html#file-05">the site</a>.</p>
+</section>
+
+<section class="slide">
+<div class="k">01 · the funnel</div>
+<h2>the funnel leaks early, not late</h2>
+<div class="row">
+<div class="stat"><div class="n">89.0%</div><div class="l">finish step 1</div></div>
+<div class="stat"><div class="n">58.6%</div><div class="l">reach step 2</div></div>
+<div class="stat"><div class="n">24.3%</div><div class="l">complete step 3</div></div>
+</div>
+<p style="margin-top:18px">three of four users are gone before the product has had a real chance to show value.</p>
+</section>
+
+<section class="slide">
+<div class="k">02 · segments</div>
+<h2>the segment decides everything</h2>
+<ul>
+<li><b>academic leaders</b> finish step 3 at <b>52.1%</b> and convert at 3.80%.</li>
+<li><b>industry leaders</b> convert best of all — <b>6.55%</b>.</li>
+<li><b>academic lab staff</b> finish step 3 at just 18.4% and convert at 1.58%.</li>
+<li><b>“other”</b> users convert at 0.92% — the value proposition never lands.</li>
+</ul>
+<p>one onboarding for all of these is the problem, not the users.</p>
+</section>
+
+<section class="slide">
+<div class="k">03 · the signal</div>
+<h2>an early first figure predicts payment</h2>
+<p>users who complete their <b>first figure within 48 hours</b> — 28.3% of signups — convert at far higher rates. advanced features compound it: graphing and poster creation track with higher conversion and retention, especially among industry scientists.</p>
+<p>activation is not a tour. it is one real figure, fast, then a second feature.</p>
+</section>
+
+<section class="slide">
+<div class="k">04 · retention</div>
+<h2>retention is the wound</h2>
+<div class="row">
+<div class="stat"><div class="n">22%</div><div class="l">still there at 6 months</div></div>
+<div class="stat"><div class="n">10.9%</div><div class="l">still there at 12 months</div></div>
+<div class="stat"><div class="n">$7.3m</div><div class="l">churned mrr, of $45m total</div></div>
+</div>
+<p style="margin-top:18px">the product acquires. it does not yet keep — lab staff and “other” users leave first.</p>
+</section>
+
+<section class="slide">
+<div class="k">05 · the proof it can be fixed</div>
+<h2>reactivation already prints money</h2>
+<div class="big">15.8%</div>
+<p>of churned users were successfully reengaged — worth <b>$1.94m in new mrr</b>. the audience is not gone. it is unwritten-to.</p>
+</section>
+
+<section class="slide">
+<div class="k">06 · what i would do</div>
+<h2>the bets, in order</h2>
+<ul>
+<li><b>rebuild onboarding by segment</b> — lab staff and “other” get their own path, not the leaders' leftovers.</li>
+<li><b>engineer the first figure</b> — templates and prompts that get a real figure done inside 48 hours.</li>
+<li><b>push the second feature</b> — multi-feature users retain; make graphing/poster the week-two habit.</li>
+<li><b>run reactivation as a standing program</b> — it already returns $1.94m; aim it at industry and academic leaders first.</li>
+<li><b>watch retention monthly, by segment</b> — the aggregate hides every one of these stories.</li>
+</ul>
+<p class="foot">carlosluis duchicela · full analysis and recommendations (pdf) on <a href="../index.html#file-05">the site</a>.</p>
+</section>
+
+</body>
+</html>
