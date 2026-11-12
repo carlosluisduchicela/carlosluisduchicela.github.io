@@ -8,11 +8,13 @@
 <style>
   :root{--ink:#101014;--muted:#5c5c60;--line:#d8d4c8;--ikb:#002fa7;--paper:#f7f5ef}
   *{box-sizing:border-box} html{scroll-behavior:smooth}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
   .wrap{max-width:940px;margin:0 auto;padding:0 26px 90px}
   nav{position:sticky;top:0;background:rgba(247,245,239,.94);backdrop-filter:blur(8px);display:flex;gap:26px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);font-size:13px;z-index:5}
   nav a{color:var(--ink);text-decoration:none} nav a:hover{color:var(--ikb)}
   nav .mark{width:12px;height:12px;background:var(--ikb);margin-right:auto}
+  nav a.cta{background:var(--ikb);color:#fff;padding:5px 12px;font-weight:700}
+  nav a.cta:hover{color:#fff;opacity:.88}
   h1.name{font-size:clamp(56px,10vw,118px);font-weight:800;letter-spacing:-.05em;line-height:.87;margin:34px 0 0}
   .role{font-size:clamp(22px,3.2vw,32px);font-weight:700;color:var(--ikb);margin-top:10px;letter-spacing:-.01em}
   .target{font-size:15px;margin-top:6px}
@@ -22,7 +24,6 @@
   .strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:3px solid var(--ink);margin-top:36px;padding-top:16px;gap:18px}
   .strip .n{font-size:21px;font-weight:750;letter-spacing:-.01em}
   .strip .l{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:2px}
-  .caplabel{font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:38px}
   .caps2{display:grid;grid-template-columns:repeat(2,1fr);gap:11px 44px;margin-top:12px}
   .cap{font-size:15.5px}.cap b{color:var(--ikb);margin-right:9px}.cap .t{font-weight:700}.cap .d{color:#444}
   .tabs{display:none}
@@ -89,11 +90,13 @@
     .finner{flex-direction:column;padding:36px 18px 44px}
     footer .big{font-size:27px}
   }
+  @keyframes fadein{from{opacity:0}to{opacity:1}}
+  section#cases,section#built{animation:fadein .3s ease}
 </style>
 </head>
 <body>
 <div class="wrap">
-<nav><span class="mark" aria-hidden="true"></span><a href="#cases">work</a><a href="#built">built</a><a href="#resume">resume</a><a href="#contact">contact</a></nav>
+<nav><span class="mark" aria-hidden="true"></span><a href="#cases">case work</a><a href="#built">built work</a><a href="#resume">resume</a><a href="#contact" class="cta">contact</a></nav>
 <h1 class="name">carlosluis<br>duchicela</h1>
 <div class="role">head of product</div>
 <div class="target">new york. looking at director, head of product, and gm roles.</div>
@@ -104,7 +107,6 @@
 <div><div class="n">3–4 pms</div><div class="l">direct reports — superhuman, prizepicks</div></div>
 <div><div class="n">6 surfaces</div><div class="l">one owner, end to end</div></div>
 </div>
-<div class="caplabel">capabilities</div>
 <div class="caps2">
 <div class="cap"><b>01</b><span class="t">p&amp;l ownership</span><span class="d"> — part of financial planning for the whole business; a budget line covering three key results</span></div>
 <div class="cap"><b>02</b><span class="t">org building</span><span class="d"> — all 3 pms promoted at dashlane, 2 of 4 at prizepicks</span></div>
@@ -114,9 +116,9 @@
 <div class="cap"><b>06</b><span class="t">measurement</span><span class="d"> — built the experimentation system at wetransfer; test throughput tripled</span></div>
 </div>
 
-<div class="tabs" role="tablist" aria-label="work or built"><button class="tab active" type="button" data-goto="cases">selected work</button><button class="tab" type="button" data-goto="built">built</button></div>
+<div class="tabs" role="tablist" aria-label="work or built"><button class="tab active" type="button" data-goto="cases">case work</button><button class="tab" type="button" data-goto="built">built work</button></div>
 <section id="cases">
-<h2>selected work <span class="sub2">— seven questions, worked end to end</span></h2>
+<h2>case work <span class="sub2">— seven questions, worked end to end</span></h2>
 <article class="case" id="file-01"><div class="rail"><span class="no">nº 01</span>oct 2026</div><div>
 <div class="t">proton — lumo</div>
 <p class="q">how does a privacy-first ai assistant grow beyond the people who already use it — new segments, new surfaces — without spending the trust that makes it worth using?</p><p class="o"><span class="ol">what came out:</span> a three-move plan: repair the free path, reset paid around one useful task, and pilot a subscriber add-on — modeled at ~$323k in year-end ARR in the base case.</p><p class="links"><a href="cases/proton-lumo-growth-strategy-case.pdf" aria-label="proton — the deck">the deck</a> · <a href="cases/proton-lumo-wireframes.html">the wireframe prototype</a></p></div></article>
@@ -141,7 +143,7 @@
 </section>
 
 <section id="built">
-<h2>built, in the open <span class="sub2">— working software, not screenshots</span></h2>
+<h2>built work <span class="sub2">— working software, not screenshots</span></h2>
 <article class="proj"><img class="thumb" src="thumbs/resume.svg" alt=""><div><h3>resume-as-code</h3><p>one json source renders every resume surface — human, ats, linkedin — plus a checker that catches contradictions between them.</p><p class="use">use it: edit the sample resume live — outputs and lint update as you type.</p>
       <p><a href="https://carlosluisduchicela.github.io/resume-as-code/">live demo</a><a href="https://github.com/carlosluisduchicela/resume-as-code">code</a></p>
       <p class="meta">python + javascript · tests passing</p></div></article>
