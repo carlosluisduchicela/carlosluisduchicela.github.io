@@ -51,17 +51,11 @@
   .dlrow:first-of-type{border-top:none}
   .dlrow:hover{color:var(--ikb)}
   .dlrow .pdf{font-size:12.5px;color:var(--muted);white-space:nowrap}
-  .rnote{color:var(--muted);font-size:13.5px;margin:14px 0 4px}
-  details.role{border-top:1px solid var(--line);padding:11px 0}
-  details.role summary{cursor:pointer;font-size:15.5px;font-weight:600;list-style:none}
-  details.role summary::-webkit-details-marker{display:none}
-  details.role summary::before{content:"+  ";color:var(--ikb);font-weight:700}
-  details.role[open ] summary::before{content:"–  "}
-  details.role summary:hover{color:var(--ikb)}
-  details.role summary .rt{color:var(--muted);font-weight:400;font-size:13.5px}
-  details.role ul{margin:8px 0 6px;padding-left:18px}
-  details.role li{font-size:14.5px;margin:0 0 5px;max-width:74ch}
-  .skills{font-size:14.5px;color:#333;border-top:1px solid var(--line);padding-top:12px}
+  .logos{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:22px}
+  .co{background:var(--paper);padding:20px 18px}
+  .co img{height:26px;width:auto;max-width:140px;object-fit:contain;filter:grayscale(1);display:block}
+  .co .nm{margin-top:12px;font-weight:700;font-size:14.5px}
+  .co .rl{color:var(--muted);font-size:13px;margin-top:1px}
   footer{background:#101014;color:#ddd;margin-top:90px}
   .finner{max-width:940px;margin:0 auto;padding:44px 26px 52px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px}
   footer .big{font-size:32px;color:#fff;font-weight:650;letter-spacing:-.01em;line-height:1.2}
@@ -84,9 +78,9 @@
     .proj .thumb{width:100%;height:auto}
     .proj .thumb.ph{height:90px}
     .dlrow{font-size:14.5px}
+    .logos{grid-template-columns:repeat(2,1fr)}
     .finner{flex-direction:column;padding:36px 18px 44px}
     footer .big{font-size:27px}
-    details.role li{font-size:14px}
   }
 </style>
 </head>
@@ -157,20 +151,16 @@
 </section>
 
 <section id="resume">
-<h2>resume <span class="sub2">— five cuts, one record</span></h2>
-<a class="dlrow" href="resume/CarlosDuchicela_Resume.pdf"><span>master</span><span class="pdf">pdf ↓</span></a>
-<a class="dlrow" href="resume/CarlosDuchicela_Resume_Leadership.pdf"><span>leadership — director / head / vp / gm</span><span class="pdf">pdf ↓</span></a>
-<a class="dlrow" href="resume/CarlosDuchicela_Resume_StaffGrowthPM.pdf"><span>staff / principal — growth</span><span class="pdf">pdf ↓</span></a>
-<a class="dlrow" href="resume/CarlosDuchicela_Resume_CorePM.pdf"><span>staff / principal — core &amp; platform</span><span class="pdf">pdf ↓</span></a>
-<a class="dlrow" href="resume/CarlosDuchicela_Resume_OnePage.pdf"><span>one page — for humans</span><span class="pdf">pdf ↓</span></a>
-<p class="rnote">the master, written out — open a role to read it in full.</p>
-<details class="role"><summary>Superhuman — New York, NY / San Francisco, CA <span class="rt">— Head of Product, Growth — Superhuman Mail  April 2026 – Present</span></summary><ul><li>Lead a 15-person growth org (3 PMs) across acquisition, activation, agentic growth, expansion, and monetization for a ~$50M ARR product line.</li><li>Built an agent-native growth motion that reached 20%+ of acquisition and multi-million-dollar annualized bookings — agents delivering product value without conventional UI use.</li><li>Rebuilt growth strategy around the leading behaviors that drive 73% retention and 93% activation; randomized interventions on those behaviors lifted seats-with-sends +4.7pp and completion +49%.</li><li>Rebuilt and extended Get Me To Zero for existing users and new users who had not completed onboarding, and expanded how users segment what gets to zero.</li><li>Built a cross-suite growth model across Grammarly and Superhuman Mail; grew the self-serve 5+ seat ARR base ~34% and delivered a record multi-million-dollar expansion quarter.</li><li>Called a partial revert on a winning checkout experiment — +0.57pp purchase success, +12.9% checkout-to-onboarding conversion — when downstream bookings per user deteriorated.</li><li>Set the growth operating model — measurable hypotheses, fast decisions, owners named — and aligned planning and metrics across six teams. Hired the expansion PM; converted a PMM into a PM role.</li><li>Part of financial planning for the whole Mail business; owned a budget line covering three key results.</li></ul></details>
-<details class="role"><summary>PrizePicks — New York, NY / Atlanta, GA <span class="rt">— Group Product Manager, Player Accounts Management (PAM)  Feb 2025 – Feb 2026</span></summary><ul><li>First Group PM for Player Accounts: led 4 PMs and 20+ cross-functional partners across identity/KYC, payments, compliance, and responsible gaming. Owned headcount planning; promoted two of the four PMs.</li><li>Drove +25% registration-to-first-deposit, +5% KYC pass rate, and +12% LTV/CAC through funnel experimentation and simplified onboarding and payment UX.</li><li>Owned the strategy and roadmap for the account platform — the identity, payments, and compliance layer under DFS, free-to-play, and the launch of prediction markets.</li><li>Modernized trust and compliance while the funnel grew: 99.5% reconciliation accuracy, −40% chargebacks, −20% support volume.</li></ul></details>
-<details class="role"><summary>WeTransfer — New York, NY / Amsterdam, NL <span class="rt">— Principal Product Manager / Director, Commerce (Growth &amp; Monetization)  Oct 2023 – Oct 2024</span></summary><ul><li>First Growth PM; built and led the Commerce function — pricing, packaging, onboarding, checkout — across web and mobile with a 9-person cross-functional team.</li><li>Delivered +35% conversion and +20% ARR through tier, onboarding, and checkout redesigns, partnering with Finance and Data Science on pricing elasticity and regional economics.</li><li>Built the experimentation system that tripled test throughput and drove C-level monetization decisions, then saw it adopted beyond the commerce team.</li></ul></details>
-<details class="role"><summary>Dashlane — New York, NY / Paris, FR <span class="rt">— Senior Product Manager + Growth Lead, Growth &amp; Monetization  Dec 2019 – Oct 2023</span></summary><ul><li>First Growth Product hire; scaled the org to 3 PMs, 2 designers, and 15+ engineers across B2C and B2B, and promoted all three PMs.</li><li>Delivered 4–6% ARR growth per quarter (&gt;$3M annually) via pricing tests, paywall experiments, and onboarding optimization.</li><li>Partnered with the C-suite to define the company&#x27;s PLG strategy and B2B go-to-market, growth OKRs, and the dashboards used in quarterly planning.</li><li>Launched dynamic pricing and paywall frameworks that increased trial-to-paid conversion +22% and reduced voluntary churn −12%.</li></ul></details>
-<details class="role"><summary>Postmates (Uber) — Remote <span class="rt">— Data Scientist, Product + Fulfillment + Growth  Jan 2019 – Dec 2019</span></summary><ul><li>Ran SQL/Python-backed growth and marketplace initiatives across conversion, retention, and fulfillment: customer conversion +25%, retention +30%, active users 2.1×.</li><li>Revamped fleet onboarding (+40% acquisition, +10pp retention) and launched fraud tooling that cut ~$100K in annual costs.</li></ul></details>
-<details class="role"><summary>EY-Parthenon — Mexico City, Mexico <span class="rt">— Mergers and Acquisitions Associate  Jan 2018 – Jan 2019</span></summary><ul><li>Built valuation, diligence, and financial models for fintech, telecom, and CPG transactions, including an $860M carve-out and a $150M LatAm fintech debt financing.</li></ul></details>
-<p class="skills"><strong>tools</strong> — sql · python · ai agents · ai prototyping</p>
+<h2>resume <span class="sub2">— where i've worked; the full record is the pdf</span></h2>
+<a class="dlrow" href="resume/CarlosDuchicela_Resume.pdf"><span>resume</span><span class="pdf">pdf ↓</span></a>
+<div class="logos">
+<div class="co"><img src="logos/superhuman.svg" alt="Superhuman logo"><div class="nm">superhuman</div><div class="rl">head of product, growth</div></div>
+<div class="co"><img src="logos/prizepicks.png" alt="PrizePicks logo"><div class="nm">prizepicks</div><div class="rl">group product manager, player accounts</div></div>
+<div class="co"><img src="logos/wetransfer.svg" alt="WeTransfer logo"><div class="nm">wetransfer</div><div class="rl">principal pm / director, commerce</div></div>
+<div class="co"><img src="logos/dashlane.svg" alt="Dashlane logo"><div class="nm">dashlane</div><div class="rl">senior pm + growth lead</div></div>
+<div class="co"><img src="logos/postmates.svg" alt="Postmates logo"><div class="nm">postmates (uber)</div><div class="rl">data scientist, product + growth</div></div>
+<div class="co"><img src="logos/ey.svg" alt="EY logo"><div class="nm">ey-parthenon</div><div class="rl">m&amp;a associate</div></div>
+</div>
 </section>
 </div>
 
